@@ -1,9 +1,25 @@
 .select {
-
+  height: 45px;
+  width: 100%;
+  max-width: 265px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 0 0;
+  padding: 15px 0 15px 15px;
+  border: 1px solid #FFFFFF;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.23px;
+  color: #959799;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('../../../assets/Down.svg');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
 }
 
-.select-item {
-  height: 45px;
-  width: 100px;
-  min-width: 265px;
+.input__text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
 }

@@ -1,15 +1,18 @@
 import './Select.css';
 
-export default function Select() {
+interface SelectProps {
+  text: string;
+}
+
+export default function Select({ text }: SelectProps) {
   return (
-    <div className='select'>
-      <select
-        className='select-item'
-        // value={selectedLevel}
-        // onChange={handleSelectChange}
-      >
-        <option className='input-whith-select__option'>выбрать </option>
-        {/* {levels.map((level, index) => (
+    <select
+      className='select'
+      // value={selectedLevel}
+      // onChange={handleSelectChange}
+    >
+      <option className='input__text'>{text}</option>
+      {/* {levels.map((level, index) => (
           <option
             className='input-whith-select__option'
             value={level}
@@ -18,7 +21,6 @@ export default function Select() {
             {level}
           </option>
         ))} */}
-      </select>
-    </div>
+    </select>
   );
 }
