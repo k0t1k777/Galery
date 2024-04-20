@@ -1,6 +1,6 @@
 .header {
   margin: 0;
-  padding: 35px 123px;
+  padding: 0 0 35px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;

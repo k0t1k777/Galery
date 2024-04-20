@@ -1,0 +1,9 @@
+.select {
+
+}
+
+.select-item {
+  height: 45px;
+  width: 100px;
+  min-width: 265px;
+}
