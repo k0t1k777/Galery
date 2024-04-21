@@ -11,7 +11,7 @@ export default function Select({ text }: SelectProps) {
       // value={selectedLevel}
       // onChange={handleSelectChange}
     >
-      <option className='input__text'>{text}</option>
+      <option className='select__text'>{text}</option>
       {/* {levels.map((level, index) => (
           <option
             className='input-whith-select__option'

@@ -1,7 +1,32 @@
 .gallery {
-  margin: 45px 0 40px;
-  display: flex;
+  margin: 45px auto 40px;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
+  justify-items: stretch;
   box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+}
+
+.gallery__item {
+  box-sizing: border-box;
+  width: 100%;
+  /* width: 360px; */
+  max-height: 275px;
+}
+
+@media screen and (max-width: 1365) {
+  .picture {
+    width: 100px;
+    max-height: 230px;
+  }
+}
+
+@media screen and (max-width: 767) {
+  .picture {
+    max-width: 340px;
+    max-height: 249px;
+  }
 }

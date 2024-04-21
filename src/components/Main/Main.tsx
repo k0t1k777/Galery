@@ -4,11 +4,9 @@ import './Main.css';
 
 export default function Main() {
   return (
-    <>
-      <div className='main'>
-        <Filter />
-        <Gallery />
-      </div>
-    </>
+    <div className='main'>
+      <Filter />
+      <Gallery />
+    </div>
   );
 }

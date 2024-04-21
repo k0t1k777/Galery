@@ -13,13 +13,15 @@
   color: #959799;
   cursor: pointer;
   appearance: none;
-  background-image: url('../../../assets/Down.svg');
+  background-color: #0C0C0C;
+  background-image: url('./../../../assets/Down.svg');
   background-repeat: no-repeat;
-  background-position: right 16px center;
+  background-position: right 18px center;
 }
 
-.input__text {
+.select__text {
   font-size: 14px;
   font-weight: 400;
   line-height: 19.6px;
+  max-width: 265px;
 }
