@@ -1,5 +1,12 @@
 .app {
-  max-width: 1440px;
+  max-width: 1366px;
   margin: 0 auto;
-  padding: 35px 123px 0;
+  padding: 35px calc((100vw - 1120px) / 2) 0;
 }
+
+/* @media screen and (max-width: 1125px) {
+  .app {
+    padding: 35px 42px 0;
+    width: calc((100vw - 246px - 20px) / 3);
+  }
+} */
