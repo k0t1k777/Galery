@@ -3,10 +3,11 @@
   align-items: center;
   justify-content: center;
   height: 45px;
-  max-width: 265px;
-  width: calc((100vw - 246px - 60px) / 4);
+  width: 100%;
+  max-width: calc((100vw - 246px - 60px) / 4);
+  /* max-width: 265px; */
+  min-width: 265px;
   border-radius: 8px;
-  /* margin: 12px 0; */
   padding: 16px 0 14px 15px;
   box-sizing: border-box;
   border: 1px solid #FFFFFF;
@@ -16,6 +17,21 @@
   line-height: 15.23px;
   background-color: #0C0C0C;
 }
+
+@media screen and (max-width: 1024px) {
+  .input {
+    width: calc((100vw - 144px) / 4);
+    min-width: calc((100vw - 84px) / 4);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .input {
+    width: calc((100vw - 128px) / 4);
+    min-width: calc((100vw - 68px) / 4);
+  }
+}
+
 
 /* .input:hover {
   border: 1px solid #babdbf;

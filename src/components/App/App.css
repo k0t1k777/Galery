@@ -4,9 +4,14 @@
   padding: 35px calc((100vw - 1120px) / 2) 0;
 }
 
-/* @media screen and (max-width: 1125px) {
+@media screen and (max-width: 1024px) {
   .app {
-    padding: 35px 42px 0;
-    width: calc((100vw - 246px - 20px) / 3);
+    padding: 35px calc((100vw - 940px) / 2) 0;
   }
-} */
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    padding: 35px calc((100vw - 700px) / 2) 0;
+  }
+}

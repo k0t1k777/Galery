@@ -5,3 +5,18 @@
   max-width: 1366px;
 }
 
+@media screen and (max-width: 1024px) {
+  .main {
+    width: calc(100vw - 84px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .main {
+    width: calc(100vw - 68px);
+  }
+}
+@media screen and (max-width: 320px) {
+  .main {
+    width: calc(100vw - 40px);
+  }
+}

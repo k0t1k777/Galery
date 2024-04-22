@@ -1,5 +1,6 @@
 .gallery {
   margin: 45px auto 40px;
+  max-width: 1120px;
   /* display: flex;
   flex-direction: column; */
   display: grid;

@@ -1,8 +1,27 @@
 .filter {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0;
   padding: 0;
   gap: 20px;
   box-sizing: border-box;
+  max-width: 1120px;
 }
+
+@media screen and (max-width: 1024px) {
+  .filter {
+    justify-content: space-between;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
+  .filter {
+    width: calc(100vw - 68px);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .filter {
+    width: calc(100vw - 40px);
+  }
+} */
