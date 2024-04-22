@@ -1,19 +1,25 @@
 .picture {
+  width: 100%;
+}
+
+.picture__figure {
+  position: relative;
   margin: 0 auto;
   padding: 0;
   width: 360px;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   color: #000000;
   background-color: #f1f6ff;
   border-radius: 20px;
   object-fit: cover;
   position: relative;
+  display: flex;
+  justify-content: space-around;
 }
 
-
-.picture::before {
+.picture__figure::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -28,9 +34,27 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 20px;
+  width: 100%;
   margin: 0;
   color: #000000;
   position: absolute;
   bottom: 5px;
   left: 15px;
+}
+
+@media screen and (min-width: 1023px) {
+  .picture__figure {
+    width: 300px;
+    /* transition: width 0.5s; */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .picture {
+    width: 340px;
+  }
+
+  .picture__figure {
+    justify-content: space-between;
+  }
 }

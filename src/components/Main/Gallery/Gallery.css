@@ -1,13 +1,15 @@
 .gallery {
   margin: 45px auto 40px;
-  /* display: flex; */
+  /* display: flex;
+  flex-direction: column; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   justify-items: stretch;
   box-sizing: border-box;
   list-style: none;
   padding: 0;
+  /* flex-wrap: wrap; */
 }
 
 .gallery__item {
@@ -17,16 +19,4 @@
   max-height: 275px;
 }
 
-@media screen and (max-width: 1365) {
-  .picture {
-    width: 100px;
-    max-height: 230px;
-  }
-}
 
-@media screen and (max-width: 767) {
-  .picture {
-    max-width: 340px;
-    max-height: 249px;
-  }
-}
