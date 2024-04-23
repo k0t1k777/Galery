@@ -1,4 +1,4 @@
-import './Input.css';
+import styles from './Input.module.scss';
 
 // interface InputProps {
 //   width?: string;
@@ -13,5 +13,8 @@ import './Input.css';
 // }
 
 export default function Input() {
-  return <input className='input' type='text' name='name' placeholder='Name' />;
+  const {
+    input
+  } = styles
+  return <input className={input} type='text' name='name' placeholder='Name' />;
 }

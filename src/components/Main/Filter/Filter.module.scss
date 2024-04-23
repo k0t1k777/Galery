@@ -7,10 +7,8 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1120px;
-}
 
-@media screen and (max-width: 767px) {
-  .filter {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
   }
 }

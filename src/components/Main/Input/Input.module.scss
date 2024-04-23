@@ -1,3 +1,5 @@
+@import './../../styles/colors.scss';
+
 .input {
   display: flex;
   align-items: center;
@@ -7,10 +9,11 @@
   border-radius: 8px;
   padding: 16px 0 14px 15px;
   box-sizing: border-box;
-  border: 1px solid #FFFFFF;
+  border: 1px solid $border-white;
+  color: $white;
   margin: 0 0 0;
   font-size: 13px;
   font-weight: 400;
   line-height: 15.23px;
-  background-color: #0C0C0C;
+  background-color: $bg-black;
 }

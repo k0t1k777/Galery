@@ -1,10 +1,10 @@
 import Picture from '../Picture/Picture';
-import './Gallery.css';
+import styles from './Gallery.module.scss';
 
 export default function Gallery() {
+  const { gallery } = styles
   return (
-    <div className='gallery'>
-      <Picture />
+    <div className={gallery}>
       <Picture />
       <Picture />
       <Picture />

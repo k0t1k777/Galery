@@ -1,3 +1,5 @@
+@import './../../styles/colors.scss';
+
 .select {
   height: 45px;
   width: 100%;
@@ -5,22 +7,22 @@
   box-sizing: border-box;
   margin: 0 0;
   padding: 15px 0 15px 15px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid $border-white;
   font-size: 13px;
   font-weight: 400;
   line-height: 15.23px;
-  color: #959799;
+  color: $grey;
   cursor: pointer;
   appearance: none;
-  background-color: #0C0C0C;
+  background-color: $bg-black;
   background-image: url('./../../../assets/Down.svg');
   background-repeat: no-repeat;
   background-position: right 18px center;
-}
 
-.select__text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 19.6px;
-  max-width: 265px;
+  &__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.6px;
+    max-width: 265px;
+  }
 }
