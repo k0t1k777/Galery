@@ -13,5 +13,6 @@
 
 body {
   margin: 0 auto;
-  max-width: 1366px;
+  width: 100%;
+  min-width: 320px;
 }

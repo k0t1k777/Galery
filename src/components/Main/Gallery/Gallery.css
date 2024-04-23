@@ -1,23 +1,16 @@
 .gallery {
   margin: 45px auto 40px;
-  max-width: 1120px;
-  /* display: flex;
-  flex-direction: column; */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  width: 100%;
+  display: flex;
   gap: 20px;
-  justify-items: stretch;
   box-sizing: border-box;
-  list-style: none;
   padding: 0;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
+  max-width: 1120px;
 }
 
 .gallery__item {
   box-sizing: border-box;
   width: 100%;
-  /* width: 360px; */
   max-height: 275px;
 }
-
-

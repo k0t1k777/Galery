@@ -1,9 +1,6 @@
 .select {
   height: 45px;
   width: 100%;
-  min-width: 265px;
-  max-width: calc((100vw - 246px - 60px) / 4);
-  /* max-width: 265px; */
   border-radius: 8px;
   box-sizing: border-box;
   margin: 0 0;
@@ -19,20 +16,6 @@
   background-image: url('./../../../assets/Down.svg');
   background-repeat: no-repeat;
   background-position: right 18px center;
-}
-
-@media screen and (max-width: 1024px) {
-  .select {
-    width: calc((100vw - 144px) / 4);
-    min-width: calc((100vw - 84px) / 4);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .select {
-    width: calc((100vw - 128px) / 4);
-    min-width: calc((100vw - 68px) / 4);
-  }
 }
 
 .select__text {
