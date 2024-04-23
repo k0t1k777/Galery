@@ -1,13 +1,13 @@
-import Header from '../Header/Header'
-import Main from '../Main/Main'
-import './App.css'
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import styles from './App.module.scss';
 
 export default function App() {
-
+  const { app } = styles;
   return (
-      <div className='app'>
-        <Header />
-        <Main />
-      </div>
-  )
+    <div className={app}>
+      <Header />
+      <Main />
+    </div>
+  );
 }

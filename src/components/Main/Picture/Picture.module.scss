@@ -1,0 +1,73 @@
+@import './../../styles/colors.scss';
+
+.picture {
+  width: 100%;
+
+  &__figure {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    width: 360px;
+    color: $black;
+    background-color: $bg-white;
+    border-radius: 20px;
+    object-fit: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-start;
+
+    @media screen and (max-width: 1204px) {
+      width: 300px;
+    }
+
+    @media screen and (max-width: 1023px) {
+      width: 360px;
+    }
+
+    @media screen and (max-width: 823px) {
+      width: 340px;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 280px;
+    }
+
+    @media screen and (max-width: 647px) {
+      width: 240px;
+    }
+
+    @media screen and (max-width: 567px) {
+      width: 360px;
+      margin: 0 auto;
+    }
+
+    @media screen and (max-width: 440px) {
+      width: 280px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background-color: $shadow-grey;
+      border-radius: 0 0 20px 20px;
+    }
+  }
+
+  &__figcaption {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    width: 100%;
+    margin: 0;
+    color: $black;
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+  }
+}

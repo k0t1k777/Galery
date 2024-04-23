@@ -7,26 +7,20 @@
   align-items: center;
   width: 100%;
   max-width: 1120px;
-}
 
-@media screen and (max-width: 1024px) {
-  .header {
+  @media screen and (max-width: 1024px) {
     width: calc(100vw - 84px);
   }
-}
 
-@media screen and (max-width: 768px) {
-  .header {
+  @media screen and (max-width: 768px) {
     width: calc(100vw - 68px);
   }
-}
 
-@media screen and (max-width: 320px) {
-  .header {
+  @media screen and (max-width: 320px) {
     width: calc(100vw - 40px);
   }
-}
 
-.header__button {
-  cursor: pointer;
+  &__button {
+    cursor: pointer;
+  }
 }

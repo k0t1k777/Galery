@@ -1,0 +1,9 @@
+@function getColorGrey($color, $shadow) {
+  @return rgba($color, $shadow);
+}
+
+$black: #000000;
+
+$bg-white: #f1f6ff;
+
+$shadow-grey: getColorGrey(#FFFFFF, 55%);
