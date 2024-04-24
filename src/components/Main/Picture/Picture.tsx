@@ -1,9 +1,23 @@
 import styles from './Picture.module.scss';
 import { PICTURE_DATA } from './../../../utils/constants';
-import PictureImg from './../../../assets/painting.png';
 import { useState } from 'react';
+import { BASE_URL } from '../../../utils/utils';
 
-export default function Picture() {
+interface PictureProps {
+  image: string;
+  namePicture: string;
+  date: string;
+  author: string;
+  place: string;
+}
+
+export default function Picture({
+  image,
+  namePicture,
+  date,
+  author,
+  place,
+}: PictureProps) {
   const {
     picture,
     picture__figure,
@@ -26,7 +40,11 @@ export default function Picture() {
 
   return (
     <figure className={picture__figure}>
-      <img src={PictureImg} alt='Картина галереи' className={picture} />
+      <img
+        src={`${BASE_URL}/${image}`}
+        alt='Картина галереи'
+        className={picture}
+      />
 
       <div
         className={
@@ -42,22 +60,23 @@ export default function Picture() {
             <figcaption
               className={`${picture__figcaption} ${picture__type_top}`}
             >
-              Название
+              {namePicture}
             </figcaption>
             <p className={picture__subtitle}>
               <span className={picture__span}>{PICTURE_DATA.author}</span>{' '}
-              Rembrandt
+              {author}
             </p>
             <p className={picture__subtitle}>
-              <span className={picture__span}>{PICTURE_DATA.created}</span> 1642
+              <span className={picture__span}>{PICTURE_DATA.created}</span>
+              {date}
             </p>
             <p className={picture__subtitle}>
-              <span className={picture__span}>{PICTURE_DATA.location}</span> The
-              Rijksmuseum
+              <span className={picture__span}>{PICTURE_DATA.location}</span>
+              {place}
             </p>
           </>
         ) : (
-          <figcaption className={picture__figcaption}>Название</figcaption>
+          <figcaption className={picture__figcaption}>{namePicture}</figcaption>
         )}
       </div>
     </figure>

@@ -1,4 +1,4 @@
-export const BASE_URL = 'test-front.framework.team/';
+export const BASE_URL = 'https://test-front.framework.team';
 
 const getResponseData = (res: Response) => {
   if (!res.ok) {
@@ -7,9 +7,20 @@ const getResponseData = (res: Response) => {
   return res.json();
 };
 
-export const getPicture = () => {
+export const getPictures = () => {
   return fetch(`${BASE_URL}/paintings/`, {
     method: 'GET',
   }).then(getResponseData);
 };
 
+export const getAuthors = () => {
+  return fetch(`${BASE_URL}/authors/`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
+
+export const getLocations = () => {
+  return fetch(`${BASE_URL}/locations/`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
