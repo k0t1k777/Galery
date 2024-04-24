@@ -15,40 +15,51 @@ export default function Picture() {
     picture__container_type_height,
   } = styles;
   const [isContainerOpen, setIsContainerOpen] = useState(false);
-  console.log('isContainerOpen: ', isContainerOpen);
 
   const handleMouseEnter = () => {
     setIsContainerOpen(true);
   };
 
   const handleMouseLeave = () => {
-      setIsContainerOpen(false);
+    setIsContainerOpen(false);
   };
+
   return (
     <figure className={picture__figure}>
       <img src={PictureImg} alt='Картина галереи' className={picture} />
 
-      { !isContainerOpen && <div
-        className={picture__container}
+      <div
+        className={
+          isContainerOpen
+            ? `${picture__container} ${picture__container_type_height}`
+            : picture__container
+        }
         onMouseEnter={handleMouseEnter}
-                // onMouseLeave={() => setIsContainerOpen(false)}
+        onMouseLeave={handleMouseLeave}
       >
-        <figcaption className={picture__figcaption}>Название</figcaption>
-      </div>}
-
-      { isContainerOpen && <div className={`${picture__container} ${picture__container_type_height}`} onMouseLeave={handleMouseLeave}>
-        <figcaption className={`${picture__figcaption} ${picture__type_top}`}>Название</figcaption>
-        <p className={picture__subtitle}>
-          <span className={picture__span}>{PICTURE_DATA.author}</span> Rembrandt
-        </p>
-        <p className={picture__subtitle}>
-          <span className={picture__span}>{PICTURE_DATA.created}</span> 1642
-        </p>
-        <p className={picture__subtitle}>
-          <span className={picture__span}>{PICTURE_DATA.location}</span> The
-          Rijksmuseum
-        </p>
-      </div>}
+        {isContainerOpen ? (
+          <>
+            <figcaption
+              className={`${picture__figcaption} ${picture__type_top}`}
+            >
+              Название
+            </figcaption>
+            <p className={picture__subtitle}>
+              <span className={picture__span}>{PICTURE_DATA.author}</span>{' '}
+              Rembrandt
+            </p>
+            <p className={picture__subtitle}>
+              <span className={picture__span}>{PICTURE_DATA.created}</span> 1642
+            </p>
+            <p className={picture__subtitle}>
+              <span className={picture__span}>{PICTURE_DATA.location}</span> The
+              Rijksmuseum
+            </p>
+          </>
+        ) : (
+          <figcaption className={picture__figcaption}>Название</figcaption>
+        )}
+      </div>
     </figure>
   );
 }
