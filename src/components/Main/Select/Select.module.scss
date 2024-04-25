@@ -6,7 +6,7 @@
   border-radius: 8px;
   box-sizing: border-box;
   margin: 0 0;
-  padding: 15px 0 15px 15px;
+  padding: 15px 35px 15px 15px;
   border: 1px solid $border-white;
   font-size: 13px;
   font-weight: 400;
@@ -18,11 +18,28 @@
   background-image: url('./../../../assets/Down.svg');
   background-repeat: no-repeat;
   background-position: right 18px center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
   &__text {
     font-size: 14px;
     font-weight: 400;
     line-height: 19.6px;
     max-width: 265px;
+    // margin-top: 20px;
+  }
+
+  &__option {
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+  }
+
+  &__option:hover {
+  background-color: white;
   }
 }

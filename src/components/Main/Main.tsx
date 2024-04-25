@@ -35,32 +35,49 @@ export interface Locations {
 export default function Main({ pictures, authors, locations }: MainProps) {
   const { main } = styles;
   const [inputValue, setInputValue] = useState('');
-  const [showPictures, setShowPictures] = useState<any>(pictures);
-  console.log('showPictures: ', showPictures);
+  const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
+  console.log('showPictures: ', authors);
 
   useEffect(() => {
     setShowPictures(pictures);
   }, [pictures]);
 
+  // Фильтрация на сервере
+  // useEffect(() => {
+  //   if (inputValue !== '') {
+  //     Api.getSearchPictures(inputValue).then((data) => {
+  //       setShowPictures(data);
+  //     });
+  //   } else {
+  //     setShowPictures(pictures);
+  //   }
+  // }, [inputValue, pictures]);
+
+  // Фильтрация на стороне клиента
   useEffect(() => {
     if (inputValue !== '') {
-      Api.getSearchPictures(inputValue).then((data) => {
-        console.log(data);
-        setShowPictures(data.results);
-      });
+      const filteredPictures = pictures.filter((picture) =>
+        picture.name.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      setShowPictures(filteredPictures);
     } else {
       setShowPictures(pictures);
     }
-  }, [inputValue]);
+  }, [inputValue, pictures]);
 
   return (
     <div className={main}>
       <Filter
-        pictures={pictures}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        authors={authors}
+        locations={locations}
       />
-      <Gallery pictures={pictures} authors={authors} locations={locations} />
+      <Gallery
+        pictures={showPictures}
+        authors={authors}
+        locations={locations}
+      />
     </div>
   );
 }

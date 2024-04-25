@@ -2,7 +2,7 @@ import styles from './Input.module.scss';
 
 interface InputProps {
   value?: string;
-  setValue?: (value: any) => void;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Input({ value, setValue }: InputProps) {

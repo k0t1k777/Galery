@@ -14,7 +14,7 @@ export const getPictures = () => {
 };
 
 export const getSearchPictures = (value: string) => {
-  return fetch(`${BASE_URL}/paintings/authorId/${value}`, {
+  return fetch(`${BASE_URL}/paintings/?name=${value}`, {
     method: 'GET',
   }).then(getResponseData);
 };

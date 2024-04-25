@@ -9,18 +9,18 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    width: 100%;
+    height: 275px;
     width: 360px;
     color: $black;
     background-color: $bg-white;
     border-radius: 20px;
     object-fit: cover;
     display: flex;
-    justify-content: flex-end;
     align-content: flex-start;
 
     @media screen and (max-width: 1204px) {
       width: 300px;
+      height: 230px;
     }
 
     @media screen and (max-width: 1023px) {
@@ -29,11 +29,12 @@
 
     @media screen and (max-width: 823px) {
       width: 340px;
+      height: 249px;
     }
 
     @media screen and (max-width: 767px) {
       width: 280px;
-    }
+      }
 
     @media screen and (max-width: 647px) {
       width: 240px;
@@ -46,6 +47,7 @@
 
     @media screen and (max-width: 440px) {
       width: 280px;
+      height: 205px;
     }
   }
 
