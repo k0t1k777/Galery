@@ -13,6 +13,12 @@ export const getPictures = () => {
   }).then(getResponseData);
 };
 
+export const getSearchPictures = (value: string) => {
+  return fetch(`${BASE_URL}/paintings/authorId/${value}`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
+
 export const getAuthors = () => {
   return fetch(`${BASE_URL}/authors/`, {
     method: 'GET',

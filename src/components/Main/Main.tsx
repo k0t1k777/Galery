@@ -1,6 +1,8 @@
 import Filter from './Filter/Filter';
 import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
+import * as Api from './../../utils/utils';
+import { useEffect, useState } from 'react';
 
 interface MainProps {
   pictures: Pictures[];
@@ -32,10 +34,33 @@ export interface Locations {
 
 export default function Main({ pictures, authors, locations }: MainProps) {
   const { main } = styles;
+  const [inputValue, setInputValue] = useState('');
+  const [showPictures, setShowPictures] = useState<any>(pictures);
+  console.log('showPictures: ', showPictures);
+
+  useEffect(() => {
+    setShowPictures(pictures);
+  }, [pictures]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      Api.getSearchPictures(inputValue).then((data) => {
+        console.log(data);
+        setShowPictures(data.results);
+      });
+    } else {
+      setShowPictures(pictures);
+    }
+  }, [inputValue]);
+
   return (
     <div className={main}>
-      <Filter />
-      <Gallery pictures={pictures} authors={authors} locations={locations}/>
+      <Filter
+        pictures={pictures}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+      <Gallery pictures={pictures} authors={authors} locations={locations} />
     </div>
   );
 }

@@ -71,6 +71,9 @@
     margin: 0;
     padding: 5px 0 0 15px;
     color: $black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &__figcaption_type_top {

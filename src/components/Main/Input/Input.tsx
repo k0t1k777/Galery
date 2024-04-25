@@ -1,20 +1,27 @@
 import styles from './Input.module.scss';
 
-// interface InputProps {
-//   width?: string;
-//   placeholder?: string;
-//   disableSuggestions?: boolean;
-//   options: string[];
-//   inputValue: string;
-//   setInputValue: (value: string) => void;
-//   isRequired?: boolean;
-//   isValid: boolean;
-//   idStep?: string;
-// }
+interface InputProps {
+  value?: string;
+  setValue?: (value: any) => void;
+}
 
-export default function Input() {
-  const {
-    input
-  } = styles
-  return <input className={input} type='text' name='name' placeholder='Name' />;
+export default function Input({ value, setValue }: InputProps) {
+  const { input } = styles;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (setValue) {
+      setValue(e.target.value);
+    }
+  };
+
+  return (
+    <input
+      className={input}
+      type='text'
+      name='name'
+      placeholder='Name'
+      value={value}
+      onChange={handleChange}
+    />
+  );
 }
