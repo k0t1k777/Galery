@@ -19,6 +19,18 @@ export const getSearchPictures = (value: string) => {
   }).then(getResponseData);
 };
 
+export const getSearchAuthorId = (value: string) => {
+  return fetch(`${BASE_URL}/authors/?name=${value}`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
+
+export const getSearchLocation = (value: string) => {
+  return fetch(`${BASE_URL}/locations/?location=${value}`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
+
 export const getAuthors = () => {
   return fetch(`${BASE_URL}/authors/`, {
     method: 'GET',

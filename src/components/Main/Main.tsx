@@ -34,9 +34,11 @@ export interface Locations {
 
 export default function Main({ pictures, authors, locations }: MainProps) {
   const { main } = styles;
-  const [inputValue, setInputValue] = useState('');
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
-  console.log('showPictures: ', authors);
+  const [inputValue, setInputValue] = useState('');
+  const [authorValue, setAuthorValue] = useState('');
+  const [locationValue, setLocationValue] = useState('');
+  // console.log('showPictures: ', authors);
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -64,12 +66,45 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       setShowPictures(pictures);
     }
   }, [inputValue, pictures]);
+  // ____________________________
+
+  useEffect(() => {
+    if (authorValue !== '') {
+      Api.getSearchAuthorId(authorValue).then((data) => {
+        const id = data[0].id;
+        const filteredPictures = pictures.filter(
+          (picture) => picture.authorId === id
+        );
+        setShowPictures(filteredPictures);
+      });
+    } else {
+      setShowPictures(pictures);
+    }
+  }, [authorValue, pictures]);
+
+  useEffect(() => {
+    if (locationValue !== '') {
+      Api.getSearchLocation(locationValue).then((data) => {
+        const id = data[0].id;
+        const filteredPictures = pictures.filter(
+          (picture) => picture.locationId === id
+        );
+        setShowPictures(filteredPictures);
+      });
+    } else {
+      setShowPictures(pictures);
+    }
+  }, [locationValue, pictures]);
 
   return (
     <div className={main}>
       <Filter
         inputValue={inputValue}
         setInputValue={setInputValue}
+        authorValue={authorValue}
+        setAuthorValue={setAuthorValue}
+        locationValue={locationValue}
+        setLocationValue={setLocationValue}
         authors={authors}
         locations={locations}
       />

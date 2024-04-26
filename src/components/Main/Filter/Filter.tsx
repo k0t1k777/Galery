@@ -8,11 +8,19 @@ interface FilterProps {
   setInputValue?: React.Dispatch<React.SetStateAction<string>>;
   authors: Authors[];
   locations: Locations[];
+  authorValue?: string;
+  setAuthorValue?: (value: string) => void;
+  locationValue?: string;
+  setLocationValue?: (value: string) => void;
 }
 
 export default function Filter({
   inputValue,
   setInputValue,
+  authorValue,
+  setAuthorValue,
+  locationValue,
+  setLocationValue,
   authors,
   locations,
 }: FilterProps) {
@@ -21,10 +29,17 @@ export default function Filter({
   return (
     <div className={filter}>
       <Input value={inputValue} setValue={setInputValue} />
-      <Select text='Author' options={authors.map((author) => author.name)} />
+      <Select
+        text='Author'
+        options={authors.map((author) => author.name)}
+        value={authorValue}
+        setValue={setAuthorValue}
+      />
       <Select
         text='Location'
         options={locations.map((location) => location.location)}
+        value={locationValue}
+        setValue={setLocationValue}
       />
       <Select text='Created' />
     </div>
