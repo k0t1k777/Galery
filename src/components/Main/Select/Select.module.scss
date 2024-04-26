@@ -6,7 +6,7 @@
   border-radius: 8px;
   box-sizing: border-box;
   margin: 0 0;
-  padding: 15px 35px 15px 15px;
+  padding: 15px 50px 15px 15px;
   border: 1px solid $border-white;
   font-size: 13px;
   font-weight: 400;
@@ -21,6 +21,20 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  &__container {
+    width: 100%;
+    position: relative;
+  }
+
+  &__reset {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 20px;
+    right: 38px;
+    cursor: pointer;
+  }
 
   &__text {
     font-size: 14px;
@@ -40,7 +54,6 @@
   &__option:hover {
     background-color: $bg-white !important;
     color: $black !important;
-    margin: 20px !important;
-    padding: 20px !important;
+    margin-top: 20px !important;
   }
 }

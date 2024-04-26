@@ -1,4 +1,5 @@
 import styles from './Select.module.scss';
+import Reset from './../../../assets/Reset.svg';
 
 interface SelectProps {
   text: string;
@@ -7,8 +8,19 @@ interface SelectProps {
   setValue?: (value: string) => void;
 }
 
-export default function Select({ text, value, setValue, options = [] }: SelectProps) {
-  const { select, select__text, select__option } = styles;
+export default function Select({
+  text,
+  value,
+  setValue,
+  options = [],
+}: SelectProps) {
+  const {
+    select,
+    select__container,
+    select__reset,
+    select__text,
+    select__option,
+  } = styles;
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -17,14 +29,27 @@ export default function Select({ text, value, setValue, options = [] }: SelectPr
     }
   };
 
+  const handleReset = () => {
+    if (setValue) {
+      setValue('');
+    }
+  };
+
   return (
-    <select className={select} value={value || ''}  onChange={handleChange}>
-      <option className={select__text} hidden>{text}</option>
-      {options.map((option, index) => (
-        <option className={select__option} key={index} value={option}>
-          {option}
+    <div className={select__container}>
+      <select className={select} value={value || ''} onChange={handleChange}>
+        <option className={select__text} hidden>
+          {text}
         </option>
-      ))}
-    </select>
+        {options.map((option, index) => (
+          <option className={select__option} key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      {value && (
+        <img src={Reset} className={select__reset} onClick={handleReset} />
+      )}
+    </div>
   );
 }
