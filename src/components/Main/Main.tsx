@@ -53,10 +53,10 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         setShowPictures(data);
       });
     }
-// проверить
+
     if (authorValue !== '') {
       Api.getSearchAuthorId(authorValue).then((data) => {
-        const id = data[0] && data[0].id; // Проверка на наличие data[0]
+        const id = data[0] && data[0].id;
         if (id) {
           filteredPictures = filteredPictures.filter(
             (picture) => picture.authorId === id
@@ -66,25 +66,15 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-
-
     if (locationValue !== '') {
       Api.getSearchLocation(locationValue).then((data) => {
-        const id = data[0].id;
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.locationId === id
-        );
-        setShowPictures(filteredPictures);
-      });
-    }
-
-    if (locationValue !== '') {
-      Api.getSearchDate(locationValue).then((data) => {
-        const id = data[0].id;
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.locationId === id
-        );
-        setShowPictures(filteredPictures);
+        const id = data[0].id && data[0].id;
+        if (id) {
+          filteredPictures = filteredPictures.filter(
+            (picture) => picture.locationId === id
+          );
+          setShowPictures(filteredPictures);
+        }
       });
     }
 
