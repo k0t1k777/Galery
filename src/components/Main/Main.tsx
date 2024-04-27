@@ -52,6 +52,38 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       Api.getSearchPictures(inputValue).then((data) => {
         setShowPictures(data);
       });
+    } else if (
+      authorValue !== '' ||
+      locationValue !== '' ||
+      fromDate !== '' ||
+      beforeDate !== ''
+    ) {
+      let filteredPictures = pictures;
+
+      if (authorValue !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.authorId === authorValue
+        );
+      }
+
+      if (locationValue !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.locationId === locationValue
+        );
+      }
+
+      if (fromDate !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.created >= fromDate
+        );
+      }
+
+      if (beforeDate !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.created <= beforeDate
+        );
+      }
+      setShowPictures(filteredPictures);
     }
 
     if (authorValue !== '') {
