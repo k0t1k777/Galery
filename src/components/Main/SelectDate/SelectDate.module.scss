@@ -1,0 +1,55 @@
+@import './../../styles/colors.scss';
+
+.select {
+  min-height: 45px;
+  width: 100%;
+  max-width: 265px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 0 0;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid $border-white;
+  color: $grey;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  cursor: pointer;
+  appearance: none;
+  background-color: $bg-black;
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    max-width: 100%;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+  }
+
+  &__image {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 95px;
+    border-radius: 8px;
+    padding: 16px 0 14px 15px;
+    box-sizing: border-box;
+    border: 1px solid $border-white;
+    color: $bg-black;
+    margin: 0 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.23px;
+    background-color: $bg-white;
+  }
+}

@@ -2,6 +2,7 @@ import Input from '../Input/Input';
 import Select from '../Select/Select';
 import styles from './Filter.module.scss';
 import { Authors, Locations } from './../../Main/Main';
+import SelectDate from '../SelectDate/SelectDate';
 
 interface FilterProps {
   inputValue?: string;
@@ -41,7 +42,7 @@ export default function Filter({
         value={locationValue}
         setValue={setLocationValue}
       />
-      <Select text='Created' />
+      <SelectDate text='Created' />
     </div>
   );
 }
