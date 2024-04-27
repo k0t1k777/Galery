@@ -48,42 +48,22 @@ export default function Main({ pictures, authors, locations }: MainProps) {
   useEffect(() => {
     let filteredPictures = pictures;
 
-    if (inputValue !== '') {
-      Api.getSearchPictures(inputValue).then((data) => {
-        setShowPictures(data);
-      });
-    } else if (
+    if (
       authorValue !== '' ||
       locationValue !== '' ||
       fromDate !== '' ||
       beforeDate !== ''
     ) {
-      let filteredPictures = pictures;
-
-      if (authorValue !== '') {
+      if (inputValue !== '') {
         filteredPictures = filteredPictures.filter(
-          (picture) => picture.authorId === authorValue
-        );
-      }
-
-      if (locationValue !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.locationId === locationValue
-        );
-      }
-
-      if (fromDate !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.created >= fromDate
-        );
-      }
-
-      if (beforeDate !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.created <= beforeDate
+          (picture) => picture.name === inputValue
         );
       }
       setShowPictures(filteredPictures);
+    } else if (inputValue !== '') {
+      Api.getSearchPictures(inputValue).then((data) => {
+        setShowPictures(data);
+      });
     }
 
     if (authorValue !== '') {
@@ -100,7 +80,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
 
     if (locationValue !== '') {
       Api.getSearchLocation(locationValue).then((data) => {
-        const id = data[0].id && data[0].id;
+        const id = data[0] && data[0].id;
         if (id) {
           filteredPictures = filteredPictures.filter(
             (picture) => picture.locationId === id

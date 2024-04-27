@@ -8,7 +8,6 @@ import { Pictures, Authors, Locations } from './../Main/Main';
 export default function App() {
   const { app } = styles;
   const [pictures, setPictures] = useState<Pictures[]>([]);
-  console.log('pictures: ', pictures);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
 
