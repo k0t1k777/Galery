@@ -13,6 +13,10 @@ interface FilterProps {
   setAuthorValue?: (value: string) => void;
   locationValue?: string;
   setLocationValue?: (value: string) => void;
+  fromDate?: string;
+  setFromDate?: (value: string) => void;
+  beforeDate?: string;
+  setBeforeDate?: (value: string) => void;
 }
 
 export default function Filter({
@@ -22,6 +26,10 @@ export default function Filter({
   setAuthorValue,
   locationValue,
   setLocationValue,
+  fromDate,
+  setFromDate,
+  beforeDate,
+  setBeforeDate,
   authors,
   locations,
 }: FilterProps) {
@@ -42,7 +50,13 @@ export default function Filter({
         value={locationValue}
         setValue={setLocationValue}
       />
-      <SelectDate text='Created' />
+      <SelectDate
+        text='Created'
+        fromDate={fromDate}
+        setFromDate={setFromDate}
+        beforeDate={beforeDate}
+        setBeforeDate={setBeforeDate}
+      />
     </div>
   );
 }

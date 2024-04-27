@@ -38,6 +38,8 @@ export default function Main({ pictures, authors, locations }: MainProps) {
   const [inputValue, setInputValue] = useState('');
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [beforeDate, setBeforeDate] = useState('');
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -51,16 +53,20 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         setShowPictures(data);
       });
     }
-
+// проверить
     if (authorValue !== '') {
       Api.getSearchAuthorId(authorValue).then((data) => {
-        const id = data[0].id;
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.authorId === id
-        );
-        setShowPictures(filteredPictures);
+        const id = data[0] && data[0].id; // Проверка на наличие data[0]
+        if (id) {
+          filteredPictures = filteredPictures.filter(
+            (picture) => picture.authorId === id
+          );
+          setShowPictures(filteredPictures);
+        }
       });
     }
+
+
 
     if (locationValue !== '') {
       Api.getSearchLocation(locationValue).then((data) => {
@@ -72,10 +78,43 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-    if (inputValue === '' && authorValue === '' && locationValue === '') {
+    if (locationValue !== '') {
+      Api.getSearchDate(locationValue).then((data) => {
+        const id = data[0].id;
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.locationId === id
+        );
+        setShowPictures(filteredPictures);
+      });
+    }
+
+    if (fromDate !== '' || beforeDate !== '') {
+      filteredPictures = pictures.filter((picture) => {
+        const pictureDate = new Date(picture.created).getTime();
+        if (fromDate !== '' && beforeDate !== '') {
+          return (
+            pictureDate >= new Date(fromDate).getTime() &&
+            pictureDate <= new Date(beforeDate).getTime()
+          );
+        } else if (fromDate !== '') {
+          return pictureDate >= new Date(fromDate).getTime();
+        } else if (beforeDate !== '') {
+          return pictureDate <= new Date(beforeDate).getTime();
+        }
+      });
+      setShowPictures(filteredPictures);
+    }
+
+    if (
+      inputValue === '' &&
+      authorValue === '' &&
+      locationValue === '' &&
+      fromDate === '' &&
+      beforeDate === ''
+    ) {
       setShowPictures(pictures);
     }
-  }, [inputValue, authorValue, locationValue, pictures]);
+  }, [pictures, inputValue, authorValue, locationValue, fromDate, beforeDate]);
 
   return (
     <div className={main}>
@@ -88,6 +127,10 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         setLocationValue={setLocationValue}
         authors={authors}
         locations={locations}
+        fromDate={fromDate}
+        setFromDate={setFromDate}
+        beforeDate={beforeDate}
+        setBeforeDate={setBeforeDate}
       />
       <Gallery
         pictures={showPictures}

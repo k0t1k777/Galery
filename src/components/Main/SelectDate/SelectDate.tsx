@@ -4,15 +4,37 @@ import Down from './../../../assets/Down.svg';
 
 interface SelectProps {
   text: string;
+  fromDate?: string;
+  setFromDate?: (value: string) => void;
+  beforeDate?: string;
+  setBeforeDate?: (value: string) => void;
 }
 
-export default function SelectDate({ text }: SelectProps) {
+export default function SelectDate({
+  text,
+  fromDate,
+  setFromDate,
+  beforeDate,
+  setBeforeDate,
+}: SelectProps) {
   const { select, select__input, select__container, select__image } = styles;
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleSelect = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (setFromDate) {
+      setFromDate(e.target.value);
+    }
+  };
+
+  const handleToDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (setBeforeDate) {
+      setBeforeDate(e.target.value);
+    }
   };
 
   return (
@@ -25,20 +47,20 @@ export default function SelectDate({ text }: SelectProps) {
         <div className={select__container}>
           <input
             className={select__input}
-            type='text'
+            type='number'
             name='name'
             placeholder='from'
-            // value={value}
-            // onChange={handleChange}
+            value={fromDate}
+            onChange={handleFromDateChange}
           />
           <p>-</p>
           <input
             className={select__input}
-            type='text'
+            type='number'
             name='name'
             placeholder='before'
-            // value={value}
-            // onChange={handleChange}
+            value={beforeDate}
+            onChange={handleToDateChange}
           />
         </div>
       )}

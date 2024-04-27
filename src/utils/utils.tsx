@@ -31,6 +31,13 @@ export const getSearchLocation = (value: string) => {
   }).then(getResponseData);
 };
 
+export const getSearchDate = (value: string) => {
+  console.log('value: ', value);
+  return fetch(`${BASE_URL}/paintings/?created=${value}`, {
+    method: 'GET',
+  }).then(getResponseData);
+};
+
 export const getAuthors = () => {
   return fetch(`${BASE_URL}/authors/`, {
     method: 'GET',
