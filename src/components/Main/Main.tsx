@@ -48,6 +48,16 @@ export default function Main({ pictures, authors, locations }: MainProps) {
   useEffect(() => {
     let filteredPictures = pictures;
 
+        if (
+      inputValue === '' &&
+      authorValue === '' &&
+      locationValue === '' &&
+      fromDate === '' &&
+      beforeDate === ''
+    ) {
+      setShowPictures(pictures);
+    }
+
     if (
       authorValue !== '' ||
       locationValue !== '' ||
@@ -120,7 +130,6 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-
     if (
       authorValue !== '' ||
       locationValue !== '' ||
@@ -151,15 +160,6 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-    if (
-      inputValue === '' &&
-      authorValue === '' &&
-      locationValue === '' &&
-      fromDate === '' &&
-      beforeDate === ''
-    ) {
-      setShowPictures(pictures);
-    }
   }, [pictures, inputValue, authorValue, locationValue, fromDate, beforeDate]);
 
   return (
