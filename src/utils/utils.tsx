@@ -48,20 +48,3 @@ export const getLocations = () => {
     method: 'GET',
   }).then(getResponseData);
 };
-
-// if (fromDate !== '' || beforeDate !== '') {
-//   filteredPictures = pictures.filter((picture) => {
-//     const pictureDate = new Date(picture.created).getTime();
-//     if (fromDate !== '' && beforeDate !== '') {
-//       return (
-//         pictureDate >= new Date(fromDate).getTime() &&
-//         pictureDate <= new Date(beforeDate).getTime()
-//       );
-//     } else if (fromDate !== '') {
-//       return pictureDate >= new Date(fromDate).getTime();
-//     } else if (beforeDate !== '') {
-//       return pictureDate <= new Date(beforeDate).getTime();
-//     }
-//   });
-//   setShowPictures(filteredPictures);
-// }

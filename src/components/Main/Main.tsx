@@ -90,10 +90,26 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-    if (fromDate !== '') {
+    if (
+      authorValue !== '' ||
+      locationValue !== '' ||
+      inputValue !== '' ||
+      beforeDate !== ''
+    ) {
+      if (fromDate !== '') {
+        filteredPictures = filteredPictures.filter((picture) => {
+          const pictureDate = new Date(picture.created);
+          const fromDateObj = new Date(fromDate);
+          if (fromDate !== '') {
+            return pictureDate >= fromDateObj;
+          }
+        });
+      }
+      setShowPictures(filteredPictures);
+    } else if (fromDate !== '') { 
       Api.getSearchCreate(fromDate).then((data) => {
         setShowPictures(data);
-        filteredPictures = pictures.filter((picture) => {
+        filteredPictures = filteredPictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const fromDateObj = new Date(fromDate);
           if (fromDate !== '') {
@@ -104,10 +120,27 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-    if (beforeDate !== '') {
+
+    if (
+      authorValue !== '' ||
+      locationValue !== '' ||
+      inputValue !== '' ||
+      fromDate !== ''
+    ) {
+      if (beforeDate !== '') {
+        filteredPictures = filteredPictures.filter((picture) => {
+          const pictureDate = new Date(picture.created);
+          const beforeDateObj = new Date(beforeDate);
+          if (beforeDate !== '') {
+            return pictureDate <= beforeDateObj;
+          }
+        });
+      }
+      setShowPictures(filteredPictures);
+    } else if (beforeDate !== '') { 
       Api.getSearchCreate(beforeDate).then((data) => {
         setShowPictures(data);
-        filteredPictures = pictures.filter((picture) => {
+        filteredPictures = filteredPictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const beforeDateObj = new Date(beforeDate);
           if (beforeDate !== '') {
