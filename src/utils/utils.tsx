@@ -31,8 +31,7 @@ export const getSearchLocation = (value: string) => {
   }).then(getResponseData);
 };
 
-export const getSearchDate = (value: string) => {
-  console.log('value: ', value);
+export const getSearchCreate = (value: string) => {
   return fetch(`${BASE_URL}/paintings/?created=${value}`, {
     method: 'GET',
   }).then(getResponseData);
@@ -49,3 +48,20 @@ export const getLocations = () => {
     method: 'GET',
   }).then(getResponseData);
 };
+
+// if (fromDate !== '' || beforeDate !== '') {
+//   filteredPictures = pictures.filter((picture) => {
+//     const pictureDate = new Date(picture.created).getTime();
+//     if (fromDate !== '' && beforeDate !== '') {
+//       return (
+//         pictureDate >= new Date(fromDate).getTime() &&
+//         pictureDate <= new Date(beforeDate).getTime()
+//       );
+//     } else if (fromDate !== '') {
+//       return pictureDate >= new Date(fromDate).getTime();
+//     } else if (beforeDate !== '') {
+//       return pictureDate <= new Date(beforeDate).getTime();
+//     }
+//   });
+//   setShowPictures(filteredPictures);
+// }

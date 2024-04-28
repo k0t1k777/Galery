@@ -90,21 +90,32 @@ export default function Main({ pictures, authors, locations }: MainProps) {
       });
     }
 
-    if (fromDate !== '' || beforeDate !== '') {
-      filteredPictures = pictures.filter((picture) => {
-        const pictureDate = new Date(picture.created).getTime();
-        if (fromDate !== '' && beforeDate !== '') {
-          return (
-            pictureDate >= new Date(fromDate).getTime() &&
-            pictureDate <= new Date(beforeDate).getTime()
-          );
-        } else if (fromDate !== '') {
-          return pictureDate >= new Date(fromDate).getTime();
-        } else if (beforeDate !== '') {
-          return pictureDate <= new Date(beforeDate).getTime();
-        }
+    if (fromDate !== '') {
+      Api.getSearchCreate(fromDate).then((data) => {
+        setShowPictures(data);
+        filteredPictures = pictures.filter((picture) => {
+          const pictureDate = new Date(picture.created);
+          const fromDateObj = new Date(fromDate);
+          if (fromDate !== '') {
+            return pictureDate >= fromDateObj;
+          }
+        });
+        setShowPictures(filteredPictures);
       });
-      setShowPictures(filteredPictures);
+    }
+
+    if (beforeDate !== '') {
+      Api.getSearchCreate(beforeDate).then((data) => {
+        setShowPictures(data);
+        filteredPictures = pictures.filter((picture) => {
+          const pictureDate = new Date(picture.created);
+          const beforeDateObj = new Date(beforeDate);
+          if (beforeDate !== '') {
+            return pictureDate <= beforeDateObj;
+          }
+        });
+        setShowPictures(filteredPictures);
+      });
     }
 
     if (
