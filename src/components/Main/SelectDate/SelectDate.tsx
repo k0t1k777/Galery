@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styles from './SelectDate.module.scss';
 import Down from './../../../assets/Down.svg';
 import cn from 'classnames/bind';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const cx = cn.bind(styles);
 
@@ -23,10 +24,14 @@ export default function SelectDate({
   isDarkTheme,
 }: SelectProps) {
   const { select__container, select__image } = styles;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const ref = useRef(null);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const openMenu = () => {
+    setIsOpen(true);
+  };
 
-  const handleToggleSelect = () => {
+  const hideMenu = () => {
     setIsOpen(!isOpen);
   };
 
@@ -42,13 +47,16 @@ export default function SelectDate({
     }
   };
 
+  useOutsideClick(ref, hideMenu);
+
   return (
     <div
+      ref={ref}
       className={cx('select', {
         'select--dark': isDarkTheme === 'dark',
       })}
     >
-      <div onClick={handleToggleSelect}>
+      <div onClick={isOpen ? hideMenu : openMenu}>
         <img src={Down} className={select__image} />
         <span>{text}</span>
       </div>
