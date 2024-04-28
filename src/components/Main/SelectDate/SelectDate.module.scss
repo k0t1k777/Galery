@@ -1,4 +1,4 @@
-@import './../../styles/colors.scss';
+@import './../../../styles/colors.scss';
 
 .select {
   min-height: 45px;
@@ -58,8 +58,9 @@
     background-color: $bg-grey;
 
     &--dark {
-      background-color: $bg-black;
+      background-color: $bg-white;
       border: 1px solid $border-white;
+      color: $bg-black;
     }
   }
 }

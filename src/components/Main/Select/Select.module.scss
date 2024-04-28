@@ -1,4 +1,4 @@
-@import './../../styles/colors.scss';
+@import './../../../styles/colors.scss';
 
 .select {
   height: 45px;
@@ -55,10 +55,14 @@
 
   &__option {
     cursor: pointer;
-    color: $white;
+    color: $black;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    &--dark {
+      color: $white;
+    }
   }
 
   &__option:hover {

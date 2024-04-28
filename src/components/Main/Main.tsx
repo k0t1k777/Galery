@@ -50,16 +50,6 @@ export default function Main({ pictures, authors, locations, isDarkTheme }: Main
     let filteredPictures = pictures;
 
     if (
-      inputValue === '' &&
-      authorValue === '' &&
-      locationValue === '' &&
-      fromDate === '' &&
-      beforeDate === ''
-    ) {
-      setShowPictures(pictures);
-    }
-
-    if (
       authorValue !== '' ||
       locationValue !== '' ||
       fromDate !== '' ||
@@ -160,8 +150,18 @@ export default function Main({ pictures, authors, locations, isDarkTheme }: Main
         setShowPictures(filteredPictures);
       });
     }
-    
-  }, [pictures, inputValue, authorValue, locationValue, fromDate, beforeDate]);
+
+    if (
+      inputValue === '' &&
+      authorValue === '' &&
+      locationValue === '' &&
+      fromDate === '' &&
+      beforeDate === ''
+    ) {
+      setShowPictures(pictures);
+    }
+
+  }, [ pictures, inputValue, authorValue, locationValue, fromDate, beforeDate ]);
 
   return (
     <div className={main}>

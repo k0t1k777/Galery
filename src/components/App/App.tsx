@@ -13,7 +13,6 @@ export default function App() {
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState('light');
-  console.log('isDarkTheme: ', isDarkTheme);
 
   const toggleTheme = () => {
     const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';

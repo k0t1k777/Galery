@@ -1,4 +1,4 @@
-@import './../../styles/colors.scss';
+@import './../../../styles/colors.scss';
 
 .input {
   display: flex;
@@ -11,7 +11,7 @@
   padding: 16px 0 14px 15px;
   box-sizing: border-box;
   border: 1px solid $border-black;
-  color: $white;
+  color: $black;
   margin: 0 0 0;
   font-size: 13px;
   font-weight: 400;
@@ -25,5 +25,6 @@
   &--dark {
     background-color: $bg-black;
     border: 1px solid $border-white;
+    color: $white;
   }
 }

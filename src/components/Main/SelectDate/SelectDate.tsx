@@ -22,7 +22,7 @@ export default function SelectDate({
   setBeforeDate,
   isDarkTheme,
 }: SelectProps) {
-  const { select, select__container, select__image } = styles;
+  const { select__container, select__image } = styles;
 
   const [isOpen, setIsOpen] = useState(false);
 

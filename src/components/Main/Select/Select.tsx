@@ -19,13 +19,7 @@ export default function Select({
   isDarkTheme,
   options = [],
 }: SelectProps) {
-  const {
-    select,
-    select__option,
-    select__container,
-    select__reset,
-    select__text,
-  } = styles;
+  const { select__container, select__reset, select__text } = styles;
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -53,7 +47,13 @@ export default function Select({
           {text}
         </option>
         {options.map((option, index) => (
-          <option className={select__option} key={index} value={option}>
+          <option
+            className={cx('select__option', {
+              'select__option--dark': isDarkTheme === 'dark',
+            })}
+            key={index}
+            value={option}
+          >
             {option}
           </option>
         ))}
