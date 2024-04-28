@@ -1,13 +1,25 @@
 import styles from './Header.module.scss';
 import FWT from './../../assets/FWT.svg?react';
-import ChangeTheme from './../../assets/Change-theme.svg?react';
+import cn from 'classnames/bind';
 
-export default function Header() {
-  const { header, header__button } = styles;
+const cx = cn.bind(styles);
+
+interface HeaderProps {
+  toggleTheme: () => void;
+  isDarkTheme: string;
+}
+
+export default function Header({ toggleTheme, isDarkTheme }: HeaderProps) {
+  const { header } = styles;
   return (
     <div className={header}>
       <FWT />
-      <ChangeTheme className={header__button} />
+      <button
+        className={cx('header__button', {
+          'header__button--dark': isDarkTheme === 'dark',
+        })}
+        onClick={toggleTheme}
+      />
     </div>
   );
 }

@@ -7,9 +7,11 @@ $white: #FFFFFF;
 $grey: #959799;
 
 
-$bg-white: #f1f6ff;
+$bg-white: #FFFFFF;
 $bg-black: #0C0C0C;
+$bg-grey: #EFEFEF;
 
 $border-white: #FFFFFF;
+$border-black: getColorGrey(#000000, 30%);
 
 $shadow-grey: getColorGrey(#FFFFFF, 55%);

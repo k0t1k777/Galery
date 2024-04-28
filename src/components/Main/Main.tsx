@@ -8,6 +8,7 @@ interface MainProps {
   pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
+  isDarkTheme: string;
 }
 
 export interface Pictures {
@@ -32,7 +33,7 @@ export interface Locations {
   location: string;
 }
 
-export default function Main({ pictures, authors, locations }: MainProps) {
+export default function Main({ pictures, authors, locations, isDarkTheme }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
   const [inputValue, setInputValue] = useState('');
@@ -48,7 +49,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
   useEffect(() => {
     let filteredPictures = pictures;
 
-        if (
+    if (
       inputValue === '' &&
       authorValue === '' &&
       locationValue === '' &&
@@ -116,7 +117,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         });
       }
       setShowPictures(filteredPictures);
-    } else if (fromDate !== '') { 
+    } else if (fromDate !== '') {
       Api.getSearchCreate(fromDate).then((data) => {
         setShowPictures(data);
         filteredPictures = filteredPictures.filter((picture) => {
@@ -146,7 +147,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         });
       }
       setShowPictures(filteredPictures);
-    } else if (beforeDate !== '') { 
+    } else if (beforeDate !== '') {
       Api.getSearchCreate(beforeDate).then((data) => {
         setShowPictures(data);
         filteredPictures = filteredPictures.filter((picture) => {
@@ -159,7 +160,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         setShowPictures(filteredPictures);
       });
     }
-
+    
   }, [pictures, inputValue, authorValue, locationValue, fromDate, beforeDate]);
 
   return (
@@ -177,6 +178,7 @@ export default function Main({ pictures, authors, locations }: MainProps) {
         setFromDate={setFromDate}
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
+        isDarkTheme={isDarkTheme}
       />
       <Gallery
         pictures={showPictures}

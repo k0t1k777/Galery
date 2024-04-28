@@ -17,6 +17,7 @@ interface FilterProps {
   setFromDate?: (value: string) => void;
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
+  isDarkTheme: string;
 }
 
 export default function Filter({
@@ -32,23 +33,30 @@ export default function Filter({
   setBeforeDate,
   authors,
   locations,
+  isDarkTheme,
 }: FilterProps) {
   const { filter } = styles;
 
   return (
     <div className={filter}>
-      <Input value={inputValue} setValue={setInputValue} />
+      <Input
+        value={inputValue}
+        setValue={setInputValue}
+        isDarkTheme={isDarkTheme}
+      />
       <Select
         text='Author'
         options={authors.map((author) => author.name)}
         value={authorValue}
         setValue={setAuthorValue}
+        isDarkTheme={isDarkTheme}
       />
       <Select
         text='Location'
         options={locations.map((location) => location.location)}
         value={locationValue}
         setValue={setLocationValue}
+        isDarkTheme={isDarkTheme}
       />
       <SelectDate
         text='Created'
@@ -56,6 +64,7 @@ export default function Filter({
         setFromDate={setFromDate}
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
+        isDarkTheme={isDarkTheme}
       />
     </div>
   );

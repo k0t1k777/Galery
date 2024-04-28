@@ -8,14 +8,14 @@
   box-sizing: border-box;
   margin: 0 0;
   padding: 15px 50px 15px 15px;
-  border: 1px solid $border-white;
+  border: 1px solid $border-black;
   font-size: 13px;
   font-weight: 400;
   line-height: 15.23px;
   color: $grey;
   cursor: pointer;
   appearance: none;
-  background-color: $bg-black;
+  background-color: $bg-white;
   background-image: url('./../../../assets/Down.svg');
   background-repeat: no-repeat;
   background-position: right 18px center;
@@ -25,6 +25,11 @@
 
   @media screen and (max-width: 767px) {
     max-width: 100%;
+  }
+
+  &--dark {
+    background-color: $bg-black;
+    border: 1px solid $border-white;
   }
 
   &__container {

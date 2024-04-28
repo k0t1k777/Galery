@@ -1,23 +1,24 @@
-.app {
+@import './../styles/colors.scss';
+
+.App {
   max-width: 1330px;
   margin: 0 auto;
   padding: 35px 123px 0;
-}
+  background-color: $bg-white;
 
-@media screen and (max-width: 1365px) {
-  .app {
-    padding: 35px 42px 0; 
-   }
-}
-
-@media screen and (max-width: 783px) {
-  .app {
-    padding: 35px 34px 0; 
+  @media screen and (max-width: 1365px) {
+    padding: 35px 42px 0;
   }
-}
 
-@media screen and (max-width: 567px) {
-  .app {
-    padding: 35px 20px 0; 
+  @media screen and (max-width: 783px) {
+    padding: 35px 34px 0;
+  }
+
+  @media screen and (max-width: 567px) {
+    padding: 35px 20px 0;
+  }
+
+  &--dark {
+    background-color: $bg-black;
   }
 }

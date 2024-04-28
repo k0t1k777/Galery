@@ -4,12 +4,21 @@ import Main from '../Main/Main';
 import styles from './App.module.scss';
 import * as Api from './../../utils/utils';
 import { Pictures, Authors, Locations } from './../Main/Main';
+import cn from 'classnames/bind';
+
+const cx = cn.bind(styles);
 
 export default function App() {
-  const { app } = styles;
   const [pictures, setPictures] = useState<Pictures[]>([]);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
+  const [isDarkTheme, setIsDarkTheme] = useState('light');
+  console.log('isDarkTheme: ', isDarkTheme);
+
+  const toggleTheme = () => {
+    const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';
+    setIsDarkTheme(newTheme);
+  };
 
   useEffect(() => {
     Api.getPictures()
@@ -42,9 +51,14 @@ export default function App() {
   }, []);
 
   return (
-    <div className={app}>
-      <Header />
-      <Main pictures={pictures} authors={authors} locations={locations} />
+    <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
+      <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+      <Main
+        pictures={pictures}
+        authors={authors}
+        locations={locations}
+        isDarkTheme={isDarkTheme}
+      />
     </div>
   );
 }

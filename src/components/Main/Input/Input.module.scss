@@ -10,15 +10,20 @@
   border-radius: 8px;
   padding: 16px 0 14px 15px;
   box-sizing: border-box;
-  border: 1px solid $border-white;
+  border: 1px solid $border-black;
   color: $white;
   margin: 0 0 0;
   font-size: 13px;
   font-weight: 400;
   line-height: 15.23px;
-  background-color: $bg-black;
+  background-color: $bg-white;
 
   @media screen and (max-width: 767px) {
     max-width: 100%;
+  }
+
+  &--dark {
+    background-color: $bg-black;
+    border: 1px solid $border-white;
   }
 }

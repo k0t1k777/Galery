@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styles from './SelectDate.module.scss';
 import Down from './../../../assets/Down.svg';
+import cn from 'classnames/bind';
+
+const cx = cn.bind(styles);
 
 interface SelectProps {
   text: string;
@@ -8,6 +11,7 @@ interface SelectProps {
   setFromDate?: (value: string) => void;
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
+  isDarkTheme: string;
 }
 
 export default function SelectDate({
@@ -16,8 +20,9 @@ export default function SelectDate({
   setFromDate,
   beforeDate,
   setBeforeDate,
+  isDarkTheme,
 }: SelectProps) {
-  const { select, select__input, select__container, select__image } = styles;
+  const { select, select__container, select__image } = styles;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,7 +43,11 @@ export default function SelectDate({
   };
 
   return (
-    <div className={select}>
+    <div
+      className={cx('select', {
+        'select--dark': isDarkTheme === 'dark',
+      })}
+    >
       <div onClick={handleToggleSelect}>
         <img src={Down} className={select__image} />
         <span>{text}</span>
@@ -46,7 +55,9 @@ export default function SelectDate({
       {isOpen && (
         <div className={select__container}>
           <input
-            className={select__input}
+            className={cx('select__input', {
+              'select__input--dark': isDarkTheme === 'dark',
+            })}
             type='number'
             name='name'
             placeholder='from'
@@ -55,7 +66,9 @@ export default function SelectDate({
           />
           <p>-</p>
           <input
-            className={select__input}
+            className={cx('select__input', {
+              'select__input--dark': isDarkTheme === 'dark',
+            })}
             type='number'
             name='name'
             placeholder='before'
