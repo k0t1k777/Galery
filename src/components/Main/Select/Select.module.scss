@@ -16,7 +16,7 @@
   cursor: pointer;
   appearance: none;
   background-color: $bg-white;
-  background-image: url('./../../../assets/Down.svg');
+  background-image: url('./../../../assets/Down-black.svg');
   background-repeat: no-repeat;
   background-position: right 18px center;
   text-overflow: ellipsis;
@@ -30,6 +30,7 @@
   &--dark {
     background-color: $bg-black;
     border: 1px solid $border-white;
+    background-image: url('./../../../assets/Down.svg');
   }
 
   &__container {
@@ -63,11 +64,11 @@
     &--dark {
       color: $white;
     }
-  }
 
-  &__option:hover {
-    background-color: $bg-white !important;
-    color: $black !important;
-    margin-top: 20px !important;
+    &:hover {
+      background-color: $bg-white !important;
+      color: $black !important;
+      margin-top: 20px !important;
+    }
   }
 }

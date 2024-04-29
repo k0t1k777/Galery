@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import styles from './SelectDate.module.scss';
-import Down from './../../../assets/Down.svg';
 import cn from 'classnames/bind';
 import useOutsideClick from '../../../hooks/useOutsideClick';
+import Line from './../../../assets/Line.svg?react'
+import LineBlack from './../../../assets/Line-black.svg?react'
 
 const cx = cn.bind(styles);
 
@@ -23,7 +24,6 @@ export default function SelectDate({
   setBeforeDate,
   isDarkTheme,
 }: SelectProps) {
-  const { select__container, select__image } = styles;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -53,37 +53,36 @@ export default function SelectDate({
     <div
       ref={ref}
       className={cx('select', {
-        'select--dark': isDarkTheme === 'dark',
+        'select--dark': isDarkTheme === 'dark', 'select--open': isOpen === true
       })}
       onClick={isOpen ? hideMenu : openMenu}
     >
-      <div>
-        <img src={Down} className={select__image} />
-        <span>{text}</span>
-      </div>
+      <span>{text}</span>
       {isOpen && (
-        <div className={select__container}>
+        <div className={cx('select__container', {
+          'select__container--dark': isDarkTheme === 'dark',
+          'select__container--open': isOpen === true,
+        })}>
           <input
             className={cx('select__input', {
               'select__input--dark': isDarkTheme === 'dark',
             })}
             type='number'
-            name='name'
             placeholder='from'
             value={fromDate}
             onChange={handleFromDateChange}
             onClick={(e) => e.stopPropagation()}
           />
-          <p>-</p>
+          {isDarkTheme === 'dark' ? <Line /> : <LineBlack />}
           <input
             className={cx('select__input', {
               'select__input--dark': isDarkTheme === 'dark',
             })}
             type='number'
-            name='name'
             placeholder='before'
             value={beforeDate}
             onChange={handleToDateChange}
+            onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}

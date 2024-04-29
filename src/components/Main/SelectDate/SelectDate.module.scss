@@ -1,7 +1,7 @@
 @import './../../../styles/colors.scss';
 
 .select {
-  min-height: 45px;
+  height: 45px;
   width: 100%;
   max-width: 265px;
   border-radius: 8px;
@@ -17,6 +17,10 @@
   appearance: none;
   background-color: $bg-white;
   position: relative;
+  background-image: url('./../../../assets/Down-black.svg');
+  background-repeat: no-repeat;
+  background-position: right 18px top 19px;
+  position: relative;
 
   @media screen and (max-width: 767px) {
     max-width: 100%;
@@ -25,19 +29,37 @@
   &--dark {
     background-color: $bg-black;
     border: 1px solid $border-white;
+    background-image: url('./../../../assets/Down.svg');
+  }
+
+  &--open {
+    border-bottom: 1px solid transparent;
+    border-radius: 8px 8px 0 0;
   }
 
   &__container {
-    width: 100%;
+    width: inherit;
     display: flex;
-    justify-content: space-between;
-    margin-top: 35px;
-  }
-
-  &__image {
     position: absolute;
-    top: 18px;
-    right: 20px;
+    z-index: 1;
+    top: 43px;
+    left: -1px;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $border-black;
+    padding: 20px 22px;
+    box-sizing: border-box;
+    border-radius: 0 0 8px 8px;
+    background:  $border-white;
+
+    &--dark {
+      background-color: $bg-black;
+      border: 1px solid $border-white;
+     }
+
+    &--open {
+      border-top: none;  
+    }
   }
 
   &__input {
