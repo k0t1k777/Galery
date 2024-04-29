@@ -32,7 +32,7 @@ export default function SelectDate({
   };
 
   const hideMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +55,9 @@ export default function SelectDate({
       className={cx('select', {
         'select--dark': isDarkTheme === 'dark',
       })}
+      onClick={isOpen ? hideMenu : openMenu}
     >
-      <div onClick={isOpen ? hideMenu : openMenu}>
+      <div>
         <img src={Down} className={select__image} />
         <span>{text}</span>
       </div>
@@ -71,6 +72,7 @@ export default function SelectDate({
             placeholder='from'
             value={fromDate}
             onChange={handleFromDateChange}
+            onClick={(e) => e.stopPropagation()}
           />
           <p>-</p>
           <input
