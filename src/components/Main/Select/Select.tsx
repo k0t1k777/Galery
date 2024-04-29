@@ -1,7 +1,7 @@
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
 import cn from 'classnames/bind';
-import SimpleBar from 'simplebar-react';
+// import SimpleBar from 'simplebar-react';
 import './SimpleBar.scss';
 
 
