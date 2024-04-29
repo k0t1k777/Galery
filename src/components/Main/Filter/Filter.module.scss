@@ -1,5 +1,6 @@
 .filter {
   display: flex;
+  height: 45px;
   justify-content: space-between;
   margin: 0 auto;
   padding: 0;
@@ -10,5 +11,11 @@
 
   @media screen and (max-width: 767px) {
     flex-direction: column;
+    height: 100%;
+    gap: 15px;
   }
+
+  // @media screen and (max-width: 767px) {
+  //   max-width: 100%;
+  // }
 }
