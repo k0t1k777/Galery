@@ -48,3 +48,10 @@ export const getLocations = () => {
     method: 'GET',
   }).then(getResponseData);
 };
+
+// пагинация
+export const getPagination = (page: number, limit: number) => {
+  return fetch(`${BASE_URL}/paintings/?_page=${page}&_limit=${limit}`, {
+    method: 'GET',
+  }).then(getResponseData);
+};

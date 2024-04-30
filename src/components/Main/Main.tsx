@@ -10,6 +10,7 @@ interface MainProps {
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
+  currentPage: string;
 }
 
 export interface Pictures {
@@ -39,6 +40,7 @@ export default function Main({
   authors,
   locations,
   isDarkTheme,
+  currentPage,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
@@ -48,9 +50,7 @@ export default function Main({
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
-  // console.log('currentPage: ', currentPage);
-  // const pagesAmount = 12;
+  console.log('currentPage: ', currentPage);
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -152,6 +152,10 @@ export default function Main({
     }
   }, [inputValue, authorValue, locationValue, beforeDate, fromDate]);
 
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
   return (
     <div className={main}>
       <Filter
@@ -179,6 +183,18 @@ export default function Main({
         pagesAmount={pagesAmount}
         currentPage={currentPage}
       /> */}
+      
+
+      <div>
+      {/* Render your paintings here */}
+      {paintings.map((painting) => (
+        <div key={painting.id}>{painting.title}</div>
+      ))}
+
+      <button onClick={() => handlePageChange('1')}>Page 1</button>
+      <button onClick={() => handlePageChange('2')}>Page 2</button>
+    </div>
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import cn from 'classnames/bind';
+// import cn from 'classnames/bind';
 import PaginationPage, { PaginationPageProps } from './PaginationPage';
 
 interface IProps extends PaginationPageProps {

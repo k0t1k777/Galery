@@ -5,6 +5,7 @@ import styles from './App.module.scss';
 import * as Api from './../../utils/utils';
 import { Pictures, Authors, Locations } from './../Main/Main';
 import cn from 'classnames/bind';
+import { pagesAmount } from './../../utils/constants';
 
 const cx = cn.bind(styles);
 
@@ -13,11 +14,24 @@ export default function App() {
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState('light');
+  const [currentPage, setCurrentPage] = useState(0);
+  console.log('currentPage: ', currentPage);
 
   const toggleTheme = () => {
     const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';
     setIsDarkTheme(newTheme);
   };
+
+  useEffect(() => {
+    Api.getPagination(currentPage, pagesAmount)
+      .then((data) => {
+        setPictures(data);
+        console.log('data: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     Api.getPictures()
@@ -57,6 +71,7 @@ export default function App() {
         authors={authors}
         locations={locations}
         isDarkTheme={isDarkTheme}
+        currentPage={currentPage}
       />
     </div>
   );

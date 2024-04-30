@@ -1,8 +1,8 @@
 import { FC, ButtonHTMLAttributes } from 'react';
-import cn from 'classnames/bind';
-import styles from './PaginationPage.module.scss';
+// import cn from 'classnames/bind';
+// import styles from './PaginationPage.module.scss';
 
-const cx = cn.bind(styles);
+// const cx = cn.bind(styles);
 
 export interface PaginationPageProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
