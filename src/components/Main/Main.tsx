@@ -3,6 +3,7 @@ import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
 import * as Api from './../../utils/utils';
 import { useEffect, useState } from 'react';
+// import Pagination from '../Pagination/index';
 
 interface MainProps {
   pictures: Pictures[];
@@ -33,124 +34,113 @@ export interface Locations {
   location: string;
 }
 
-export default function Main({ pictures, authors, locations, isDarkTheme }: MainProps) {
+export default function Main({
+  pictures,
+  authors,
+  locations,
+  isDarkTheme,
+}: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
+  // console.log('pictures: ', pictures);
   const [inputValue, setInputValue] = useState('');
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
+  // const [currentPage, setCurrentPage] = useState(1);
+  // console.log('currentPage: ', currentPage);
+  // const pagesAmount = 12;
 
   useEffect(() => {
     setShowPictures(pictures);
   }, [pictures]);
 
   useEffect(() => {
-    let filteredPictures = pictures;
-
-    if (
-      authorValue !== '' ||
-      locationValue !== '' ||
-      fromDate !== '' ||
-      beforeDate !== ''
-    ) {
-      if (inputValue !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.name === inputValue
-        );
-      }
-      setShowPictures(filteredPictures);
-    } else if (inputValue !== '') {
+    if (inputValue !== '') {
+      setAuthorValue('');
+      setLocationValue('');
+      setFromDate('');
+      setBeforeDate('');
       Api.getSearchPictures(inputValue).then((data) => {
         setShowPictures(data);
       });
     }
+  }, [inputValue]);
 
+  useEffect(() => {
     if (authorValue !== '') {
+      setInputValue('');
+      setLocationValue('');
+      setFromDate('');
+      setBeforeDate('');
       Api.getSearchAuthorId(authorValue).then((data) => {
         const id = data[0] && data[0].id;
         if (id) {
-          filteredPictures = filteredPictures.filter(
-            (picture) => picture.authorId === id
-          );
-          setShowPictures(filteredPictures);
+          pictures = pictures.filter((picture) => picture.authorId === id);
+          setShowPictures(pictures);
         }
       });
     }
+  }, [authorValue]);
 
+  useEffect(() => {
     if (locationValue !== '') {
+      setInputValue('');
+      setAuthorValue('');
+      setFromDate('');
+      setBeforeDate('');
       Api.getSearchLocation(locationValue).then((data) => {
         const id = data[0] && data[0].id;
         if (id) {
-          filteredPictures = filteredPictures.filter(
-            (picture) => picture.locationId === id
-          );
-          setShowPictures(filteredPictures);
+          pictures = pictures.filter((picture) => picture.locationId === id);
+          setShowPictures(pictures);
         }
       });
     }
+  }, [locationValue]);
 
-    if (
-      authorValue !== '' ||
-      locationValue !== '' ||
-      inputValue !== '' ||
-      beforeDate !== ''
-    ) {
-      if (fromDate !== '') {
-        filteredPictures = filteredPictures.filter((picture) => {
-          const pictureDate = new Date(picture.created);
-          const fromDateObj = new Date(fromDate);
-          if (fromDate !== '') {
-            return pictureDate >= fromDateObj;
-          }
-        });
-      }
-      setShowPictures(filteredPictures);
-    } else if (fromDate !== '') {
+  useEffect(() => {
+    if (fromDate !== '') {
+      setInputValue('');
+      setAuthorValue('');
+      setLocationValue('');
+      setBeforeDate('');
       Api.getSearchCreate(fromDate).then((data) => {
         setShowPictures(data);
-        filteredPictures = filteredPictures.filter((picture) => {
+        pictures = pictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const fromDateObj = new Date(fromDate);
           if (fromDate !== '') {
             return pictureDate >= fromDateObj;
           }
         });
-        setShowPictures(filteredPictures);
+        setShowPictures(pictures);
       });
     }
+  }, [fromDate]);
 
-    if (
-      authorValue !== '' ||
-      locationValue !== '' ||
-      inputValue !== '' ||
-      fromDate !== ''
-    ) {
-      if (beforeDate !== '') {
-        filteredPictures = filteredPictures.filter((picture) => {
-          const pictureDate = new Date(picture.created);
-          const beforeDateObj = new Date(beforeDate);
-          if (beforeDate !== '') {
-            return pictureDate <= beforeDateObj;
-          }
-        });
-      }
-      setShowPictures(filteredPictures);
-    } else if (beforeDate !== '') {
+  useEffect(() => {
+    if (beforeDate !== '') {
+      setInputValue('');
+      setAuthorValue('');
+      setLocationValue('');
+      setFromDate('');
       Api.getSearchCreate(beforeDate).then((data) => {
         setShowPictures(data);
-        filteredPictures = filteredPictures.filter((picture) => {
+        pictures = pictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const beforeDateObj = new Date(beforeDate);
           if (beforeDate !== '') {
             return pictureDate <= beforeDateObj;
           }
         });
-        setShowPictures(filteredPictures);
+        setShowPictures(pictures);
       });
     }
+  }, [beforeDate]);
 
+  useEffect(() => {
     if (
       inputValue === '' &&
       authorValue === '' &&
@@ -160,8 +150,7 @@ export default function Main({ pictures, authors, locations, isDarkTheme }: Main
     ) {
       setShowPictures(pictures);
     }
-
-  }, [ pictures, inputValue, authorValue, locationValue, fromDate, beforeDate ]);
+  }, [inputValue, authorValue, locationValue, beforeDate, fromDate]);
 
   return (
     <div className={main}>
@@ -185,6 +174,11 @@ export default function Main({ pictures, authors, locations, isDarkTheme }: Main
         authors={authors}
         locations={locations}
       />
+      {/* <Pagination
+        isDarkTheme={isDarkTheme}
+        pagesAmount={pagesAmount}
+        currentPage={currentPage}
+      /> */}
     </div>
   );
 }

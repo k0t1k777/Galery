@@ -61,19 +61,14 @@
     white-space: nowrap;
     overflow: hidden;
 
-    &:hover {
-      background: black;
-      color: white;
-    }
-
     &--dark {
       color: $white;
     }
 
-    // &:hover {
-    //   background-color: $bg-white !important;
-    //   color: $black !important;
-    //   margin-top: 20px !important;
-    // }
+    &:hover {
+      background-color: $bg-white !important;
+      color: $black !important;
+      margin-top: 20px !important;
+    }
   }
 }
