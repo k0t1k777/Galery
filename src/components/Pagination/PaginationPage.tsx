@@ -1,8 +1,8 @@
 import { FC, ButtonHTMLAttributes } from 'react';
-// import cn from 'classnames/bind';
-// import styles from './PaginationPage.module.scss';
+import cn from 'classnames/bind';
+import styles from './PaginationPage.module.scss';
 
-// const cx = cn.bind(styles);
+const cx = cn.bind(styles);
 
 export interface PaginationPageProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,20 +10,20 @@ export interface PaginationPageProps
 }
 
 const PaginationPage: FC<PaginationPageProps> = ({
-  // isDarkTheme,
-  // className,
-  // ...other
+  isDarkTheme,
+  className,
+  ...other
 }) => (
   <button
-    // type='button'
-    // className={cx(
-    //   'PaginationPage',
-    //   {
-    //     'PaginationPage--dark': isDarkTheme,
-    //   },
-    //   className
-    // )}
-    // {...other}
+    type='button'
+    className={cx(
+      'PaginationPage',
+      {
+        'PaginationPage--dark': isDarkTheme === 'dark',
+      },
+      className
+    )}
+    {...other}
   />
 );
 

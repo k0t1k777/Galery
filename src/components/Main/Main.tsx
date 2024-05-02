@@ -10,9 +10,9 @@ interface MainProps {
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
-  paginationPages: number;
-  setCurrentPage: () => void;
+  setCurrentPage: (type: number) => void;
   currentPage: number;
+  pagesAmount: number;
 }
 
 export interface Pictures {
@@ -44,7 +44,7 @@ export default function Main({
   isDarkTheme,
   currentPage,
   setCurrentPage,
-  paginationPages,
+  pagesAmount,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
@@ -154,67 +154,9 @@ export default function Main({
     }
   }, [inputValue, authorValue, locationValue, beforeDate, fromDate]);
 
-  const handlePageChange = (currentPage: any) => {
+  const onChange = (currentPage: number) => {
     setCurrentPage(currentPage);
   };
-
-  const pages = [];
-
-  pages.push(
-    <button
-      key='first'
-      onClick={() => handlePageChange(1)}
-      style={{ width: '50px', height: '50px' }}
-    >
-      First
-    </button>
-  );
-
-  if (currentPage > 1) {
-    pages.push(
-      <button
-        key='back'
-        onClick={() => handlePageChange(currentPage - 1)}
-        style={{ width: '50px', height: '50px' }}
-      >
-        Back
-      </button>
-    );
-  }
-
-  for (let i = 1; i <= paginationPages; i++) {
-    pages.push(
-      <button
-        key={i}
-        onClick={() => handlePageChange(i)}
-        style={{ width: '50px', height: '50px' }}
-      >
-        {i}
-      </button>
-    );
-  }
-
-  if (currentPage < paginationPages) {
-    pages.push(
-      <button
-        key='next'
-        onClick={() => handlePageChange(currentPage + 1)}
-        style={{ width: '50px', height: '50px' }}
-      >
-        Next
-      </button>
-    );
-  }
-
-  pages.push(
-    <button
-      key='last'
-      onClick={() => handlePageChange(paginationPages)}
-      style={{ width: '50px', height: '50px' }}
-    >
-      Last
-    </button>
-  );
 
   return (
     <div className={main}>
@@ -238,17 +180,12 @@ export default function Main({
         authors={authors}
         locations={locations}
       />
-      {/* <Pagination
+      <Pagination
         isDarkTheme={isDarkTheme}
         pagesAmount={pagesAmount}
         currentPage={currentPage}
-      /> */}
-
-      <div
-        style={{ display: 'flex', justifyContent: 'center' }}
-      >
-        {pages}
-      </div>
+        onChange={onChange}
+      />
     </div>
   );
 }

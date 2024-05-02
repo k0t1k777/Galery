@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import cn from 'classnames/bind';
 import styles from './Pagination.module.scss';
 import PaginationPageWithActive from './PaginationPageWithActive';
 import PaginationPage from './PaginationPage';
@@ -9,10 +8,8 @@ import DoubleArrowR from '../../assets/doubleArrowR.svg?react';
 import ArrowL from '../../assets/arrowL.svg?react';
 import usePaginationSlice from '../../hooks/usePaginationSlice';
 
-const cx = cn.bind(styles);
-
 export type TPagination = {
-  // isDarkTheme?: string;
+  isDarkTheme?: string;
   pagesAmount: number;
   currentPage: number;
   className?: string;
@@ -21,48 +18,59 @@ export type TPagination = {
 
 const Pagination: FC<TPagination> = ({
   currentPage,
-  // isDarkTheme,
+  isDarkTheme,
   pagesAmount,
-  className,
-  onChange
+  onChange,
 }) => {
+  const { Pagination } = styles;
+
   const slicedPagesArray = usePaginationSlice({
     current: currentPage,
-    amount: pagesAmount
+    amount: pagesAmount,
   });
 
   const leftArrowProps = {
-    // isDarkTheme,
-    disabled: currentPage < 2
+    isDarkTheme,
+    disabled: currentPage < 2,
   };
 
   const rightArrowProps = {
-    // isDarkTheme,
-    disabled: currentPage >= pagesAmount
+    isDarkTheme,
+    disabled: currentPage >= pagesAmount,
   };
 
   return (
-    <div className={cx(className, 'Pagination')}>
+    <div className={Pagination}>
       <PaginationPage {...leftArrowProps} onClick={() => onChange(1)}>
         <DoubleArrowL />
       </PaginationPage>
-      <PaginationPage {...leftArrowProps} onClick={() => onChange(currentPage - 1)}>
+      <PaginationPage
+        {...leftArrowProps}
+        onClick={() => onChange(currentPage - 1)}
+      >
         <ArrowL />
       </PaginationPage>
 
       {slicedPagesArray.map((el) => (
         <PaginationPageWithActive
-          // isDarkTheme={isDarkTheme}
+          isDarkTheme={isDarkTheme}
           onClick={() => onChange(el)}
           isActive={currentPage === el}
-          key={el}>
+          key={el}
+        >
           {el}
         </PaginationPageWithActive>
       ))}
-      <PaginationPage {...rightArrowProps} onClick={() => onChange(currentPage + 1)}>
+      <PaginationPage
+        {...rightArrowProps}
+        onClick={() => onChange(currentPage + 1)}
+      >
         <ArrowR />
       </PaginationPage>
-      <PaginationPage {...rightArrowProps} onClick={() => onChange(pagesAmount)}>
+      <PaginationPage
+        {...rightArrowProps}
+        onClick={() => onChange(pagesAmount)}
+      >
         <DoubleArrowR />
       </PaginationPage>
     </div>
