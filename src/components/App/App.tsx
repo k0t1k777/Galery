@@ -14,34 +14,35 @@ export default function App() {
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState('light');
-  const [currentPage, setCurrentPage] = useState(0);
-  console.log('currentPage: ', currentPage);
+  const [paginationPages, setPaginationPages] = useState(0)
 
   const toggleTheme = () => {
     const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';
     setIsDarkTheme(newTheme);
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     Api.getPagination(currentPage, pagesAmount)
       .then((data) => {
         setPictures(data);
-        console.log('data: ', data);
+        setPaginationPages(data.length);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [currentPage, pagesAmount]);
 
-  useEffect(() => {
-    Api.getPictures()
-      .then((data) => {
-        setPictures(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Api.getPictures()
+  //     .then((data) => {
+  //       setPictures(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     Api.getAuthors()
@@ -71,7 +72,9 @@ export default function App() {
         authors={authors}
         locations={locations}
         isDarkTheme={isDarkTheme}
+        paginationPages={paginationPages}
         currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

@@ -3,14 +3,16 @@ import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
 import * as Api from './../../utils/utils';
 import { useEffect, useState } from 'react';
-// import Pagination from '../Pagination/index';
+import Pagination from '../Pagination/index';
 
 interface MainProps {
   pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
-  currentPage: string;
+  paginationPages: number;
+  setCurrentPage: () => void;
+  currentPage: number;
 }
 
 export interface Pictures {
@@ -41,16 +43,16 @@ export default function Main({
   locations,
   isDarkTheme,
   currentPage,
+  setCurrentPage,
+  paginationPages,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
-  // console.log('pictures: ', pictures);
   const [inputValue, setInputValue] = useState('');
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
-  console.log('currentPage: ', currentPage);
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -152,9 +154,67 @@ export default function Main({
     }
   }, [inputValue, authorValue, locationValue, beforeDate, fromDate]);
 
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
+  const handlePageChange = (currentPage: any) => {
+    setCurrentPage(currentPage);
   };
+
+  const pages = [];
+
+  pages.push(
+    <button
+      key='first'
+      onClick={() => handlePageChange(1)}
+      style={{ width: '50px', height: '50px' }}
+    >
+      First
+    </button>
+  );
+
+  if (currentPage > 1) {
+    pages.push(
+      <button
+        key='back'
+        onClick={() => handlePageChange(currentPage - 1)}
+        style={{ width: '50px', height: '50px' }}
+      >
+        Back
+      </button>
+    );
+  }
+
+  for (let i = 1; i <= paginationPages; i++) {
+    pages.push(
+      <button
+        key={i}
+        onClick={() => handlePageChange(i)}
+        style={{ width: '50px', height: '50px' }}
+      >
+        {i}
+      </button>
+    );
+  }
+
+  if (currentPage < paginationPages) {
+    pages.push(
+      <button
+        key='next'
+        onClick={() => handlePageChange(currentPage + 1)}
+        style={{ width: '50px', height: '50px' }}
+      >
+        Next
+      </button>
+    );
+  }
+
+  pages.push(
+    <button
+      key='last'
+      onClick={() => handlePageChange(paginationPages)}
+      style={{ width: '50px', height: '50px' }}
+    >
+      Last
+    </button>
+  );
 
   return (
     <div className={main}>
@@ -183,18 +243,12 @@ export default function Main({
         pagesAmount={pagesAmount}
         currentPage={currentPage}
       /> */}
-      
 
-      <div>
-      {/* Render your paintings here */}
-      {paintings.map((painting) => (
-        <div key={painting.id}>{painting.title}</div>
-      ))}
-
-      <button onClick={() => handlePageChange('1')}>Page 1</button>
-      <button onClick={() => handlePageChange('2')}>Page 2</button>
-    </div>
-
+      <div
+        style={{ display: 'flex', justifyContent: 'center' }}
+      >
+        {pages}
+      </div>
     </div>
   );
 }
