@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
 
 interface MainProps {
+  allPictures: Pictures[];
   pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
@@ -38,6 +39,7 @@ export interface Locations {
 }
 
 export default function Main({
+  allPictures,
   pictures,
   authors,
   locations,
@@ -79,7 +81,7 @@ export default function Main({
       Api.getSearchAuthorId(authorValue).then((data) => {
         const id = data[0] && data[0].id;
         if (id) {
-          pictures = pictures.filter((picture) => picture.authorId === id);
+          pictures = allPictures.filter((picture) => picture.authorId === id);
           setShowPictures(pictures);
         }
       });
@@ -95,7 +97,7 @@ export default function Main({
       Api.getSearchLocation(locationValue).then((data) => {
         const id = data[0] && data[0].id;
         if (id) {
-          pictures = pictures.filter((picture) => picture.locationId === id);
+          pictures = allPictures.filter((picture) => picture.locationId === id);
           setShowPictures(pictures);
         }
       });
@@ -110,7 +112,7 @@ export default function Main({
       setBeforeDate('');
       Api.getSearchCreate(fromDate).then((data) => {
         setShowPictures(data);
-        pictures = pictures.filter((picture) => {
+        pictures = allPictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const fromDateObj = new Date(fromDate);
           if (fromDate !== '') {
@@ -130,7 +132,7 @@ export default function Main({
       setFromDate('');
       Api.getSearchCreate(beforeDate).then((data) => {
         setShowPictures(data);
-        pictures = pictures.filter((picture) => {
+        pictures = allPictures.filter((picture) => {
           const pictureDate = new Date(picture.created);
           const beforeDateObj = new Date(beforeDate);
           if (beforeDate !== '') {
@@ -182,7 +184,7 @@ export default function Main({
       />
       <Pagination
         isDarkTheme={isDarkTheme}
-        pagesAmount={pagesAmount}
+        pagesAmount={Math.ceil(allPictures.length / pagesAmount)}
         currentPage={currentPage}
         onChange={onChange}
       />

@@ -10,6 +10,7 @@ import { pagesAmount } from './../../utils/constants';
 const cx = cn.bind(styles);
 
 export default function App() {
+  const [allPictures, setAllPictures] = useState<Pictures[]>([])
   const [pictures, setPictures] = useState<Pictures[]>([]);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
@@ -20,6 +21,16 @@ export default function App() {
     const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';
     setIsDarkTheme(newTheme);
   };
+
+  useEffect(() => {
+    Api.getPictures()
+      .then((data) => {
+        setAllPictures(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [])
 
   useEffect(() => {
     Api.getPagination(currentPage, pagesAmount)
@@ -55,6 +66,7 @@ export default function App() {
     <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
       <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       <Main
+        allPictures={allPictures}
         pictures={pictures}
         authors={authors}
         locations={locations}
