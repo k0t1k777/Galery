@@ -1,5 +1,6 @@
 import Input from '../Input/Input';
-import Select from '../Select/Select';
+// import Select from '../Select/Select';
+import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import { Authors, Locations } from './../../Main/Main';
 import SelectDate from '../SelectDate/SelectDate';
@@ -37,6 +38,9 @@ export default function Filter({
 }: FilterProps) {
   const { filter } = styles;
 
+  // console.log('locations: ', locations);
+  // console.log('authors: ', authors);
+
   return (
     <div className={filter}>
       <Input
@@ -44,14 +48,15 @@ export default function Filter({
         setValue={setInputValue}
         isDarkTheme={isDarkTheme}
       />
+
       <Select
         text='Author'
-        options={authors.map((author) => author.name)}
+        options={authors.map(author => author.name)}
         value={authorValue}
-        setValue={setAuthorValue}
         isDarkTheme={isDarkTheme}
+        setValue={setAuthorValue}      
       />
-      <Select
+       <Select
         text='Location'
         options={locations.map((location) => location.location)}
         value={locationValue}

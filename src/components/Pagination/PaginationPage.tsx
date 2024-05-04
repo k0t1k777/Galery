@@ -21,7 +21,6 @@ const PaginationPage: FC<PaginationPageProps> = ({
       {
         'PaginationPage--dark': isDarkTheme === 'dark',
       },
-      className
     )}
     {...other}
   />
