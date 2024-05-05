@@ -1,55 +1,74 @@
+@import './../../../styles/colors.scss';
+
 .Select {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 265px;
-  height: 46px;
+  max-width: 265px;
+  width: 100%;
+  height: 45px;
   border-radius: 8px;
-  box-shadow: 0px 0px 0px 1px black;
-  color: black;
+  border: 1px solid $border-black;
+  color: $black;
   box-sizing: border-box;
-  background: white;
+  background-color: $bg-white;
   cursor: pointer;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
+  @media screen and (max-width: 767px) {
+    max-width: 100%;
+  }
+
   &--open {
     border-radius: 8px 8px 0 0;
   }
+
   &--dark {
-    box-shadow: 0px 0px 0px 1px white;
-    color: white;
-    background: #464646;
+    color: $white;
+    background-color: $bg-black;
+    border: 1px solid $border-white;
   }
+
   &__title {
-    width: 220px;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.23px;
     word-break: break-all;
-    margin: 0 0 0 15px;
+    padding: 0 30px 0 15px;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-clamp: 3;
     white-space: nowrap;
+    color: $grey;
   }
+
   &__optionContainer {
     display: block;
     position: absolute;
     width: calc(100%);
-    box-shadow: 0px 0px 0px 1px black;
     border-radius: 8px;
-    top: 47px;
+    border: 1px solid $border-black;
+    top: 43px;
     padding: 0;
     margin: 0;
     list-style: none;
     z-index: 1;
-    background: white;
+    background-color: $bg-white;
+
     &--open {
       border-radius: 0 0 8px 8px;
-      max-height: 300px;
+      max-height: 330px;
     }
+    
     &--dark {
-      box-shadow: 0px 0px 0px 1px white;
-      background: #464646;
+      background-color: $bg-black;
+      border: 1px solid $border-white;
     }
   }
+
   &__option {
     display: flex;
     flex-direction: row;
@@ -57,105 +76,40 @@
     align-items: center;
     width: calc(100%);
     box-sizing: border-box;
-    padding: 0 15px;
+    padding: 20px 22px 0;
+
+
     &:hover {
-      background: black;
-      color: white;
+      background: $bg-black;
+      color: $white;
     }
+
     &--dark {
       &:hover {
-        background: white;
-        color: black;
+        background: $bg-white;
+        color: $black;
       }
     }
+
     &:last-of-type {
       border-radius: 0 0 8px 8px;
     }
   }
+
   &__optionName {
     word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
   }
-  &__arrow {
+
+  &__reset {
     position: absolute;
-    display: flex;
-    right: 18px;
-    float: right;
-    fill: #b3b3b3;
+    width: 8px;
+    height: 8px;
+    top: 18px;
+    right: 38px;
+    cursor: pointer;
   }
 }
-
-
-// @import './../../../styles/colors.scss';
-
-// .select {
-//   height: 45px;
-//   max-width: 265px;
-//   width: 100%;
-//   border-radius: 8px;
-//   box-sizing: border-box;
-//   margin: 0 0;
-//   padding: 15px 50px 15px 15px;
-//   border: 1px solid $border-black;
-//   font-size: 13px;
-//   font-weight: 400;
-//   line-height: 15.23px;
-//   color: $grey;
-//   cursor: pointer;
-//   appearance: none;
-//   background-color: $bg-white;
-//   background-image: url('./../../../assets/Down-black.svg');
-//   background-repeat: no-repeat;
-//   background-position: right 18px center;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-//   overflow: hidden;
-
-//   @media screen and (max-width: 767px) {
-//     max-width: 100%;
-//   }
-
-//   &--dark {
-//     background-color: $bg-black;
-//     border: 1px solid $border-white;
-//     background-image: url('./../../../assets/Down.svg');
-//   }
-
-//   &__container {
-//     width: 100%;
-//     position: relative;
-//   }
-
-//   &__reset {
-//     position: absolute;
-//     width: 8px;
-//     height: 8px;
-//     top: 20px;
-//     right: 38px;
-//     cursor: pointer;
-//   }
-
-//   &__text {
-//     font-size: 14px;
-//     font-weight: 400;
-//     line-height: 19.6px;
-//     max-width: 265px;
-//   }
-
-//   &__option {
-//     cursor: pointer;
-//     color: $black;
-//     text-overflow: ellipsis;
-//     white-space: nowrap;
-//     overflow: hidden;
-
-//     &--dark {
-//       color: $white;
-//     }
-
-//     &:hover {
-//       background-color: $bg-white !important;
-//       color: $black !important;
-//       margin-top: 20px !important;
-//     }
-//   }
-// }

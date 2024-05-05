@@ -1,4 +1,12 @@
 .Arrow {
+  &__arrow {
+    position: absolute;
+    display: flex;
+    right: 20px;
+    float: right;
+    fill: #b3b3b3;
+  }
+
   &__opened {
     transform: rotate(180deg);
   }

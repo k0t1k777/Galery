@@ -1,5 +1,4 @@
 import Input from '../Input/Input';
-// import Select from '../Select/Select';
 import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import { Authors, Locations } from './../../Main/Main';
@@ -10,10 +9,10 @@ interface FilterProps {
   setInputValue?: React.Dispatch<React.SetStateAction<string>>;
   authors: Authors[];
   locations: Locations[];
-  authorValue?: string;
-  setAuthorValue?: (value: string) => void;
-  locationValue?: string;
-  setLocationValue?: (value: string) => void;
+  authorValue: string;
+  setAuthorValue: (value: string) => void;
+  locationValue: string;
+  setLocationValue: (value: string) => void;
   fromDate?: string;
   setFromDate?: (value: string) => void;
   beforeDate?: string;
