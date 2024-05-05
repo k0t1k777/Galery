@@ -7,7 +7,7 @@
   border-radius: 8px;
   box-sizing: border-box;
   margin: 0 0;
-  padding: 15px 15px 15px 15px;
+  padding: 15px 0 15px 15px;
   border: 1px solid $border-black;
   color: $grey;
   font-size: 13px;
@@ -16,7 +16,6 @@
   cursor: pointer;
   appearance: none;
   background-color: $bg-white;
-  position: relative;
   background-image: url('./../../../assets/Down-black.svg');
   background-repeat: no-repeat;
   background-position: right 18px top 19px;
@@ -36,7 +35,7 @@
     height: 130px;
 
     @media screen and (max-width: 1120px) {
-      height: 220px;
+      height: 206px;
     }
 
     @media screen and (max-width: 767px) {

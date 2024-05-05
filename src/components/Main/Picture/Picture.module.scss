@@ -3,6 +3,7 @@
 .picture {
   width: 100%;
   border-radius: 20px;
+  object-fit: cover;
 
   &__figure {
     position: relative;
@@ -14,7 +15,6 @@
     color: $black;
     background-color: $bg-white;
     border-radius: 20px;
-    object-fit: cover;
     display: flex;
     align-content: flex-start;
 

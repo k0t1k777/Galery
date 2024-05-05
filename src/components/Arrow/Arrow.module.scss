@@ -5,6 +5,10 @@
     right: 20px;
     float: right;
     fill: #b3b3b3;
+    background-image: url('./../../assets/Down-black.svg');
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 6px;
   }
 
   &__opened {
@@ -12,6 +16,6 @@
   }
 
   &__dark {
-    fill: #555555;
+    background-image: url('./../../assets/Down.svg');
   }
 }

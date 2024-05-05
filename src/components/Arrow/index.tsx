@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import cn from 'classnames/bind';
-import SelectArrow from '../../assets/Down-black.svg?react';
 import styles from './Arrow.module.scss';
 
 export type TArrow = {
@@ -16,9 +15,7 @@ const Arrow: FC<TArrow> = ({ isOpen, isDarkTheme }) => (
       Arrow__opened: isOpen,
       Arrow__dark: isDarkTheme === 'dark',
     })}
-  >
-    <SelectArrow />
-  </div>
+  ></div>
 );
 
 export default Arrow;
