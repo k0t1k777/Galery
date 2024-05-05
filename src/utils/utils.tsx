@@ -31,10 +31,13 @@ export const getSearchLocation = (value: string) => {
   }).then(getResponseData);
 };
 
-export const getSearchCreate = (value: string) => {
-  return fetch(`${BASE_URL}/paintings/?created=${value}`, {
-    method: 'GET',
-  }).then(getResponseData);
+export const getSearchCreate = (fromDate: string, beforeDate: string) => {
+  return fetch(
+    `${BASE_URL}/paintings/?created_gte=${fromDate}&created_lte=${beforeDate}`,
+    {
+      method: 'GET',
+    }
+  ).then(getResponseData);
 };
 
 export const getAuthors = () => {

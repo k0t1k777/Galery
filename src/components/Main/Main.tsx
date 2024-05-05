@@ -11,9 +11,9 @@ interface MainProps {
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
-  setCurrentPage: (type: number) => void;
   currentPage: number;
   pagesAmount: number;
+  setCurrentPage: (type: number) => void;
 }
 
 export interface Pictures {
@@ -45,8 +45,8 @@ export default function Main({
   locations,
   isDarkTheme,
   currentPage,
-  setCurrentPage,
   pagesAmount,
+  setCurrentPage,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
@@ -66,9 +66,13 @@ export default function Main({
       setLocationValue('');
       setFromDate('');
       setBeforeDate('');
-      Api.getSearchPictures(inputValue).then((data) => {
-        setShowPictures(data);
-      });
+      Api.getSearchPictures(inputValue)
+        .then((data) => {
+          setShowPictures(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [inputValue]);
 
@@ -78,13 +82,17 @@ export default function Main({
       setLocationValue('');
       setFromDate('');
       setBeforeDate('');
-      Api.getSearchAuthorId(authorValue).then((data) => {
-        const id = data[0] && data[0].id;
-        if (id) {
-          pictures = allPictures.filter((picture) => picture.authorId === id);
-          setShowPictures(pictures);
-        }
-      });
+      Api.getSearchAuthorId(authorValue)
+        .then((data) => {
+          const id = data[0] && data[0].id;
+          if (id) {
+            pictures = allPictures.filter((picture) => picture.authorId === id);
+            setShowPictures(pictures);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [authorValue]);
 
@@ -94,55 +102,81 @@ export default function Main({
       setAuthorValue('');
       setFromDate('');
       setBeforeDate('');
-      Api.getSearchLocation(locationValue).then((data) => {
-        const id = data[0] && data[0].id;
-        if (id) {
-          pictures = allPictures.filter((picture) => picture.locationId === id);
-          setShowPictures(pictures);
-        }
-      });
+      Api.getSearchLocation(locationValue)
+        .then((data) => {
+          const id = data[0] && data[0].id;
+          if (id) {
+            pictures = allPictures.filter(
+              (picture) => picture.locationId === id
+            );
+            setShowPictures(pictures);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [locationValue]);
 
   useEffect(() => {
-    if (fromDate !== '') {
-      setInputValue('');
-      setAuthorValue('');
-      setLocationValue('');
-      setBeforeDate('');
-      Api.getSearchCreate(fromDate).then((data) => {
-        setShowPictures(data);
-        pictures = allPictures.filter((picture) => {
-          const pictureDate = new Date(picture.created);
-          const fromDateObj = new Date(fromDate);
-          if (fromDate !== '') {
-            return pictureDate >= fromDateObj;
-          }
-        });
-        setShowPictures(pictures);
-      });
-    }
-  }, [fromDate]);
+    setInputValue('');
+    setAuthorValue('');
+    setLocationValue('');
+    if (fromDate !== '' || beforeDate !== '') {
+      let filteredPictures = allPictures;
+      if (fromDate !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.created >= fromDate
+        );
+      }
+      if (beforeDate !== '') {
+        filteredPictures = filteredPictures.filter(
+          (picture) => picture.created <= beforeDate
+        );
+      }
 
-  useEffect(() => {
-    if (beforeDate !== '') {
-      setInputValue('');
-      setAuthorValue('');
-      setLocationValue('');
-      setFromDate('');
-      Api.getSearchCreate(beforeDate).then((data) => {
-        setShowPictures(data);
-        pictures = allPictures.filter((picture) => {
-          const pictureDate = new Date(picture.created);
-          const beforeDateObj = new Date(beforeDate);
-          if (beforeDate !== '') {
-            return pictureDate <= beforeDateObj;
-          }
+      Api.getSearchCreate(fromDate, beforeDate)
+        .then((data) => {
+          setShowPictures(data);
+          setShowPictures(filteredPictures);
+        })
+        .catch((error) => {
+          console.error(error);
         });
-        setShowPictures(pictures);
-      });
     }
-  }, [beforeDate]);
+  }, [fromDate, beforeDate]);
+
+  // useEffect(() => {
+  //   if (fromDate !== '') {
+  //     Api.getSearchCreate(`${fromDate}`, `${beforeDate}`)
+  //       .then((data) => {
+  //         setShowPictures(data);
+  //         pictures = allPictures.filter((picture) => {
+  //             return picture.created >= fromDate;
+  //         });
+  //         setShowPictures(pictures);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [fromDate, beforeDate]);
+
+  // useEffect(() => {
+  //   if (fromDate !== '' && beforeDate !== '') {
+  //     setInputValue('');
+  //     setAuthorValue('');
+  //     setLocationValue('');
+  //     Api.getSearchCreate(`${fromDate}`, `${beforeDate}`).then((data) => {
+  //       setShowPictures(data);
+  //       console.log('data: ', data);
+  //       pictures = allPictures.filter((picture) => {
+  //         return picture.created >= fromDate && picture.created <= beforeDate;
+  //       });
+  //       setShowPictures(pictures);
+  //     });
+  //   }
+  // }, [fromDate, beforeDate]);
 
   useEffect(() => {
     if (
