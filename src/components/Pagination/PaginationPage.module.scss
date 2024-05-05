@@ -1,3 +1,5 @@
+@import './../../styles/colors.scss';
+
 .PaginationPage {
   width: 40px;
   height: 40px;
@@ -6,30 +8,35 @@
   align-items: center;
   user-select: none;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid $black;
   border-right: none;
-  color: black;
+  color: $black;
   background: inherit;
+
   &:first-of-type {
     border-radius: 8px 0 0 8px;
     cursor: pointer;
   }
+
   &:last-child {
     border-radius: 0 8px 8px 0;
     border-right: 1px solid;
     cursor: pointer;
   }
+
   &:only-child {
     border-radius: 8px;
   }
+
   &:hover {
-    background: #ededed;
-    color: black;
-    border-color: black;
+    background: $bg-hover-white;
+    color: $black;
+    border-color: $black;
   }
+
   &:disabled {
-    border-color: #b3b3b3;
-    color: #b3b3b3;
+    border-color: $light-grey;
+    color: $light-grey;
 
     &:hover {
       cursor: auto;
@@ -37,39 +44,41 @@
     }
   }
   &--dark {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid $white;
+    color: $white;
     border-right: none;
 
     &:hover {
-      background: #464646;
-      color: white;
-      border-color: white;
+      background: $bg-hover-black;
+      color: $white;
+      border-color: $white;
     }
     &:disabled {
-      border-color: #4c4c4c;
-      color: #4c4c4c;
+      border-color: $grey-disabled;
+      color: $grey-disabled;
     }
   }
   &.PaginationPageWithActive {
-    background: black;
-    color: white;
-    border-color: black;
+    background: $black;
+    color: $white;
+    border-color: $black;
+
     &:hover {
       cursor: auto;
-      background: black;
-      color: white;
-      border-color: black;
+      background: $black;
+      color: $white;
+      border-color: $black;
     }
+
     &--dark {
-      background: white;
-      color: black;
-      border-color: white;
+      background: $white;
+      color: $black;
+      border-color: $white;
       &:hover {
-        background: white;
-        color: black;
-        border-color: white;
+        background: $white;
+        color: $black;
+        border-color: $white;
       }
     }
-  }  
+  }
 }
