@@ -1,6 +1,8 @@
 @import './../../../styles/colors.scss';
+@import './../../../mixins/mixins.scss';
 
 .select {
+  @include text-normal;
   height: 45px;
   width: 100%;
   max-width: 265px;
@@ -9,10 +11,7 @@
   margin: 0 0;
   padding: 15px 0 15px 15px;
   border: 1px solid $border-black;
-  color: $grey;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 15px;
+  color: $black;
   cursor: pointer;
   appearance: none;
   background-color: $bg-white;
@@ -28,6 +27,7 @@
   &--dark {
     background-color: $bg-black;
     border: 1px solid $border-white;
+    color: $white;
     background-image: url('./../../../assets/Down.svg');
   }
 
@@ -48,7 +48,7 @@
     display: flex;
     position: absolute;
     z-index: 1;
-    top: 43px;
+    top: 44px;
     left: 0;
     justify-content: space-between;
     align-items: center;
@@ -69,15 +69,19 @@
     }
 
     &--dark {
+      border: 1px solid $border-white;
       background-color: $bg-black;
     }
 
     &--open {
-      border: none;
+      border-top: none;
+      border-right: none;
+      border-left: none;
     }
   }
 
   &__input {
+    @include text-normal;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,9 +93,6 @@
     border: 1px solid $border-white;
     color: $bg-black;
     margin: 0 0 0;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 15.23px;
     background-color: $bg-grey;
 
     &--dark {

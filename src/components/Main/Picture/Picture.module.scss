@@ -1,4 +1,5 @@
 @import './../../../styles/colors.scss';
+@import './../../../mixins/mixins.scss';
 
 .picture {
   width: 100%;
@@ -34,7 +35,7 @@
 
     @media screen and (max-width: 767px) {
       width: 280px;
-      }
+    }
 
     @media screen and (max-width: 647px) {
       width: 360px;
@@ -60,9 +61,7 @@
   }
 
   &__figcaption {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 20px;
+    @include text-bold;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
@@ -82,9 +81,7 @@
   }
 
   &__subtitle {
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 20px;
+    @include text-light;
     margin: 0 0 0 15px;
   }
 
