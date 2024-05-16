@@ -4,20 +4,15 @@ import styles from './Main.module.scss';
 import * as Api from './../../utils/utils';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
+import { pagesAmount } from './../../utils/constants';
 
 interface MainProps {
-  allPictures: Pictures[];
-  pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
-  currentPage: number;
-  pagesAmount: number;
-  setCurrentPage: (type: number) => void;
 }
 
 export interface Pictures {
-  pictures: Pictures[];
   id: string;
   imageUrl: string;
   name: string;
@@ -39,22 +34,40 @@ export interface Locations {
 }
 
 export default function Main({
-  allPictures,
-  pictures,
   authors,
   locations,
   isDarkTheme,
-  currentPage,
-  pagesAmount,
-  setCurrentPage,
 }: MainProps) {
   const { main } = styles;
+  const [allPictures, setAllPictures] = useState<Pictures[]>([])
+  const [pictures, setPictures] = useState<Pictures[]>([]);
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
   const [inputValue, setInputValue] = useState('');
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    Api.getPictures()
+      .then((data) => {
+        setAllPictures(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [])
+
+  useEffect(() => {
+    Api.getPagination(currentPage, pagesAmount)
+      .then((data) => {
+        setPictures(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [currentPage, pagesAmount]);
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -86,8 +99,11 @@ export default function Main({
         .then((data) => {
           const id = data[0] && data[0].id;
           if (id) {
-            pictures = allPictures.filter((picture) => picture.authorId === id);
-            setShowPictures(pictures);
+            const filteredPictures = allPictures.filter(
+              (picture) => picture.authorId === id
+            );
+            setPictures(filteredPictures);
+            setShowPictures(filteredPictures);
           }
         })
         .catch((error) => {
@@ -106,10 +122,11 @@ export default function Main({
         .then((data) => {
           const id = data[0] && data[0].id;
           if (id) {
-            pictures = allPictures.filter(
+            const filteredPictures = allPictures.filter(
               (picture) => picture.locationId === id
             );
-            setShowPictures(pictures);
+            setPictures(filteredPictures);
+            setShowPictures(filteredPictures);
           }
         })
         .catch((error) => {
@@ -125,16 +142,15 @@ export default function Main({
     if (fromDate !== '' || beforeDate !== '') {
       let filteredPictures = allPictures;
       if (fromDate !== '') {
-        filteredPictures = filteredPictures.filter(
+        filteredPictures = allPictures.filter(
           (picture) => picture.created >= fromDate
         );
       }
       if (beforeDate !== '') {
-        filteredPictures = filteredPictures.filter(
+        filteredPictures = allPictures.filter(
           (picture) => picture.created <= beforeDate
         );
       }
-
       Api.getSearchCreate(fromDate, beforeDate)
         .then((data) => {
           setShowPictures(data);
@@ -145,38 +161,6 @@ export default function Main({
         });
     }
   }, [fromDate, beforeDate]);
-
-  // useEffect(() => {
-  //   if (fromDate !== '') {
-  //     Api.getSearchCreate(`${fromDate}`, `${beforeDate}`)
-  //       .then((data) => {
-  //         setShowPictures(data);
-  //         pictures = allPictures.filter((picture) => {
-  //             return picture.created >= fromDate;
-  //         });
-  //         setShowPictures(pictures);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //       });
-  //   }
-  // }, [fromDate, beforeDate]);
-
-  // useEffect(() => {
-  //   if (fromDate !== '' && beforeDate !== '') {
-  //     setInputValue('');
-  //     setAuthorValue('');
-  //     setLocationValue('');
-  //     Api.getSearchCreate(`${fromDate}`, `${beforeDate}`).then((data) => {
-  //       setShowPictures(data);
-  //       console.log('data: ', data);
-  //       pictures = allPictures.filter((picture) => {
-  //         return picture.created >= fromDate && picture.created <= beforeDate;
-  //       });
-  //       setShowPictures(pictures);
-  //     });
-  //   }
-  // }, [fromDate, beforeDate]);
 
   useEffect(() => {
     if (
