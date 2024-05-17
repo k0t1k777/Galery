@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
-import * as Api from './../../utils/utils';
+import * as Api from '../../api/utils';
 import { Pictures, Authors, Locations } from './../Main/Main';
 import cn from 'classnames/bind';
-import { pagesAmount } from './../../utils/constants';
+import { pagesAmount } from '../../api/constants';
 
 const cx = cn.bind(styles);
 

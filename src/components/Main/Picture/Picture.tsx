@@ -1,7 +1,7 @@
 import styles from './Picture.module.scss';
-import { PICTURE_DATA } from './../../../utils/constants';
+import { PICTURE_DATA } from '../../../api/constants';
 import { useState } from 'react';
-import { BASE_URL } from '../../../utils/utils';
+import { BASE_URL } from '../../../api/utils';
 
 interface PictureProps {
   image: string;

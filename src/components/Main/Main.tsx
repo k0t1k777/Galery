@@ -1,7 +1,7 @@
 import Filter from './Filter/Filter';
 import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
-import * as Api from './../../utils/utils';
+import * as Api from '../../api/utils';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
 
