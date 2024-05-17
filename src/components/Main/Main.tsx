@@ -4,15 +4,20 @@ import styles from './Main.module.scss';
 import * as Api from './../../utils/utils';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
-import { pagesAmount } from './../../utils/constants';
 
 interface MainProps {
+  allPictures: Pictures[];
+  pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
+  currentPage: number;
+  pagesAmount: number;
+  setCurrentPage: (type: number) => void;
 }
 
 export interface Pictures {
+  pictures: Pictures[];
   id: string;
   imageUrl: string;
   name: string;
@@ -34,40 +39,22 @@ export interface Locations {
 }
 
 export default function Main({
+  allPictures,
+  pictures,
   authors,
   locations,
   isDarkTheme,
+  currentPage,
+  pagesAmount,
+  setCurrentPage,
 }: MainProps) {
   const { main } = styles;
-  const [allPictures, setAllPictures] = useState<Pictures[]>([])
-  const [pictures, setPictures] = useState<Pictures[]>([]);
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
   const [inputValue, setInputValue] = useState('');
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
-  useEffect(() => {
-    Api.getPictures()
-      .then((data) => {
-        setAllPictures(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [])
-
-  useEffect(() => {
-    Api.getPagination(currentPage, pagesAmount)
-      .then((data) => {
-        setPictures(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [currentPage, pagesAmount]);
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -99,11 +86,8 @@ export default function Main({
         .then((data) => {
           const id = data[0] && data[0].id;
           if (id) {
-            const filteredPictures = allPictures.filter(
-              (picture) => picture.authorId === id
-            );
-            setPictures(filteredPictures);
-            setShowPictures(filteredPictures);
+            pictures = allPictures.filter((picture) => picture.authorId === id);
+            setShowPictures(pictures);
           }
         })
         .catch((error) => {
@@ -122,11 +106,10 @@ export default function Main({
         .then((data) => {
           const id = data[0] && data[0].id;
           if (id) {
-            const filteredPictures = allPictures.filter(
+            pictures = allPictures.filter(
               (picture) => picture.locationId === id
             );
-            setPictures(filteredPictures);
-            setShowPictures(filteredPictures);
+            setShowPictures(pictures);
           }
         })
         .catch((error) => {
@@ -142,12 +125,12 @@ export default function Main({
     if (fromDate !== '' || beforeDate !== '') {
       let filteredPictures = allPictures;
       if (fromDate !== '') {
-        filteredPictures = allPictures.filter(
+        filteredPictures = filteredPictures.filter(
           (picture) => picture.created >= fromDate
         );
       }
       if (beforeDate !== '') {
-        filteredPictures = allPictures.filter(
+        filteredPictures = filteredPictures.filter(
           (picture) => picture.created <= beforeDate
         );
       }
