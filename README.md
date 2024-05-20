@@ -17,7 +17,7 @@
 1. Сидорчук Николай - Профиль на GitHub [https://github.com/k0t1k777](https://github.com/k0t1k777) 
 
 ## ссылка на Github Pages
-[Ссылка: https://k0t1k777.github.io/Galery](https://k0t1k777.github.io/Galery)
+Ссылка: [https://k0t1k777.github.io/Galery](https://k0t1k777.github.io/Galery)
 
 ## Инструкции по установке и запуску
 
