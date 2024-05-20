@@ -67,7 +67,7 @@ export default function SelectDate({
             className={cx('select__input', {
               'select__input--dark': isDarkTheme === 'dark',
             })}
-            type='number'
+            type='numeric'
             placeholder='from'
             value={fromDate}
             onChange={handleFromDateChange}
@@ -78,7 +78,7 @@ export default function SelectDate({
             className={cx('select__input', {
               'select__input--dark': isDarkTheme === 'dark',
             })}
-            type='number'
+            type='numeric'
             placeholder='before'
             value={beforeDate}
             onChange={handleToDateChange}

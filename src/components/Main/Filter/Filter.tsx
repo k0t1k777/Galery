@@ -37,9 +37,6 @@ export default function Filter({
 }: FilterProps) {
   const { filter } = styles;
 
-  // console.log('locations: ', locations);
-  // console.log('authors: ', authors);
-
   return (
     <div className={filter}>
       <Input
