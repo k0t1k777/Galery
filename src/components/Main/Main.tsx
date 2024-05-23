@@ -13,6 +13,15 @@ interface MainProps {
   isDarkTheme: string;
   currentPage: number;
   pagesAmount: number;
+  authorValue: string;
+  locationValue: string;
+  fromDate: string;
+  amount: number;
+  setFromDate: (type: string) => void;
+  beforeDate: string;
+  setBeforeDate: (type: string) => void;
+  setAuthorValue: (type: string) => void;
+  setLocationValue: (type: string) => void;
   setCurrentPage: (type: number) => void;
 }
 
@@ -46,15 +55,20 @@ export default function Main({
   isDarkTheme,
   currentPage,
   pagesAmount,
+  authorValue,
+  locationValue,
+  fromDate,
+  beforeDate,
+  amount,
+  setFromDate,
+  setBeforeDate,
+  setAuthorValue,
+  setLocationValue,
   setCurrentPage,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
   const [inputValue, setInputValue] = useState('');
-  const [authorValue, setAuthorValue] = useState('');
-  const [locationValue, setLocationValue] = useState('');
-  const [fromDate, setFromDate] = useState('');
-  const [beforeDate, setBeforeDate] = useState('');
 
   useEffect(() => {
     setShowPictures(pictures);
@@ -64,8 +78,6 @@ export default function Main({
     if (inputValue !== '') {
       setAuthorValue('');
       setLocationValue('');
-      setFromDate('');
-      setBeforeDate('');
       Api.getSearchPictures(inputValue)
         .then((data) => {
           setShowPictures(data);
@@ -75,48 +87,6 @@ export default function Main({
         });
     }
   }, [inputValue]);
-
-  useEffect(() => {
-    if (authorValue !== '') {
-      setInputValue('');
-      setLocationValue('');
-      setFromDate('');
-      setBeforeDate('');
-      Api.getSearchAuthorId(authorValue)
-        .then((data) => {
-          const id = data[0] && data[0].id;
-          if (id) {
-            pictures = allPictures.filter((picture) => picture.authorId === id);
-            setShowPictures(pictures);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [authorValue]);
-
-  useEffect(() => {
-    if (locationValue !== '') {
-      setInputValue('');
-      setAuthorValue('');
-      setFromDate('');
-      setBeforeDate('');
-      Api.getSearchLocation(locationValue)
-        .then((data) => {
-          const id = data[0] && data[0].id;
-          if (id) {
-            pictures = allPictures.filter(
-              (picture) => picture.locationId === id
-            );
-            setShowPictures(pictures);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [locationValue]);
 
   useEffect(() => {
     setInputValue('');
@@ -144,18 +114,6 @@ export default function Main({
         });
     }
   }, [fromDate, beforeDate]);
-
-  useEffect(() => {
-    if (
-      inputValue === '' &&
-      authorValue === '' &&
-      locationValue === '' &&
-      fromDate === '' &&
-      beforeDate === ''
-    ) {
-      setShowPictures(pictures);
-    }
-  }, [inputValue, authorValue, locationValue, beforeDate, fromDate]);
 
   const onChange = (currentPage: number) => {
     setCurrentPage(currentPage);
@@ -185,7 +143,7 @@ export default function Main({
       />
       <Pagination
         isDarkTheme={isDarkTheme}
-        pagesAmount={Math.ceil(allPictures.length / pagesAmount)}
+        pagesAmount={Math.ceil(amount / pagesAmount)}
         currentPage={currentPage}
         onChange={onChange}
       />
