@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import SimpleBar from 'simplebar-react';
 import cn from 'classnames/bind';
 import useOutsideClick from './../../../hooks/useOutsideClick';
@@ -17,20 +17,21 @@ export interface ISelect {
   setValue: (value: string) => void;
 }
 
-const Select: FC<ISelect> = ({
+export default function Select({
   text,
   options,
   isDarkTheme,
   setValue,
   value,
-}) => {
+}: ISelect) {
   const { Select__reset } = styles;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
   const toggleOpen = () => setIsOpen((prev) => !prev);
   useOutsideClick(ref, toggleOpen);
 
-  const handleReset = () => {
+  const handleReset = (event: React.MouseEvent<HTMLImageElement>) => {
+    event.stopPropagation();
     if (setValue) {
       setValue('');
     }
@@ -78,5 +79,3 @@ const Select: FC<ISelect> = ({
     </div>
   );
 };
-
-export default Select;

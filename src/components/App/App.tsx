@@ -10,7 +10,6 @@ import { pagesAmount } from '../utills/constants';
 const cx = cn.bind(styles);
 
 export default function App() {
-  // const [allPictures, setAllPictures] = useState<Pictures[]>([]);
   const [pictures, setPictures] = useState<Pictures[]>([]);
   console.log('pictures: ', pictures);
   const [authors, setAuthors] = useState<Authors[]>([]);
@@ -25,19 +24,14 @@ export default function App() {
   const [amount, setAmount] = useState<number>(0);
 
   const toggleTheme = () => {
-    const newTheme = isDarkTheme === 'dark' ? 'light' : 'dark';
-    setIsDarkTheme(newTheme);
+    if (isDarkTheme === 'dark') {
+      document.documentElement.classList.remove('root--dark');
+      setIsDarkTheme('light');
+    } else {
+      document.documentElement.classList.add('root--dark');
+      setIsDarkTheme('dark');
+    }
   };
-
-  // useEffect(() => {
-  //   Api.getPictures()
-  //     .then((data) => {
-  //       setAllPictures(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
 
   useEffect(() => {
     let authorId = 0;
@@ -77,9 +71,13 @@ export default function App() {
           locationId,
           fromDate,
           beforeDate
-        ).then((data) => {
-          setAmount(data.length);
-        });
+        )
+          .then((data) => {
+            setAmount(data.length);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       });
   }, [
     currentPage,
@@ -125,7 +123,6 @@ export default function App() {
         setAuthorValue={setAuthorValue}
         locationValue={locationValue}
         setLocationValue={setLocationValue}
-        // allPictures={allPictures}
         pictures={pictures}
         authors={authors}
         locations={locations}

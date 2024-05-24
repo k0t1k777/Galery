@@ -44,7 +44,6 @@ export default function Filter({
         setValue={setInputValue}
         isDarkTheme={isDarkTheme}
       />
-
       <Select
         text='Author'
         options={authors.map(author => author.name)}
