@@ -7,11 +7,17 @@ interface InputProps {
   value?: string;
   setValue?: (value: string) => void;
   isDarkTheme: string;
+  clearPages: () => void;
 }
 
-export default function Input({ value, setValue, isDarkTheme }: InputProps) {
-
+export default function Input({
+  value,
+  setValue,
+  isDarkTheme,
+  clearPages,
+}: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearPages();
     if (setValue) {
       setValue(e.target.value);
     }

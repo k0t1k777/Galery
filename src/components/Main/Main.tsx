@@ -3,13 +3,14 @@ import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../../store/features/slice/slice';
 
 interface MainProps {
   pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
-  currentPage: number;
   pagesAmount: number;
   authorValue: string;
   locationValue: string;
@@ -22,11 +23,9 @@ interface MainProps {
   setBeforeDate: (type: string) => void;
   setAuthorValue: (type: string) => void;
   setLocationValue: (type: string) => void;
-  setCurrentPage: (type: number) => void;
 }
 
 export interface Pictures {
-  pictures: Pictures[];
   id: string;
   imageUrl: string;
   name: string;
@@ -36,13 +35,11 @@ export interface Pictures {
 }
 
 export interface Authors {
-  authors: Authors[];
   id: string;
   name: string;
 }
 
 export interface Locations {
-  locations: Locations[];
   id: string;
   location: string;
 }
@@ -52,7 +49,6 @@ export default function Main({
   authors,
   locations,
   isDarkTheme,
-  currentPage,
   pagesAmount,
   authorValue,
   locationValue,
@@ -65,17 +61,22 @@ export default function Main({
   setBeforeDate,
   setAuthorValue,
   setLocationValue,
-  setCurrentPage,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
+
+  const dispatch = useDispatch();
+
+  function clearPages() {
+    dispatch(setCurrentPage(1));
+  }
 
   useEffect(() => {
     setShowPictures(pictures);
   }, [pictures]);
 
   const onChange = (currentPage: number) => {
-    setCurrentPage(currentPage);
+    dispatch(setCurrentPage(currentPage));
   };
 
   return (
@@ -94,6 +95,7 @@ export default function Main({
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
         isDarkTheme={isDarkTheme}
+        clearPages={clearPages}
       />
       <Gallery
         pictures={showPictures}
@@ -103,7 +105,6 @@ export default function Main({
       <Pagination
         isDarkTheme={isDarkTheme}
         pagesAmount={Math.ceil(amount / pagesAmount)}
-        currentPage={currentPage}
         onChange={onChange}
       />
     </div>

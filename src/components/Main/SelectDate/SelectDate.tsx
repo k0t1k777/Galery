@@ -14,6 +14,7 @@ interface SelectProps {
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
   isDarkTheme: string;
+  clearPages: () => void;
 }
 
 export default function SelectDate({
@@ -23,6 +24,7 @@ export default function SelectDate({
   beforeDate,
   setBeforeDate,
   isDarkTheme,
+  clearPages,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
@@ -36,12 +38,14 @@ export default function SelectDate({
   };
 
   const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearPages()
     if (setFromDate) {
       setFromDate(e.target.value);
     }
   };
 
   const handleToDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearPages()
     if (setBeforeDate) {
       setBeforeDate(e.target.value);
     }

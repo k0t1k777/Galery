@@ -7,22 +7,24 @@ import ArrowR from '../../assets/arrowR.svg?react';
 import DoubleArrowR from '../../assets/doubleArrowR.svg?react';
 import ArrowL from '../../assets/arrowL.svg?react';
 import usePaginationSlice from '../../hooks/usePaginationSlice';
+import { useSelector } from 'react-redux';
+import { SliceProps } from './../../store/features/slice/slice'
 
 export type TPagination = {
   isDarkTheme?: string;
   pagesAmount: number;
-  currentPage: number;
   className?: string;
   onChange: (currentPage: number) => void;
 };
 
 const Pagination: FC<TPagination> = ({
-  currentPage,
   isDarkTheme,
   pagesAmount,
   onChange,
 }) => {
   const { Pagination } = styles;
+
+  const currentPage = useSelector((state: SliceProps) => state.currentPage);
 
   const slicedPagesArray = usePaginationSlice({
     current: currentPage,

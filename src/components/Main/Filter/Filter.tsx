@@ -18,6 +18,7 @@ interface FilterProps {
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
   isDarkTheme: string;
+  clearPages: () => void;
 }
 
 export default function Filter({
@@ -34,6 +35,7 @@ export default function Filter({
   authors,
   locations,
   isDarkTheme,
+  clearPages,
 }: FilterProps) {
   const { filter } = styles;
 
@@ -43,13 +45,15 @@ export default function Filter({
         value={inputValue}
         setValue={setInputValue}
         isDarkTheme={isDarkTheme}
+        clearPages={clearPages}
       />
       <Select
         text='Author'
         options={authors.map(author => author.name)}
         value={authorValue}
         isDarkTheme={isDarkTheme}
-        setValue={setAuthorValue}      
+        setValue={setAuthorValue}
+        clearPages={clearPages}     
       />
        <Select
         text='Location'
@@ -57,6 +61,7 @@ export default function Filter({
         value={locationValue}
         setValue={setLocationValue}
         isDarkTheme={isDarkTheme}
+        clearPages={clearPages}
       />
       <SelectDate
         text='Created'
@@ -65,6 +70,7 @@ export default function Filter({
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
         isDarkTheme={isDarkTheme}
+        clearPages={clearPages}
       />
     </div>
   );

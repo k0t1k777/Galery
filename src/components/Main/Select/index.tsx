@@ -15,6 +15,7 @@ export interface ISelect {
   isDarkTheme?: string;
   value: string;
   setValue: (value: string) => void;
+  clearPages: () => void;
 }
 
 export default function Select({
@@ -23,6 +24,7 @@ export default function Select({
   isDarkTheme,
   setValue,
   value,
+  clearPages,
 }: ISelect) {
   const { Select__reset } = styles;
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -61,6 +63,7 @@ export default function Select({
             {options.map((option, index) => (
               <li
                 onClick={() => setValue(option)}
+                onChange={clearPages}
                 className={cx('Select__option', {
                   'Select__option--dark': isDarkTheme === 'dark',
                 })}

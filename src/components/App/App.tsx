@@ -6,22 +6,26 @@ import * as Api from '../../api/requests';
 import { Pictures, Authors, Locations } from './../Main/Main';
 import cn from 'classnames/bind';
 import { pagesAmount } from '../utills/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { SliceProps, setPictures } from './../../store/features/slice/slice'
 
 const cx = cn.bind(styles);
 
 export default function App() {
-  const [pictures, setPictures] = useState<Pictures[]>([]);
-  console.log('pictures: ', pictures);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState('light');
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [amount, setAmount] = useState<number>(0);
+
+  const currentPage = useSelector((state: SliceProps) => state.currentPage);
+  const pictures = useSelector((state: SliceProps) => state.pictures);
+
+  const dispatch = useDispatch();
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {
@@ -47,10 +51,7 @@ export default function App() {
         locationId = location[0] && location[0].id;
       })
       .then(() => {
-        if (inputValue || authorId || locationId || fromDate || beforeDate) {
-          setCurrentPage(1);
-        }
-        Api.getPagination(
+          Api.getPagination(
           currentPage,
           pagesAmount,
           inputValue,
@@ -60,7 +61,7 @@ export default function App() {
           beforeDate
         )
           .then((data) => {
-            setPictures(data);
+            dispatch(setPictures(data));
           })
           .catch((error) => {
             console.error(error);
@@ -128,9 +129,7 @@ export default function App() {
         locations={locations}
         isDarkTheme={isDarkTheme}
         pagesAmount={pagesAmount}
-        currentPage={currentPage}
         amount={amount}
-        setCurrentPage={setCurrentPage}
       />
     </div>
   );
