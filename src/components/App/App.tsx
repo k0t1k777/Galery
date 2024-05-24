@@ -10,7 +10,7 @@ import { pagesAmount } from '../utills/constants';
 const cx = cn.bind(styles);
 
 export default function App() {
-  const [allPictures, setAllPictures] = useState<Pictures[]>([]);
+  // const [allPictures, setAllPictures] = useState<Pictures[]>([]);
   const [pictures, setPictures] = useState<Pictures[]>([]);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
@@ -27,15 +27,15 @@ export default function App() {
     setIsDarkTheme(newTheme);
   };
 
-  useEffect(() => {
-    Api.getPictures()
-      .then((data) => {
-        setAllPictures(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Api.getPictures()
+  //     .then((data) => {
+  //       setAllPictures(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     let authorId = 0;
@@ -116,7 +116,7 @@ export default function App() {
         setAuthorValue={setAuthorValue}
         locationValue={locationValue}
         setLocationValue={setLocationValue}
-        allPictures={allPictures}
+        // allPictures={allPictures}
         pictures={pictures}
         authors={authors}
         locations={locations}

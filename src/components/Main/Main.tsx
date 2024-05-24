@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
 
 interface MainProps {
-  allPictures: Pictures[];
+  // allPictures: Pictures[];
   pictures: Pictures[];
   authors: Authors[];
   locations: Locations[];
@@ -48,7 +48,7 @@ export interface Locations {
 }
 
 export default function Main({
-  allPictures,
+  // allPictures,
   pictures,
   authors,
   locations,
@@ -88,32 +88,32 @@ export default function Main({
     }
   }, [inputValue]);
 
-  useEffect(() => {
-    setInputValue('');
-    setAuthorValue('');
-    setLocationValue('');
-    if (fromDate !== '' || beforeDate !== '') {
-      let filteredPictures = allPictures;
-      if (fromDate !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.created >= fromDate
-        );
-      }
-      if (beforeDate !== '') {
-        filteredPictures = filteredPictures.filter(
-          (picture) => picture.created <= beforeDate
-        );
-      }
-      Api.getSearchCreate(fromDate, beforeDate)
-        .then((data) => {
-          setShowPictures(data);
-          setShowPictures(filteredPictures);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [fromDate, beforeDate]);
+  // useEffect(() => {
+  //   setInputValue('');
+  //   setAuthorValue('');
+  //   setLocationValue('');
+  //   if (fromDate !== '' || beforeDate !== '') {
+  //     let filteredPictures = allPictures;
+  //     if (fromDate !== '') {
+  //       filteredPictures = filteredPictures.filter(
+  //         (picture) => picture.created >= fromDate
+  //       );
+  //     }
+  //     if (beforeDate !== '') {
+  //       filteredPictures = filteredPictures.filter(
+  //         (picture) => picture.created <= beforeDate
+  //       );
+  //     }
+  //     Api.getSearchCreate(fromDate, beforeDate)
+  //       .then((data) => {
+  //         setShowPictures(data);
+  //         setShowPictures(filteredPictures);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [fromDate, beforeDate]);
 
   const onChange = (currentPage: number) => {
     setCurrentPage(currentPage);
