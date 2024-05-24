@@ -12,6 +12,7 @@ const cx = cn.bind(styles);
 export default function App() {
   // const [allPictures, setAllPictures] = useState<Pictures[]>([]);
   const [pictures, setPictures] = useState<Pictures[]>([]);
+  console.log('pictures: ', pictures);
   const [authors, setAuthors] = useState<Authors[]>([]);
   const [locations, setLocations] = useState<Locations[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState('light');
@@ -20,6 +21,7 @@ export default function App() {
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [amount, setAmount] = useState<number>(0);
 
   const toggleTheme = () => {
@@ -41,32 +43,36 @@ export default function App() {
     let authorId = 0;
     let locationId = 0;
     Promise.all([
+      Api.getSearchPictures(inputValue),
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue),
     ])
-      .then(([author, location]) => {
+      .then(([name, author, location]) => {
+        name = inputValue;
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
       })
       .then(() => {
-        if (authorId || locationId || fromDate || beforeDate) {
-          setCurrentPage(1)
+        if (inputValue || authorId || locationId || fromDate || beforeDate) {
+          setCurrentPage(1);
         }
-          Api.getPagination(
-            currentPage,
-            pagesAmount,
-            authorId,
-            locationId,
-            fromDate,
-            beforeDate
-          )
-            .then((data) => {
-              setPictures(data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+        Api.getPagination(
+          currentPage,
+          pagesAmount,
+          inputValue,
+          authorId,
+          locationId,
+          fromDate,
+          beforeDate
+        )
+          .then((data) => {
+            setPictures(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         Api.getPaginationAmount(
+          inputValue,
           authorId,
           locationId,
           fromDate,
@@ -78,6 +84,7 @@ export default function App() {
   }, [
     currentPage,
     pagesAmount,
+    inputValue,
     authorValue,
     locationValue,
     fromDate,
@@ -108,6 +115,8 @@ export default function App() {
     <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
       <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       <Main
+        inputValue={inputValue}
+        setInputValue={setInputValue}
         fromDate={fromDate}
         setFromDate={setFromDate}
         beforeDate={beforeDate}

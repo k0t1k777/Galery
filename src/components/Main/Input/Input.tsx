@@ -5,7 +5,7 @@ const cx = cn.bind(styles);
 
 interface InputProps {
   value?: string;
-  setValue?: React.Dispatch<React.SetStateAction<string>>;
+  setValue?: (value: string) => void;
   isDarkTheme: string;
 }
 

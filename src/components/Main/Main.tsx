@@ -1,7 +1,7 @@
 import Filter from './Filter/Filter';
 import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
-import * as Api from '../../api/requests';
+// import * as Api from '../../api/requests';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
 
@@ -17,8 +17,10 @@ interface MainProps {
   locationValue: string;
   fromDate: string;
   amount: number;
-  setFromDate: (type: string) => void;
   beforeDate: string;
+  inputValue: string;
+  setFromDate: (type: string) => void;
+  setInputValue: (type: string) => void;
   setBeforeDate: (type: string) => void;
   setAuthorValue: (type: string) => void;
   setLocationValue: (type: string) => void;
@@ -60,6 +62,8 @@ export default function Main({
   fromDate,
   beforeDate,
   amount,
+  inputValue,
+  setInputValue,
   setFromDate,
   setBeforeDate,
   setAuthorValue,
@@ -68,25 +72,25 @@ export default function Main({
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     setShowPictures(pictures);
   }, [pictures]);
 
-  useEffect(() => {
-    if (inputValue !== '') {
-      setAuthorValue('');
-      setLocationValue('');
-      Api.getSearchPictures(inputValue)
-        .then((data) => {
-          setShowPictures(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [inputValue]);
+  // useEffect(() => {
+  //   if (inputValue !== '') {
+  //     setAuthorValue('');
+  //     setLocationValue('');
+  //     Api.getSearchPictures(inputValue)
+  //       .then((data) => {
+  //         setShowPictures(data);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [inputValue]);
 
   // useEffect(() => {
   //   setInputValue('');

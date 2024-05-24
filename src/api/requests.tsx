@@ -13,6 +13,14 @@ export const getPictures = () => {
   return axios.get(`/paintings/`).then(getResponseData);
 };
 
+export const getAuthors = () => {
+  return axios.get(`/authors/`).then(getResponseData);
+};
+
+export const getLocations = () => {
+  return axios.get(`/locations/`).then(getResponseData);
+};
+
 export const getSearchPictures = (value: string) => {
   return axios.get(`/paintings/?name=${value}`).then(getResponseData);
 };
@@ -31,17 +39,10 @@ export const getSearchLocation = (value: string) => {
 //     .then(getResponseData);
 // };
 
-export const getAuthors = () => {
-  return axios.get(`/authors/`).then(getResponseData);
-};
-
-export const getLocations = () => {
-  return axios.get(`/locations/`).then(getResponseData);
-};
-
 export const getPagination = (
   page: number,
   limit: number,
+  name?: string,
   authorId?: number,
   locationId?: number,
   fromDate?: string,
@@ -49,12 +50,13 @@ export const getPagination = (
 ) => {
   return axios
     .get(
-      `/paintings/?_page=${page}&_limit=${limit}${authorId ? '&authorId=' : ''}${authorId ? authorId : ''}${locationId ? '&locationId=' : ''}${locationId ? locationId : ''}${fromDate ? '&created_gte=' : ''}${fromDate ? fromDate : ''}${beforeDate ? '&created_lte=' : ''}${beforeDate ? beforeDate : ''}`
+      `/paintings/?_page=${page}&_limit=${limit}${name ? '&name=' : ''}${name ? name : ''}${authorId ? '&authorId=' : ''}${authorId ? authorId : ''}${locationId ? '&locationId=' : ''}${locationId ? locationId : ''}${fromDate ? '&created_gte=' : ''}${fromDate ? fromDate : ''}${beforeDate ? '&created_lte=' : ''}${beforeDate ? beforeDate : ''}`
     )
     .then(getResponseData);
 };
 
 export const getPaginationAmount = (
+  name?: string,
   authorId?: number,
   locationId?: number,
   fromDate?: string,
@@ -62,7 +64,7 @@ export const getPaginationAmount = (
 ) => {
   return axios
     .get(
-      `/paintings/?${authorId ? 'authorId=' : ''}${authorId ? authorId : ''}&${locationId ? 'locationId=' : ''}${locationId ? locationId : ''}&${fromDate ? 'created_gte=' : ''}${fromDate ? fromDate : ''}&${beforeDate ? 'created_lte=' : ''}${beforeDate ? beforeDate : ''}`
+      `/paintings/?${name ? 'name=' : ''}${name ? name : ''}&${authorId ? 'authorId=' : ''}${authorId ? authorId : ''}&${locationId ? 'locationId=' : ''}${locationId ? locationId : ''}&${fromDate ? 'created_gte=' : ''}${fromDate ? fromDate : ''}&${beforeDate ? 'created_lte=' : ''}${beforeDate ? beforeDate : ''}`
     )
     .then(getResponseData);
 };

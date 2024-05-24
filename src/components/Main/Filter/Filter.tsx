@@ -6,7 +6,7 @@ import SelectDate from '../SelectDate/SelectDate';
 
 interface FilterProps {
   inputValue?: string;
-  setInputValue?: React.Dispatch<React.SetStateAction<string>>;
+  setInputValue?: (value: string) => void;
   authors: Authors[];
   locations: Locations[];
   authorValue: string;
