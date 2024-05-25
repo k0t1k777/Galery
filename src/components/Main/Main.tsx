@@ -8,9 +8,6 @@ import { setCurrentPage } from '../../store/features/slice/slice';
 
 interface MainProps {
   pictures: Pictures[];
-  authors: Authors[];
-  locations: Locations[];
-  isDarkTheme: string;
   pagesAmount: number;
   authorValue: string;
   locationValue: string;
@@ -46,9 +43,6 @@ export interface Locations {
 
 export default function Main({
   pictures,
-  authors,
-  locations,
-  isDarkTheme,
   pagesAmount,
   authorValue,
   locationValue,
@@ -88,22 +82,16 @@ export default function Main({
         setAuthorValue={setAuthorValue}
         locationValue={locationValue}
         setLocationValue={setLocationValue}
-        authors={authors}
-        locations={locations}
         fromDate={fromDate}
         setFromDate={setFromDate}
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
-        isDarkTheme={isDarkTheme}
         clearPages={clearPages}
       />
       <Gallery
         pictures={showPictures}
-        authors={authors}
-        locations={locations}
       />
       <Pagination
-        isDarkTheme={isDarkTheme}
         pagesAmount={Math.ceil(amount / pagesAmount)}
         onChange={onChange}
       />

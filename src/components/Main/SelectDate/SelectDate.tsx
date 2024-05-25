@@ -4,6 +4,8 @@ import cn from 'classnames/bind';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import Line from './../../../assets/Line.svg?react'
 import LineBlack from './../../../assets/Line-black.svg?react'
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -13,7 +15,6 @@ interface SelectProps {
   setFromDate?: (value: string) => void;
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
-  isDarkTheme: string;
   clearPages: () => void;
 }
 
@@ -23,10 +24,11 @@ export default function SelectDate({
   setFromDate,
   beforeDate,
   setBeforeDate,
-  isDarkTheme,
   clearPages,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+
   const ref = useRef(null);
 
   const openMenu = () => {

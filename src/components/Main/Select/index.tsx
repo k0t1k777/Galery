@@ -6,13 +6,14 @@ import Arrow from './../../Arrow';
 import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export interface ISelect {
   text: string;
   options: string[];
-  isDarkTheme?: string;
   value: string;
   setValue: (value: string) => void;
   clearPages: () => void;
@@ -21,12 +22,12 @@ export interface ISelect {
 export default function Select({
   text,
   options,
-  isDarkTheme,
   setValue,
   value,
   clearPages,
 }: ISelect) {
   const { Select__reset } = styles;
+  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
   const toggleOpen = () => setIsOpen((prev) => !prev);

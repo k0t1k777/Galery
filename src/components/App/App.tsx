@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
+import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
 import * as Api from '../../api/requests';
-import { Pictures, Authors, Locations } from './../Main/Main';
-import cn from 'classnames/bind';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
-import { SliceProps, setPictures } from './../../store/features/slice/slice'
+import {
+  SliceProps,
+  setPictures,
+  setAuthors,
+  setLocations,
+  setIsDarkTheme,
+} from './../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function App() {
-  const [authors, setAuthors] = useState<Authors[]>([]);
-  const [locations, setLocations] = useState<Locations[]>([]);
-  const [isDarkTheme, setIsDarkTheme] = useState('light');
-  const [authorValue, setAuthorValue] = useState('');
+  // const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
@@ -24,13 +26,13 @@ export default function App() {
 
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const pictures = useSelector((state: SliceProps) => state.pictures);
-
+  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const dispatch = useDispatch();
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {
       document.documentElement.classList.remove('root--dark');
-      setIsDarkTheme('light');
+      dispatch(setIsDarkTheme('light'));
     } else {
       document.documentElement.classList.add('root--dark');
       setIsDarkTheme('dark');
@@ -51,7 +53,7 @@ export default function App() {
         locationId = location[0] && location[0].id;
       })
       .then(() => {
-          Api.getPagination(
+        Api.getPagination(
           currentPage,
           pagesAmount,
           inputValue,
@@ -93,7 +95,7 @@ export default function App() {
   useEffect(() => {
     Api.getAuthors()
       .then((data) => {
-        setAuthors(data);
+        dispatch(setAuthors(data));
       })
       .catch((error) => {
         console.error(error);
@@ -103,7 +105,7 @@ export default function App() {
   useEffect(() => {
     Api.getLocations()
       .then((data) => {
-        setLocations(data);
+        dispatch(setLocations(data));
       })
       .catch((error) => {
         console.error(error);
@@ -125,9 +127,6 @@ export default function App() {
         locationValue={locationValue}
         setLocationValue={setLocationValue}
         pictures={pictures}
-        authors={authors}
-        locations={locations}
-        isDarkTheme={isDarkTheme}
         pagesAmount={pagesAmount}
         amount={amount}
       />

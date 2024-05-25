@@ -1,14 +1,13 @@
 import Input from '../Input/Input';
 import Select from './../Select/index';
 import styles from './Filter.module.scss';
-import { Authors, Locations } from './../../Main/Main';
 import SelectDate from '../SelectDate/SelectDate';
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../../store/features/slice/slice';
 
 interface FilterProps {
   inputValue?: string;
   setInputValue?: (value: string) => void;
-  authors: Authors[];
-  locations: Locations[];
   authorValue: string;
   setAuthorValue: (value: string) => void;
   locationValue: string;
@@ -17,7 +16,6 @@ interface FilterProps {
   setFromDate?: (value: string) => void;
   beforeDate?: string;
   setBeforeDate?: (value: string) => void;
-  isDarkTheme: string;
   clearPages: () => void;
 }
 
@@ -32,26 +30,24 @@ export default function Filter({
   setFromDate,
   beforeDate,
   setBeforeDate,
-  authors,
-  locations,
-  isDarkTheme,
   clearPages,
 }: FilterProps) {
   const { filter } = styles;
+
+  const authors = useSelector((state: SliceProps) => state.authors)
+  const locations = useSelector((state: SliceProps) => state.locations)
 
   return (
     <div className={filter}>
       <Input
         value={inputValue}
         setValue={setInputValue}
-        isDarkTheme={isDarkTheme}
         clearPages={clearPages}
       />
       <Select
         text='Author'
         options={authors.map(author => author.name)}
         value={authorValue}
-        isDarkTheme={isDarkTheme}
         setValue={setAuthorValue}
         clearPages={clearPages}     
       />
@@ -60,7 +56,6 @@ export default function Filter({
         options={locations.map((location) => location.location)}
         value={locationValue}
         setValue={setLocationValue}
-        isDarkTheme={isDarkTheme}
         clearPages={clearPages}
       />
       <SelectDate
@@ -69,7 +64,6 @@ export default function Filter({
         setFromDate={setFromDate}
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
-        isDarkTheme={isDarkTheme}
         clearPages={clearPages}
       />
     </div>

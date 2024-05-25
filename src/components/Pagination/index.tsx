@@ -11,20 +11,19 @@ import { useSelector } from 'react-redux';
 import { SliceProps } from './../../store/features/slice/slice'
 
 export type TPagination = {
-  isDarkTheme?: string;
   pagesAmount: number;
   className?: string;
   onChange: (currentPage: number) => void;
 };
 
 const Pagination: FC<TPagination> = ({
-  isDarkTheme,
   pagesAmount,
   onChange,
 }) => {
   const { Pagination } = styles;
 
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
+  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
 
   const slicedPagesArray = usePaginationSlice({
     current: currentPage,
