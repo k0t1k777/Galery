@@ -17,7 +17,6 @@ import {
 const cx = cn.bind(styles);
 
 export default function App() {
-  // const [authorValue, setAuthorValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
