@@ -7,6 +7,8 @@ export interface SliceProps {
   authors: Authors[];
   locations: Locations[];
   isDarkTheme: string;
+  authorValue: string;
+  locationValue: string;
 }
 
 const initialState: SliceProps = {
@@ -15,7 +17,8 @@ const initialState: SliceProps = {
   authors: [],
   locations: [],
   isDarkTheme: 'light',
-  authorValue
+  authorValue: '',
+  locationValue: '',
 };
 
 const slice = createSlice({
@@ -37,6 +40,13 @@ const slice = createSlice({
     setIsDarkTheme: (state, action: PayloadAction<string>) => {
       state.isDarkTheme = action.payload;
     },
+    setAuthorValue: (state, action: PayloadAction<string>) => {
+      state.authorValue = action.payload;
+    },
+    setLocationValue: (state, action: PayloadAction<string>) => {
+      state.locationValue = action.payload;
+    },
+
   },
 });
 
@@ -46,6 +56,8 @@ export const {
   setAuthors,
   setLocations,
   setIsDarkTheme,
+  setAuthorValue,
+  setLocationValue,
 } = slice.actions;
 
 export const store = configureStore({

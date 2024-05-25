@@ -18,8 +18,6 @@ interface MainProps {
   setFromDate: (type: string) => void;
   setInputValue: (type: string) => void;
   setBeforeDate: (type: string) => void;
-  setAuthorValue: (type: string) => void;
-  setLocationValue: (type: string) => void;
 }
 
 export interface Pictures {
@@ -53,8 +51,6 @@ export default function Main({
   setInputValue,
   setFromDate,
   setBeforeDate,
-  setAuthorValue,
-  setLocationValue,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
@@ -79,9 +75,7 @@ export default function Main({
         inputValue={inputValue}
         setInputValue={setInputValue}
         authorValue={authorValue}
-        setAuthorValue={setAuthorValue}
         locationValue={locationValue}
-        setLocationValue={setLocationValue}
         fromDate={fromDate}
         setFromDate={setFromDate}
         beforeDate={beforeDate}

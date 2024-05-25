@@ -17,16 +17,17 @@ import {
 const cx = cn.bind(styles);
 
 export default function App() {
-  const [locationValue, setLocationValue] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [beforeDate, setBeforeDate] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [amount, setAmount] = useState<number>(0);
+  const dispatch = useDispatch();
 
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
-  const dispatch = useDispatch();
+  const authorValue = useSelector((state: SliceProps) => state.authorValue);
+  const locationValue = useSelector((state: SliceProps) => state.locationValue);
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {
@@ -34,7 +35,7 @@ export default function App() {
       dispatch(setIsDarkTheme('light'));
     } else {
       document.documentElement.classList.add('root--dark');
-      setIsDarkTheme('dark');
+      dispatch(setIsDarkTheme('dark'));
     }
   };
 
@@ -122,9 +123,7 @@ export default function App() {
         beforeDate={beforeDate}
         setBeforeDate={setBeforeDate}
         authorValue={authorValue}
-        setAuthorValue={setAuthorValue}
         locationValue={locationValue}
-        setLocationValue={setLocationValue}
         pictures={pictures}
         pagesAmount={pagesAmount}
         amount={amount}

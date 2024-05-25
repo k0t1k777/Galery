@@ -2,16 +2,18 @@ import Input from '../Input/Input';
 import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import SelectDate from '../SelectDate/SelectDate';
-import { useSelector } from 'react-redux';
-import { SliceProps } from '../../../store/features/slice/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  SliceProps,
+  setAuthorValue,
+  setLocationValue,
+} from '../../../store/features/slice/slice';
 
 interface FilterProps {
   inputValue?: string;
   setInputValue?: (value: string) => void;
   authorValue: string;
-  setAuthorValue: (value: string) => void;
   locationValue: string;
-  setLocationValue: (value: string) => void;
   fromDate?: string;
   setFromDate?: (value: string) => void;
   beforeDate?: string;
@@ -23,9 +25,7 @@ export default function Filter({
   inputValue,
   setInputValue,
   authorValue,
-  setAuthorValue,
   locationValue,
-  setLocationValue,
   fromDate,
   setFromDate,
   beforeDate,
@@ -34,8 +34,9 @@ export default function Filter({
 }: FilterProps) {
   const { filter } = styles;
 
-  const authors = useSelector((state: SliceProps) => state.authors)
-  const locations = useSelector((state: SliceProps) => state.locations)
+  const authors = useSelector((state: SliceProps) => state.authors);
+  const locations = useSelector((state: SliceProps) => state.locations);
+  // const dispatch = useDispatch();
 
   return (
     <div className={filter}>
@@ -46,12 +47,12 @@ export default function Filter({
       />
       <Select
         text='Author'
-        options={authors.map(author => author.name)}
+        options={authors.map((author) => author.name)}
         value={authorValue}
         setValue={setAuthorValue}
-        clearPages={clearPages}     
+        clearPages={clearPages}
       />
-       <Select
+      <Select
         text='Location'
         options={locations.map((location) => location.location)}
         value={locationValue}
