@@ -17,9 +17,7 @@ import {
 const cx = cn.bind(styles);
 
 export default function App() {
-  const [fromDate, setFromDate] = useState('');
-  const [beforeDate, setBeforeDate] = useState('');
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
   const [amount, setAmount] = useState<number>(0);
   const dispatch = useDispatch();
 
@@ -28,6 +26,9 @@ export default function App() {
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const authorValue = useSelector((state: SliceProps) => state.authorValue);
   const locationValue = useSelector((state: SliceProps) => state.locationValue);
+  const fromDate = useSelector((state: SliceProps) => state.fromDate);
+  const beforeDate = useSelector((state: SliceProps) => state.beforeDate)
+  const inputValue = useSelector((state: SliceProps) => state.inputValue)
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {
@@ -40,14 +41,15 @@ export default function App() {
   };
 
   useEffect(() => {
+    let name = '';
     let authorId = 0;
     let locationId = 0;
     Promise.all([
-      Api.getSearchPictures(inputValue),
+      Api.getSearchPictures(name),
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue),
     ])
-      .then(([name, author, location]) => {
+      .then(([ name, author, location]) => {
         name = inputValue;
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
@@ -116,12 +118,6 @@ export default function App() {
     <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
       <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       <Main
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        fromDate={fromDate}
-        setFromDate={setFromDate}
-        beforeDate={beforeDate}
-        setBeforeDate={setBeforeDate}
         authorValue={authorValue}
         locationValue={locationValue}
         pictures={pictures}

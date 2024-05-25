@@ -2,7 +2,7 @@ import Input from '../Input/Input';
 import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import SelectDate from '../SelectDate/SelectDate';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   SliceProps,
   setAuthorValue,
@@ -10,26 +10,14 @@ import {
 } from '../../../store/features/slice/slice';
 
 interface FilterProps {
-  inputValue?: string;
-  setInputValue?: (value: string) => void;
   authorValue: string;
   locationValue: string;
-  fromDate?: string;
-  setFromDate?: (value: string) => void;
-  beforeDate?: string;
-  setBeforeDate?: (value: string) => void;
   clearPages: () => void;
 }
 
 export default function Filter({
-  inputValue,
-  setInputValue,
   authorValue,
   locationValue,
-  fromDate,
-  setFromDate,
-  beforeDate,
-  setBeforeDate,
   clearPages,
 }: FilterProps) {
   const { filter } = styles;
@@ -41,8 +29,6 @@ export default function Filter({
   return (
     <div className={filter}>
       <Input
-        value={inputValue}
-        setValue={setInputValue}
         clearPages={clearPages}
       />
       <Select
@@ -61,10 +47,6 @@ export default function Filter({
       />
       <SelectDate
         text='Created'
-        fromDate={fromDate}
-        setFromDate={setFromDate}
-        beforeDate={beforeDate}
-        setBeforeDate={setBeforeDate}
         clearPages={clearPages}
       />
     </div>

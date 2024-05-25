@@ -9,6 +9,9 @@ export interface SliceProps {
   isDarkTheme: string;
   authorValue: string;
   locationValue: string;
+  fromDate: string;
+  beforeDate: string;
+  inputValue: string;
 }
 
 const initialState: SliceProps = {
@@ -19,6 +22,9 @@ const initialState: SliceProps = {
   isDarkTheme: 'light',
   authorValue: '',
   locationValue: '',
+  fromDate: '',
+  beforeDate: '',
+  inputValue: '',
 };
 
 const slice = createSlice({
@@ -46,7 +52,15 @@ const slice = createSlice({
     setLocationValue: (state, action: PayloadAction<string>) => {
       state.locationValue = action.payload;
     },
-
+    setFromDate: (state, action: PayloadAction<string>) => {
+      state.fromDate = action.payload;
+    },
+    setBeforeDate: (state, action: PayloadAction<string>) => {
+      state.beforeDate = action.payload;
+    },
+    setInputValue: (state, action: PayloadAction<string>) => {
+      state.inputValue = action.payload;
+    },
   },
 });
 
@@ -58,6 +72,9 @@ export const {
   setIsDarkTheme,
   setAuthorValue,
   setLocationValue,
+  setFromDate,
+  setBeforeDate,
+  setInputValue,
 } = slice.actions;
 
 export const store = configureStore({

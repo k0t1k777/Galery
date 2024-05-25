@@ -3,7 +3,7 @@ import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
 import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../store/features/slice/slice';
 
 interface MainProps {
@@ -11,13 +11,7 @@ interface MainProps {
   pagesAmount: number;
   authorValue: string;
   locationValue: string;
-  fromDate: string;
   amount: number;
-  beforeDate: string;
-  inputValue: string;
-  setFromDate: (type: string) => void;
-  setInputValue: (type: string) => void;
-  setBeforeDate: (type: string) => void;
 }
 
 export interface Pictures {
@@ -44,13 +38,7 @@ export default function Main({
   pagesAmount,
   authorValue,
   locationValue,
-  fromDate,
-  beforeDate,
   amount,
-  inputValue,
-  setInputValue,
-  setFromDate,
-  setBeforeDate,
 }: MainProps) {
   const { main } = styles;
   const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
@@ -72,14 +60,8 @@ export default function Main({
   return (
     <div className={main}>
       <Filter
-        inputValue={inputValue}
-        setInputValue={setInputValue}
         authorValue={authorValue}
         locationValue={locationValue}
-        fromDate={fromDate}
-        setFromDate={setFromDate}
-        beforeDate={beforeDate}
-        setBeforeDate={setBeforeDate}
         clearPages={clearPages}
       />
       <Gallery

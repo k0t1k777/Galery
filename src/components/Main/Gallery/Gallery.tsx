@@ -1,6 +1,6 @@
 import Picture from '../Picture/Picture';
 import styles from './Gallery.module.scss';
-import { Pictures, Locations } from './../../Main/Main';
+import { Pictures } from './../../Main/Main';
 import { useSelector } from 'react-redux';
 import { SliceProps } from '../../../store/features/slice/slice';
 
