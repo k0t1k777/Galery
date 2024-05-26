@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -11,37 +11,23 @@ import {
   setPictures,
   setAuthors,
   setLocations,
-  setIsDarkTheme,
+  setAmount,
+  setShowPictures,
 } from './../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function App() {
-  // const [inputValue, setInputValue] = useState('');
-  const [amount, setAmount] = useState<number>(0);
   const dispatch = useDispatch();
 
-  const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const pictures = useSelector((state: SliceProps) => state.pictures);
+  const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const authorValue = useSelector((state: SliceProps) => state.authorValue);
   const locationValue = useSelector((state: SliceProps) => state.locationValue);
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
-  const beforeDate = useSelector((state: SliceProps) => state.beforeDate)
-  const inputValue = useSelector((state: SliceProps) => state.inputValue)
-  // const amount = useSelector((state: SliceProps) => state.amount)
-
-
-
-  const toggleTheme = () => {
-    if (isDarkTheme === 'dark') {
-      document.documentElement.classList.remove('root--dark');
-      dispatch(setIsDarkTheme('light'));
-    } else {
-      document.documentElement.classList.add('root--dark');
-      dispatch(setIsDarkTheme('dark'));
-    }
-  };
+  const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
+  const inputValue = useSelector((state: SliceProps) => state.inputValue);
 
   useEffect(() => {
     let name = '';
@@ -52,7 +38,7 @@ export default function App() {
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue),
     ])
-      .then(([ name, author, location]) => {
+      .then(([name, author, location]) => {
         name = inputValue;
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
@@ -81,7 +67,7 @@ export default function App() {
           beforeDate
         )
           .then((data) => {
-            setAmount(data.length);
+            dispatch(setAmount(data.length));
           })
           .catch((error) => {
             console.error(error);
@@ -117,14 +103,14 @@ export default function App() {
       });
   }, []);
 
+  useEffect(() => {
+    dispatch(setShowPictures(pictures));
+  }, [pictures]);
+
   return (
     <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
-      <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
-      <Main
-        pictures={pictures}
-        pagesAmount={pagesAmount}
-        amount={amount}
-      />
+      <Header />
+      <Main />
     </div>
   );
 }

@@ -6,15 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   SliceProps,
   setAuthorValue,
+  setCurrentPage,
   setLocationValue,
 } from '../../../store/features/slice/slice';
 import { useEffect, useState } from 'react';
 
-interface FilterProps {
-  clearPages: () => void;
-}
-
-export default function Filter({ clearPages }: FilterProps) {
+export default function Filter() {
   const { filter } = styles;
   const [authorVal, setAuthorVal] = useState('');
   const [locationVal, setLocationVal] = useState('');
@@ -30,6 +27,12 @@ export default function Filter({ clearPages }: FilterProps) {
 
   const authors = useSelector((state: SliceProps) => state.authors);
   const locations = useSelector((state: SliceProps) => state.locations);
+  const authorValue = useSelector((state: SliceProps) => state.authorValue);
+  const locationVaue = useSelector((state: SliceProps) => state.locationValue);
+
+  function clearPages() {
+    dispatch(setCurrentPage(1));
+  }
 
   return (
     <div className={filter}>
@@ -37,14 +40,14 @@ export default function Filter({ clearPages }: FilterProps) {
       <Select
         text='Author'
         options={authors.map((author) => author.name)}
-        value={authorVal}
+        value={authorValue}
         setValue={setAuthorVal}
         clearPages={clearPages}
       />
       <Select
         text='Location'
         options={locations.map((location) => location.location)}
-        value={locationVal}
+        value={locationVaue}
         setValue={setLocationVal}
         clearPages={clearPages}
       />

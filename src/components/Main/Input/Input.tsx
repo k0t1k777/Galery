@@ -13,18 +13,11 @@ export default function Input({ clearPages }: InputProps) {
   const dispatch = useDispatch();
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearPages();
     dispatch(setInputValue(e.target.value));
   };
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   clearPages();
-  //   if (setValue) {
-  //     setValue(e.target.value);
-  //   }
-  // };
 
   return (
     <input

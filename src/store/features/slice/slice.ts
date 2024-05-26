@@ -1,5 +1,5 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
-import { Pictures, Authors, Locations } from '../../../components/Main/Main';
+import { Pictures, Authors, Locations } from '../../../types/types';
 
 export interface SliceProps {
   currentPage: number;
@@ -13,6 +13,8 @@ export interface SliceProps {
   beforeDate: string;
   inputValue: string;
   amount: number;
+  showPictures: Pictures[];
+  isOpen: boolean;
 }
 
 const initialState: SliceProps = {
@@ -27,6 +29,8 @@ const initialState: SliceProps = {
   beforeDate: '',
   inputValue: '',
   amount: 0,
+  showPictures: [],
+  isOpen: false,
 };
 
 const slice = createSlice({
@@ -65,7 +69,13 @@ const slice = createSlice({
     },
     setAmount: (state, action: PayloadAction<number>) => {
       state.amount = action.payload
-    }
+    },
+    setShowPictures: (state, action: PayloadAction<Pictures[]>) => {
+      state.showPictures = action.payload
+    },
+    setIsOpen: (state, action: PayloadAction<boolean>) => {
+      state.isOpen = action.payload
+    },
   },
 });
 
@@ -81,6 +91,8 @@ export const {
   setBeforeDate,
   setInputValue,
   setAmount,
+  setShowPictures,
+  setIsOpen,
 } = slice.actions;
 
 export const store = configureStore({

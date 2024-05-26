@@ -1,70 +1,20 @@
 import Filter from './Filter/Filter';
 import Gallery from './Gallery/Gallery';
 import styles from './Main.module.scss';
-import { useEffect, useState } from 'react';
 import Pagination from '../Pagination/index';
-import { useDispatch } from 'react-redux';
-import { setCurrentPage } from '../../store/features/slice/slice';
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../store/features/slice/slice';
+import { pagesAmount } from '../utills/constants';
 
-interface MainProps {
-  pictures: Pictures[];
-  pagesAmount: number;
-  amount: number;
-}
-
-export interface Pictures {
-  id: string;
-  imageUrl: string;
-  name: string;
-  authorId: string;
-  created: string;
-  locationId: string;
-}
-
-export interface Authors {
-  id: string;
-  name: string;
-}
-
-export interface Locations {
-  id: string;
-  location: string;
-}
-
-export default function Main({
-  pictures,
-  pagesAmount,
-  amount,
-}: MainProps) {
+export default function Main() {
   const { main } = styles;
-  const [showPictures, setShowPictures] = useState<Pictures[]>(pictures);
-
-  const dispatch = useDispatch();
-
-  function clearPages() {
-    dispatch(setCurrentPage(1));
-  }
-
-  useEffect(() => {
-    setShowPictures(pictures);
-  }, [pictures]);
-
-  const onChange = (currentPage: number) => {
-    dispatch(setCurrentPage(currentPage));
-  };
+  const amount = useSelector((state: SliceProps) => state.amount);
 
   return (
     <div className={main}>
-      <Filter
-        clearPages={clearPages}
-      />
-      <Gallery
-        pictures={showPictures}
-      />
-      <Pagination
-        pagesAmount={Math.ceil(amount / pagesAmount)}
-        onChange={onChange}
-      />
+      <Filter />
+      <Gallery />
+      <Pagination pagesAmount={Math.ceil(amount / pagesAmount)} />
     </div>
   );
 }

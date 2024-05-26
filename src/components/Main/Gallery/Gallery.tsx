@@ -1,24 +1,18 @@
 import Picture from '../Picture/Picture';
 import styles from './Gallery.module.scss';
-import { Pictures } from './../../Main/Main';
 import { useSelector } from 'react-redux';
 import { SliceProps } from '../../../store/features/slice/slice';
 
-interface GalleryProps {
-  pictures: Pictures[];
-}
-
-export default function Gallery({
-  pictures,
-}: GalleryProps) {
+export default function Gallery() {
   const { gallery } = styles;
 
-  const authors = useSelector((state: SliceProps) => state.authors)
-  const locations = useSelector((state: SliceProps) => state.locations)
-
+  const authors = useSelector((state: SliceProps) => state.authors);
+  const locations = useSelector((state: SliceProps) => state.locations);
+  const showPictures = useSelector((state: SliceProps) => state.showPictures);
+  
   return (
     <div className={gallery}>
-      {pictures.map((item) => {
+      {showPictures.map((item) => {
         const author = authors.find((author) => author.id === item.authorId);
         const place = locations.find(
           (location) => location.id === item.locationId

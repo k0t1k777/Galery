@@ -7,7 +7,7 @@ import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { SliceProps } from '../../../store/features/slice/slice';
+import { SliceProps, setIsOpen } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -27,9 +27,18 @@ export default function Select({
   clearPages,
 }: ISelect) {
   const { Select__reset } = styles;
+  const dispatch = useDispatch()
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  // const isOpen = useSelector((state: SliceProps) => state.isOpen)
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+
   const ref = useRef(null);
+
+  // const toggleOpen = () => dispatch(setIsOpen((prev: boolean) => !prev));
+  // useOutsideClick(ref, toggleOpen);
+
   const toggleOpen = () => setIsOpen((prev) => !prev);
   useOutsideClick(ref, toggleOpen);
 
