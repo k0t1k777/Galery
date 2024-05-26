@@ -6,7 +6,7 @@ import Arrow from './../../Arrow';
 import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SliceProps } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
@@ -35,9 +35,7 @@ export default function Select({
 
   const handleReset = (event: React.MouseEvent<HTMLImageElement>) => {
     event.stopPropagation();
-    if (setValue) {
       setValue('');
-    }
   };
 
   return (

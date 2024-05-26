@@ -29,6 +29,9 @@ export default function App() {
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate)
   const inputValue = useSelector((state: SliceProps) => state.inputValue)
+  // const amount = useSelector((state: SliceProps) => state.amount)
+
+
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {
@@ -118,8 +121,6 @@ export default function App() {
     <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
       <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       <Main
-        authorValue={authorValue}
-        locationValue={locationValue}
         pictures={pictures}
         pagesAmount={pagesAmount}
         amount={amount}

@@ -12,6 +12,7 @@ export interface SliceProps {
   fromDate: string;
   beforeDate: string;
   inputValue: string;
+  amount: number;
 }
 
 const initialState: SliceProps = {
@@ -25,6 +26,7 @@ const initialState: SliceProps = {
   fromDate: '',
   beforeDate: '',
   inputValue: '',
+  amount: 0,
 };
 
 const slice = createSlice({
@@ -61,6 +63,9 @@ const slice = createSlice({
     setInputValue: (state, action: PayloadAction<string>) => {
       state.inputValue = action.payload;
     },
+    setAmount: (state, action: PayloadAction<number>) => {
+      state.amount = action.payload
+    }
   },
 });
 
@@ -75,6 +80,7 @@ export const {
   setFromDate,
   setBeforeDate,
   setInputValue,
+  setAmount,
 } = slice.actions;
 
 export const store = configureStore({

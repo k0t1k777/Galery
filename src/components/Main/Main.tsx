@@ -9,8 +9,6 @@ import { setCurrentPage } from '../../store/features/slice/slice';
 interface MainProps {
   pictures: Pictures[];
   pagesAmount: number;
-  authorValue: string;
-  locationValue: string;
   amount: number;
 }
 
@@ -36,8 +34,6 @@ export interface Locations {
 export default function Main({
   pictures,
   pagesAmount,
-  authorValue,
-  locationValue,
   amount,
 }: MainProps) {
   const { main } = styles;
@@ -60,8 +56,6 @@ export default function Main({
   return (
     <div className={main}>
       <Filter
-        authorValue={authorValue}
-        locationValue={locationValue}
         clearPages={clearPages}
       />
       <Gallery
