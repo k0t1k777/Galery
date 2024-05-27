@@ -28,6 +28,7 @@ export default function App() {
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
+  console.log('pictures: ', pictures);
 
   useEffect(() => {
     let name = '';

@@ -16,6 +16,8 @@ export default function Filter() {
   const [authorVal, setAuthorVal] = useState('');
   const [locationVal, setLocationVal] = useState('');
   const dispatch = useDispatch();
+  const authors = useSelector((state: SliceProps) => state.authors);
+  const locations = useSelector((state: SliceProps) => state.locations);
 
   useEffect(() => {
     dispatch(setAuthorValue(authorVal));
@@ -24,11 +26,6 @@ export default function Filter() {
   useEffect(() => {
     dispatch(setLocationValue(locationVal));
   }, [locationVal]);
-
-  const authors = useSelector((state: SliceProps) => state.authors);
-  const locations = useSelector((state: SliceProps) => state.locations);
-  const authorValue = useSelector((state: SliceProps) => state.authorValue);
-  const locationVaue = useSelector((state: SliceProps) => state.locationValue);
 
   function clearPages() {
     dispatch(setCurrentPage(1));
@@ -40,14 +37,14 @@ export default function Filter() {
       <Select
         text='Author'
         options={authors.map((author) => author.name)}
-        value={authorValue}
+        value={authorVal}
         setValue={setAuthorVal}
         clearPages={clearPages}
       />
       <Select
         text='Location'
         options={locations.map((location) => location.location)}
-        value={locationVaue}
+        value={locationVal}
         setValue={setLocationVal}
         clearPages={clearPages}
       />

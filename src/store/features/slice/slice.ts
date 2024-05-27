@@ -14,7 +14,6 @@ export interface SliceProps {
   inputValue: string;
   amount: number;
   showPictures: Pictures[];
-  isOpen: boolean;
 }
 
 const initialState: SliceProps = {
@@ -30,7 +29,6 @@ const initialState: SliceProps = {
   inputValue: '',
   amount: 0,
   showPictures: [],
-  isOpen: false,
 };
 
 const slice = createSlice({
@@ -73,9 +71,6 @@ const slice = createSlice({
     setShowPictures: (state, action: PayloadAction<Pictures[]>) => {
       state.showPictures = action.payload
     },
-    setIsOpen: (state, action: PayloadAction<boolean>) => {
-      state.isOpen = action.payload
-    },
   },
 });
 
@@ -92,7 +87,6 @@ export const {
   setInputValue,
   setAmount,
   setShowPictures,
-  setIsOpen,
 } = slice.actions;
 
 export const store = configureStore({

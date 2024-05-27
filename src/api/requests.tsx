@@ -33,12 +33,6 @@ export const getSearchLocation = (value: string) => {
   return axios.get(`/locations/?location=${value}`).then(getResponseData);
 };
 
-// export const getSearchCreate = (fromDate: string, beforeDate: string) => {
-//   return axios
-//     .get(`/paintings/?created_gte=${fromDate}&created_lte=${beforeDate}`)
-//     .then(getResponseData);
-// };
-
 export const getPagination = (
   page: number,
   limit: number,

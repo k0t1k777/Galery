@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './SelectDate.module.scss';
 import cn from 'classnames/bind';
 import useOutsideClick from '../../../hooks/useOutsideClick';
@@ -9,7 +9,6 @@ import {
   SliceProps,
   setBeforeDate,
   setFromDate,
-  setIsOpen,
 } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
@@ -20,7 +19,7 @@ interface SelectProps {
 }
 
 export default function SelectDate({ text, clearPages }: SelectProps) {
-  const isOpen = useSelector((state: SliceProps) => state.isOpen)
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
@@ -28,11 +27,11 @@ export default function SelectDate({ text, clearPages }: SelectProps) {
   const ref = useRef(null);
 
   const openMenu = () => {
-    dispatch(setIsOpen(true));
+    setIsOpen(true);
   };
 
   const hideMenu = () => {
-    dispatch(setIsOpen(false));
+    setIsOpen(false);
   };
 
   useOutsideClick(ref, hideMenu);

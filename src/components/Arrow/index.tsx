@@ -1,21 +1,23 @@
-import { FC } from 'react';
 import cn from 'classnames/bind';
 import styles from './Arrow.module.scss';
-
-export type TArrow = {
-  isOpen: boolean;
-  isDarkTheme?: string;
-};
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
-const Arrow: FC<TArrow> = ({ isOpen, isDarkTheme }) => (
-  <div
-    className={cx('Arrow__arrow', {
-      Arrow__opened: isOpen,
-      Arrow__dark: isDarkTheme === 'dark',
-    })}
-  ></div>
-);
+interface ArrowProps {
+  isOpen: boolean;
+}
 
-export default Arrow;
+export default function Arrow({ isOpen }: ArrowProps) {
+  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+
+  return (
+    <div
+      className={cx('Arrow__arrow', {
+        Arrow__opened: isOpen,
+        Arrow__dark: isDarkTheme === 'dark',
+      })}
+    ></div>
+  );
+};

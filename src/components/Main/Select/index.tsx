@@ -6,8 +6,8 @@ import Arrow from './../../Arrow';
 import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { SliceProps, setIsOpen } from '../../../store/features/slice/slice';
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -27,19 +27,14 @@ export default function Select({
   clearPages,
 }: ISelect) {
   const { Select__reset } = styles;
-  const dispatch = useDispatch()
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
-  // const isOpen = useSelector((state: SliceProps) => state.isOpen)
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
 
   const ref = useRef(null);
 
-  // const toggleOpen = () => dispatch(setIsOpen((prev: boolean) => !prev));
-  // useOutsideClick(ref, toggleOpen);
-
-  const toggleOpen = () => setIsOpen((prev) => !prev);
+  const toggleOpen = () => setIsOpen(!isOpen);
+  
   useOutsideClick(ref, toggleOpen);
 
   const handleReset = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -59,7 +54,7 @@ export default function Select({
     >
       {!value && <span className={cx('Select__title')}>{text}</span>}
       <span className={cx('Select__title')}>{value}</span>
-      <Arrow isOpen={isOpen} isDarkTheme={isDarkTheme} />
+      <Arrow isOpen={isOpen}/>
       {isOpen && options && (
         <ul
           className={cx('Select__optionContainer', {
