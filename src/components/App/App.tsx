@@ -22,6 +22,7 @@ export default function App() {
 
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
+  console.log('currentPage: ', currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const authorValue = useSelector((state: SliceProps) => state.authorValue);
   const locationValue = useSelector((state: SliceProps) => state.locationValue);
@@ -31,16 +32,13 @@ export default function App() {
   console.log('pictures: ', pictures);
 
   useEffect(() => {
-    let name = '';
     let authorId = 0;
     let locationId = 0;
     Promise.all([
-      Api.getSearchPictures(name),
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue),
     ])
-      .then(([name, author, location]) => {
-        name = inputValue;
+      .then(([ author, location]) => {
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
       })

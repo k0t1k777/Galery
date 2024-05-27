@@ -21,10 +21,6 @@ export const getLocations = () => {
   return axios.get(`/locations/`).then(getResponseData);
 };
 
-export const getSearchPictures = (value: string) => {
-  return axios.get(`/paintings/?name=${value}`).then(getResponseData);
-};
-
 export const getSearchAuthorId = (value: string) => {
   return axios.get(`/authors/?name=${value}`).then(getResponseData);
 };

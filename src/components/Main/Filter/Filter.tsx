@@ -3,6 +3,7 @@ import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import SelectDate from '../SelectDate/SelectDate';
 import { useDispatch, useSelector } from 'react-redux';
+import { FILTER_DATA } from './../../utills/constants';
 import {
   SliceProps,
   setAuthorValue,
@@ -35,20 +36,20 @@ export default function Filter() {
     <div className={filter}>
       <Input clearPages={clearPages} />
       <Select
-        text='Author'
+        text={FILTER_DATA.author}
         options={authors.map((author) => author.name)}
         value={authorVal}
         setValue={setAuthorVal}
         clearPages={clearPages}
       />
       <Select
-        text='Location'
+        text={FILTER_DATA.location}
         options={locations.map((location) => location.location)}
         value={locationVal}
         setValue={setLocationVal}
         clearPages={clearPages}
       />
-      <SelectDate text='Created' clearPages={clearPages} />
+      <SelectDate text={FILTER_DATA.created} clearPages={clearPages} />
     </div>
   );
 }
