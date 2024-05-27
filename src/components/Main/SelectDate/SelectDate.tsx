@@ -26,22 +26,22 @@ export default function SelectDate({ text, clearPages }: SelectProps) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
-  const openMenu = () => {
+  function openMenu () {
     setIsOpen(true);
   };
 
-  const hideMenu = () => {
+  function hideMenu () {
     setIsOpen(false);
   };
 
   useOutsideClick(ref, hideMenu);
 
-  const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleFromDateChange (e: React.ChangeEvent<HTMLInputElement>) {
     clearPages();
     dispatch(setFromDate(e.target.value));
   };
 
-  const handleToDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleToDateChange (e: React.ChangeEvent<HTMLInputElement>) {
     clearPages();
     dispatch(setBeforeDate(e.target.value));
   };

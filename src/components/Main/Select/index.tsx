@@ -30,14 +30,15 @@ export default function Select({
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-
   const ref = useRef(null);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  function toggleOpen () {
+    setIsOpen(!isOpen)
+  }
   
   useOutsideClick(ref, toggleOpen);
 
-  const handleReset = (event: React.MouseEvent<HTMLImageElement>) => {
+  function handleReset (event: React.MouseEvent<HTMLImageElement>) {
     event.stopPropagation();
       setValue('');
   };
