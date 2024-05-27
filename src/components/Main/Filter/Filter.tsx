@@ -29,6 +29,7 @@ export default function Filter() {
   }, [locationVal]);
 
   function clearPages() {
+    console.log('очистить')
     dispatch(setCurrentPage(1));
   }
 

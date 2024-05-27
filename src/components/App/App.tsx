@@ -6,6 +6,7 @@ import styles from './App.module.scss';
 import * as Api from '../../api/requests';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
+// import { useGetPicturesQuery } from './../../api/api'
 import {
   SliceProps,
   setPictures,
@@ -19,17 +20,16 @@ const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
-  console.log('currentPage: ', currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const authorValue = useSelector((state: SliceProps) => state.authorValue);
   const locationValue = useSelector((state: SliceProps) => state.locationValue);
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
-  console.log('pictures: ', pictures);
+
+// const { data = [], isLoading} = useGetPicturesQuery()
 
   useEffect(() => {
     let authorId = 0;
