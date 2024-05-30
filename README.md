@@ -11,6 +11,9 @@
 
 - TS [TypeScript](https://www.typescriptlang.org/)
 - ⚛️[React](https://ru.reactjs.org/)
+- 🔧[Redux](https://ru.reactjs.org/)
+- [RTK Query](https://ru.reactjs.org/)
+
 
 ## Сведения о команде:
 

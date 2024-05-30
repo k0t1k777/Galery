@@ -31,7 +31,7 @@ const initialState: SliceProps = {
   showPictures: [],
 };
 
-const slice = createSlice({
+export const slice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -89,6 +89,6 @@ export const {
   setShowPictures,
 } = slice.actions;
 
-export const store = configureStore({
-  reducer: slice.reducer,
-});
+// export const store = configureStore({
+//   reducer: slice.reducer,
+// });
