@@ -66,8 +66,10 @@ export default function Select({
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option, index) => (
               <li
-                onClick={() => setValue(option)}
-                onChange={clearPages}
+              onClick={() => {
+                setValue(option);
+                clearPages();
+              }}
                 className={cx('Select__option', {
                   'Select__option--dark': isDarkTheme === 'dark',
                 })}
