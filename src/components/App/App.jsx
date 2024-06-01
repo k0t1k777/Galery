@@ -3,9 +3,10 @@ import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
-import * as Api from '../../api/requests';
+import * as Api from '../../services/requests';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
+import { useGetPicturesQuery } from '../../services/api'
 import {
   SliceProps,
   setPictures,
@@ -13,24 +14,27 @@ import {
   setLocations,
   setAmount,
   setShowPictures,
-} from './../../store/features/slice/slice';
+} from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
-  console.log('currentPage: ', currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const authorValue = useSelector((state: SliceProps) => state.authorValue);
   const locationValue = useSelector((state: SliceProps) => state.locationValue);
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
-  console.log('pictures: ', pictures);
 
+  const { data, error, isLoading, refetch } = useGetPicturesQuery();
+  console.log('refetch: ', refetch);
+  console.log('isLoading: ', isLoading);
+  console.log('error: ', error);
+  console.log('data: ', data);
+  
   useEffect(() => {
     let authorId = 0;
     let locationId = 0;

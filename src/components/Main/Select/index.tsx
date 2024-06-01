@@ -32,16 +32,16 @@ export default function Select({
 
   const ref = useRef(null);
 
-  function toggleOpen () {
-    setIsOpen(!isOpen)
+  function toggleOpen() {
+    setIsOpen(!isOpen);
   }
-  
+
   useOutsideClick(ref, toggleOpen);
 
-  function handleReset (event: React.MouseEvent<HTMLImageElement>) {
+  function handleReset(event: React.MouseEvent<HTMLImageElement>) {
     event.stopPropagation();
-      setValue('');
-  };
+    setValue('');
+  }
 
   return (
     <div
@@ -55,7 +55,7 @@ export default function Select({
     >
       {!value && <span className={cx('Select__title')}>{text}</span>}
       <span className={cx('Select__title')}>{value}</span>
-      <Arrow isOpen={isOpen}/>
+      <Arrow isOpen={isOpen} />
       {isOpen && options && (
         <ul
           className={cx('Select__optionContainer', {
@@ -66,10 +66,10 @@ export default function Select({
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option, index) => (
               <li
-              onClick={() => {
-                setValue(option);
-                clearPages();
-              }}
+                onClick={() => {
+                  setValue(option);
+                  clearPages();
+                }}
                 className={cx('Select__option', {
                   'Select__option--dark': isDarkTheme === 'dark',
                 })}
@@ -87,4 +87,4 @@ export default function Select({
       )}
     </div>
   );
-};
+}
