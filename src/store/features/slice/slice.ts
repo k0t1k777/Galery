@@ -89,6 +89,6 @@ export const {
   setShowPictures,
 } = slice.actions;
 
-// export const store = configureStore({
-//   reducer: slice.reducer,
-// });
+export const store = configureStore({
+  reducer: slice.reducer,
+});

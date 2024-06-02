@@ -11,9 +11,8 @@
 
 - TS [TypeScript](https://www.typescriptlang.org/)
 - ⚛️[React](https://ru.reactjs.org/)
-- 🔧[Redux](https://ru.reactjs.org/)
-- [RTK Query](https://ru.reactjs.org/)
-
+- 🔧[Redux](https://ru.reduxjs.org/)
+- [tanstack](https://ru.tanstackjs.org/)
 
 ## Сведения о команде:
 
@@ -45,9 +44,10 @@
 
 ## Библиотеки,которые использовалис
 
-1. classnames/bind 
-<!-- 2. @hookform/resolvers --> -->
-<!-- 3. yup -->
+1. classnames/bind
+2. axios
+3. simplebar-react
+4. vite-plugin-svgr
 
 ## Ключевые точки для медиа min,max-width: 1440px
   <!-- (./src/assets/image.png)
