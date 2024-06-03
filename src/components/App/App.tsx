@@ -52,7 +52,7 @@ export default function App() {
   const dataAithors = useQuery('authors', fetchAuthors);
   console.log('dataAithors: ', dataAithors);
 
-  const dataLocation = useQuery('locations', fetchPictures);
+  const dataLocation = useQuery('locations', fetchLocations);
   console.log('dataLocation: ', dataLocation);
 
   // console.log('isError: ', isError);
