@@ -1,15 +1,22 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
-const getResponseData = (response: AxiosResponse) => {
-  if (response.status !== 200) {
-    return Promise.reject(`Ошибка: ${response.status}`);
-  }
-  return response.data;
-};
+export async function fetchPictures() {
+  const { data } = await axios.get(
+    'https://test-front.framework.team/paintings/'
+  );
+  return data.pictures;
+}
 
-const fetchPictures = async () => {
-  const response = await axios.get('/paintings/');
-  return getResponseData(response);
-};
+export async function fetchAuthors() {
+  const { data } = await axios.get(
+    'https://test-front.framework.team/authors/'
+  );
+  return data.authors;
+}
 
-export default fetchPictures;
+export async function fetchLocations() {
+  const { data } = await axios.get(
+    'https://test-front.framework.team/locations/'
+  );
+  return data.locations;
+}

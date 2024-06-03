@@ -15,7 +15,11 @@ import {
   setShowPictures,
 } from '../../store/features/slice/slice';
 import { useQuery } from 'react-query';
-import fetchPictures from '../../services/apiPainting.ts'
+import {
+  fetchPictures,
+  fetchAuthors,
+  fetchLocations,
+} from '../../services/apiPainting.ts';
 
 const cx = cn.bind(styles);
 
@@ -29,15 +33,38 @@ export default function App() {
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
-  
-  const PicturesComponent = () => {
-    const { data } = useQuery(
-      'pictures',
-      fetchPictures
-    );
 
-    console.log('data: ', data);
-    };
+  // function usePicturesQuery() {
+  //   return useQuery('pictures', fetchPictures);
+  // }
+  
+  // function useAuthorsQuery() {
+  //   return useQuery('authors', fetchAuthors);
+  // }
+  
+  // function useLocationsQuery() {
+  //   return useQuery('locations', fetchLocations);
+  // }
+
+  const dataPictures = useQuery('pictures', fetchPictures);
+  console.log('dataPictures: ', dataPictures);
+
+  const dataAithors = useQuery('authors', fetchAuthors);
+  console.log('dataAithors: ', dataAithors);
+
+  const dataLocation = useQuery('locations', fetchPictures);
+  console.log('dataLocation: ', dataLocation);
+
+  // console.log('isError: ', isError);
+  // console.log('isLoading: ', isLoading);
+  // console.log('data: ', data);
+
+  // if (isLoading) {
+  //   return <h3>Идет загрузка</h3>
+  // }
+
+  // const { data, isLoading, isError } = useQuery('locations', fetchLocations);
+
 
   useEffect(() => {
     let authorId = 0;
@@ -46,7 +73,7 @@ export default function App() {
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue),
     ])
-      .then(([ author, location]) => {
+      .then(([author, location]) => {
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
       })

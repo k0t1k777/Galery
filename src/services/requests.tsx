@@ -9,9 +9,9 @@ const getResponseData = (response: AxiosResponse) => {
   return response.data;
 };
 
-export const getPictures = () => {
-  return axios.get(`/paintings/`).then(getResponseData);
-};
+// export const getPictures = () => {
+//   return axios.get(`/paintings/`).then(getResponseData);
+// };
 
 export const getAuthors = () => {
   return axios.get(`/authors/`).then(getResponseData);

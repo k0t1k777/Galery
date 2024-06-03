@@ -50,10 +50,8 @@
 4. vite-plugin-svgr
 
 ## Ключевые точки для медиа min,max-width: 1440px
-  <!-- (./src/assets/image.png)
-![alt text](./src/assets/image-1.png)
-![alt text](./src/assets/image-2.png)
-![alt text](./src/assets/image-3.png)
-![alt text](./src/assets/image-4.png)
-![alt text](./src/assets/image-5.png)
-![alt text](./src/assets/image-6.png) -->
+
+![alt text](./src/assets/screenshot/Снимок1.JPG)
+![alt text](./src/assets/screenshot/Снимок2.JPG)
+![alt text](./src/assets/screenshot/Снимок3.JPG)
+![alt text](./src/assets/screenshot/Снимок4.JPG)
