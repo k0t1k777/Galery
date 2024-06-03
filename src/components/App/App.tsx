@@ -14,6 +14,8 @@ import {
   setAmount,
   setShowPictures,
 } from '../../store/features/slice/slice';
+import { useQuery } from 'react-query';
+import fetchPictures from '../../services/apiPainting.ts'
 
 const cx = cn.bind(styles);
 
@@ -27,6 +29,15 @@ export default function App() {
   const fromDate = useSelector((state: SliceProps) => state.fromDate);
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
+  
+  const PicturesComponent = () => {
+    const { data } = useQuery(
+      'pictures',
+      fetchPictures
+    );
+
+    console.log('data: ', data);
+    };
 
   useEffect(() => {
     let authorId = 0;
