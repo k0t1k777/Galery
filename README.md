@@ -9,7 +9,7 @@
 - TS [TypeScript](https://www.typescriptlang.org/)
 - ⚛️ [React](https://ru.reactjs.org/)
 - 🔧 [Redux](https://ru.reduxjs.org/)
-- ⚙️ [TanStack](https://ru.tanstackjs.org/)
+- ⚙️ [TanStack React Query](https://ru.tanstackjs.org/)
 
 ## Библиотеки,которые использовались
 

@@ -1,22 +1,24 @@
 import axios from 'axios';
+export const BASE_URL = 'https://test-front.framework.team';
+axios.defaults.baseURL = BASE_URL;
 
 export async function fetchPictures() {
   const { data } = await axios.get(
-    'https://test-front.framework.team/paintings/'
+    '/paintings/'
   );
   return data.pictures;
 }
 
 export async function fetchAuthors() {
   const { data } = await axios.get(
-    'https://test-front.framework.team/authors/'
+    '/authors/'
   );
   return data.authors;
 }
 
 export async function fetchLocations() {
   const { data } = await axios.get(
-    'https://test-front.framework.team/locations/'
+    '/locations/'
   );
   return data.locations;
 }
