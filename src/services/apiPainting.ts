@@ -6,19 +6,26 @@ export async function fetchPictures() {
   const { data } = await axios.get(
     '/paintings/'
   );
-  return data.pictures;
+  return data;
 }
 
 export async function fetchAuthors() {
   const { data } = await axios.get(
     '/authors/'
   );
-  return data.authors;
+  return data;
 }
 
 export async function fetchLocations() {
   const { data } = await axios.get(
     '/locations/'
   );
-  return data.locations;
+  return data;
+}
+
+export async function fetchGetSearchAuthorId(value: string) {
+  const { data } = await axios.get(
+    `/authors/?name=${value}`
+  );
+  return data;
 }

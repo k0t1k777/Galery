@@ -9,18 +9,6 @@ const getResponseData = (response: AxiosResponse) => {
   return response.data;
 };
 
-// export const getPictures = () => {
-//   return axios.get(`/paintings/`).then(getResponseData);
-// };
-
-export const getAuthors = () => {
-  return axios.get(`/authors/`).then(getResponseData);
-};
-
-export const getLocations = () => {
-  return axios.get(`/locations/`).then(getResponseData);
-};
-
 export const getSearchAuthorId = (value: string) => {
   return axios.get(`/authors/?name=${value}`).then(getResponseData);
 };

@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import FWT from './../../assets/FWT.svg?react';
+import FWT from './../../assets/icons/FWT.svg?react';
 import cn from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { SliceProps, setIsDarkTheme } from '../../store/features/slice/slice';

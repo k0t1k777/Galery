@@ -21,7 +21,7 @@
   }
 
   &__button {
-    background-image: url('./../../assets/Change-theme-black.svg');
+    background-image: url('./../../assets/icons/Change-theme-black.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
@@ -32,7 +32,7 @@
   }
 
   &__button--dark {
-    background-image: url('./../../assets/Change-theme.svg');
+    background-image: url('./../../assets/icons/Change-theme.svg');
   }
 
 }

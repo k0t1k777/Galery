@@ -9,15 +9,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   SliceProps,
   setPictures,
-  setAuthors,
-  setLocations,
+  // setAuthors,
   setAmount,
   setShowPictures,
 } from '../../store/features/slice/slice';
 import { useQuery } from 'react-query';
 import {
   fetchPictures,
-  fetchAuthors,
+  // fetchAuthors,
   fetchLocations,
 } from '../../services/apiPainting.ts';
 
@@ -25,7 +24,7 @@ const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-  
+
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
@@ -35,37 +34,9 @@ export default function App() {
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
 
-  // function usePicturesQuery() {
-  //   return useQuery('pictures', fetchPictures);
-  // }
-  
-  // function useAuthorsQuery() {
-  //   return useQuery('authors', fetchAuthors);
-  // }
-  
-  // function useLocationsQuery() {
-  //   return useQuery('locations', fetchLocations);
-  // }
-
   const dataPictures = useQuery('pictures', fetchPictures);
-  console.log('dataPictures: ', dataPictures);
-
-  const dataAithors = useQuery('authors', fetchAuthors);
-  console.log('dataAithors: ', dataAithors);
 
   const dataLocation = useQuery('locations', fetchLocations);
-  console.log('dataLocation: ', dataLocation);
-
-  // console.log('isError: ', isError);
-  // console.log('isLoading: ', isLoading);
-  // console.log('data: ', data);
-
-  // if (isLoading) {
-  //   return <h3>Идет загрузка</h3>
-  // }
-
-  // const { data, isLoading, isError } = useQuery('locations', fetchLocations);
-
 
   useEffect(() => {
     let authorId = 0;
@@ -117,26 +88,6 @@ export default function App() {
     fromDate,
     beforeDate,
   ]);
-
-  useEffect(() => {
-    Api.getAuthors()
-      .then((data) => {
-        dispatch(setAuthors(data));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    Api.getLocations()
-      .then((data) => {
-        dispatch(setLocations(data));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
 
   useEffect(() => {
     dispatch(setShowPictures(pictures));

@@ -1,11 +1,9 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
-import { Pictures, Authors, Locations } from '../../../types/types';
+import { Pictures } from '../../../types/types';
 
 export interface SliceProps {
   currentPage: number;
   pictures: Pictures[];
-  authors: Authors[];
-  locations: Locations[];
   isDarkTheme: string;
   authorValue: string;
   locationValue: string;
@@ -19,8 +17,6 @@ export interface SliceProps {
 const initialState: SliceProps = {
   currentPage: 1,
   pictures: [],
-  authors: [],
-  locations: [],
   isDarkTheme: 'light',
   authorValue: '',
   locationValue: '',
@@ -40,12 +36,6 @@ export const slice = createSlice({
     },
     setPictures: (state, action: PayloadAction<Pictures[]>) => {
       state.pictures = action.payload;
-    },
-    setAuthors: (state, action: PayloadAction<Authors[]>) => {
-      state.authors = action.payload;
-    },
-    setLocations: (state, action: PayloadAction<Locations[]>) => {
-      state.locations = action.payload;
     },
     setIsDarkTheme: (state, action: PayloadAction<string>) => {
       state.isDarkTheme = action.payload;
@@ -77,8 +67,6 @@ export const slice = createSlice({
 export const {
   setCurrentPage,
   setPictures,
-  setAuthors,
-  setLocations,
   setIsDarkTheme,
   setAuthorValue,
   setLocationValue,

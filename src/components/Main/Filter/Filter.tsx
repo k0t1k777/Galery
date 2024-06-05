@@ -2,23 +2,26 @@ import Input from '../Input/Input';
 import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import SelectDate from '../SelectDate/SelectDate';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FILTER_DATA } from './../../utills/constants';
 import {
-  SliceProps,
   setAuthorValue,
   setCurrentPage,
   setLocationValue,
 } from '../../../store/features/slice/slice';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
+import { Authors, Locations } from '../../../types/types';
 
 export default function Filter() {
   const { filter } = styles;
   const [authorVal, setAuthorVal] = useState('');
   const [locationVal, setLocationVal] = useState('');
   const dispatch = useDispatch();
-  const authors = useSelector((state: SliceProps) => state.authors);
-  const locations = useSelector((state: SliceProps) => state.locations);
+
+  const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
+  const dataLocations = useQuery('locations', fetchLocations, {initialData: [] })
 
   useEffect(() => {
     dispatch(setAuthorValue(authorVal));
@@ -37,14 +40,14 @@ export default function Filter() {
       <Input clearPages={clearPages} />
       <Select
         text={FILTER_DATA.author}
-        options={authors.map((author) => author.name)}
+        options={dataAuthors.data?.map((author: Authors) => author.name)}
         value={authorVal}
         setValue={setAuthorVal}
         clearPages={clearPages}
       />
       <Select
         text={FILTER_DATA.location}
-        options={locations.map((location) => location.location)}
+        options={dataLocations.data?.map((location: Locations) => location.location)}
         value={locationVal}
         setValue={setLocationVal}
         clearPages={clearPages}
