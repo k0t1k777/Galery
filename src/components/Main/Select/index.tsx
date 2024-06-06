@@ -24,7 +24,7 @@ export default function Select({
   options,
   setValue,
   value,
-  clearPages,
+  clearPages
 }: ISelect) {
   const { Select__reset } = styles;
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
@@ -48,11 +48,10 @@ export default function Select({
       ref={isOpen ? ref : null}
       className={cx('Select', {
         'Select--open': isOpen,
-        'Select--dark': isDarkTheme === 'dark',
+        'Select--dark': isDarkTheme === 'dark'
       })}
       onClick={toggleOpen}
-      aria-hidden='true'
-    >
+      aria-hidden="true">
       {!value && <span className={cx('Select__title')}>{text}</span>}
       <span className={cx('Select__title')}>{value}</span>
       <Arrow isOpen={isOpen} />
@@ -60,9 +59,8 @@ export default function Select({
         <ul
           className={cx('Select__optionContainer', {
             'Select__optionContainer--open': isOpen,
-            'Select__optionContainer--dark': isDarkTheme === 'dark',
-          })}
-        >
+            'Select__optionContainer--dark': isDarkTheme === 'dark'
+          })}>
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option, index) => (
               <li
@@ -71,11 +69,10 @@ export default function Select({
                   clearPages();
                 }}
                 className={cx('Select__option', {
-                  'Select__option--dark': isDarkTheme === 'dark',
+                  'Select__option--dark': isDarkTheme === 'dark'
                 })}
                 key={index}
-                aria-hidden='true'
-              >
+                aria-hidden="true">
                 <p className={cx('Select__optionName')}>{option}</p>
               </li>
             ))}

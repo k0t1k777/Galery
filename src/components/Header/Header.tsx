@@ -26,7 +26,7 @@ export default function Header() {
       <FWT />
       <button
         className={cx('header__button', {
-          'header__button--dark': isDarkTheme === 'dark',
+          'header__button--dark': isDarkTheme === 'dark'
         })}
         onClick={toggleTheme}
       />

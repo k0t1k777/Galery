@@ -16,8 +16,7 @@ export default function Arrow({ isOpen }: ArrowProps) {
     <div
       className={cx('Arrow__arrow', {
         Arrow__opened: isOpen,
-        Arrow__dark: isDarkTheme === 'dark',
-      })}
-    ></div>
+        Arrow__dark: isDarkTheme === 'dark'
+      })}></div>
   );
-};
+}

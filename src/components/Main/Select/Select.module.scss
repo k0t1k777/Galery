@@ -53,8 +53,16 @@
       max-width: 90px;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
       max-width: 100%;
+    }
+
+    @media screen and (max-width: 430px) {
+      max-width: 250px;
+    }
+
+    @media screen and (max-width: 360px) {
+      max-width: 200px;
     }
 
     &--dark {

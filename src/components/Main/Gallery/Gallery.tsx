@@ -1,23 +1,27 @@
 import Picture from '../Picture/Picture';
 import styles from './Gallery.module.scss';
-import { useSelector } from 'react-redux';
-import { SliceProps } from '../../../store/features/slice/slice';
 import { useQuery } from 'react-query';
 import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
-import { Authors, Locations } from '../../../types/types';
+import { Authors, Locations, Pictures } from '../../../types/types';
+import { useSelector } from 'react-redux';
+import { SliceProps } from '../../../store/features/slice/slice';
 
 export default function Gallery() {
   const { gallery } = styles;
 
-  const showPictures = useSelector((state: SliceProps) => state.showPictures);
-  
+  const pictures = useSelector((state: SliceProps) => state.pictures);
+  console.log('pictures: ', pictures);
   const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
-  const dataLocations = useQuery('locations', fetchLocations, {initialData: [] })
+  const dataLocations = useQuery('locations', fetchLocations, {
+    initialData: []
+  });
 
   return (
     <div className={gallery}>
-      {showPictures.map((item) => {
-        const author = dataAuthors.data?.find((author: Authors) => author.id === item.authorId);
+      {pictures.map((item: Pictures) => {
+        const author = dataAuthors.data.find(
+          (author: Authors) => author.id === item.authorId
+        );
         const place = dataLocations.data.find(
           (location: Locations) => location.id === item.locationId
         );

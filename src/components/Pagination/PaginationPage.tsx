@@ -15,13 +15,10 @@ const PaginationPage: FC<PaginationPageProps> = ({
   ...other
 }) => (
   <button
-    type='button'
-    className={cx(
-      'PaginationPage',
-      {
-        'PaginationPage--dark': isDarkTheme === 'dark',
-      },
-    )}
+    type="button"
+    className={cx('PaginationPage', {
+      'PaginationPage--dark': isDarkTheme === 'dark'
+    })}
     {...other}
   />
 );

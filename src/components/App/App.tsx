@@ -9,16 +9,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   SliceProps,
   setPictures,
-  // setAuthors,
   setAmount,
   setShowPictures,
+  setLoading
 } from '../../store/features/slice/slice';
-import { useQuery } from 'react-query';
-import {
-  fetchPictures,
-  // fetchAuthors,
-  fetchLocations,
-} from '../../services/apiPainting.ts';
 
 const cx = cn.bind(styles);
 
@@ -34,16 +28,13 @@ export default function App() {
   const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
   const inputValue = useSelector((state: SliceProps) => state.inputValue);
 
-  const dataPictures = useQuery('pictures', fetchPictures);
-
-  const dataLocation = useQuery('locations', fetchLocations);
-
   useEffect(() => {
     let authorId = 0;
     let locationId = 0;
+    dispatch(setLoading(true));
     Promise.all([
       Api.getSearchAuthorId(authorValue),
-      Api.getSearchLocation(locationValue),
+      Api.getSearchLocation(locationValue)
     ])
       .then(([author, location]) => {
         authorId = author[0] && author[0].id;
@@ -59,10 +50,10 @@ export default function App() {
           fromDate,
           beforeDate
         )
-          .then((data) => {
+          .then(data => {
             dispatch(setPictures(data));
           })
-          .catch((error) => {
+          .catch(error => {
             console.error(error);
           });
         Api.getPaginationAmount(
@@ -72,11 +63,13 @@ export default function App() {
           fromDate,
           beforeDate
         )
-          .then((data) => {
+          .then(data => {
             dispatch(setAmount(data.length));
+            dispatch(setLoading(false));
           })
-          .catch((error) => {
+          .catch(error => {
             console.error(error);
+            dispatch(setLoading(false));
           });
       });
   }, [
@@ -86,7 +79,7 @@ export default function App() {
     authorValue,
     locationValue,
     fromDate,
-    beforeDate,
+    beforeDate
   ]);
 
   useEffect(() => {
@@ -94,7 +87,7 @@ export default function App() {
   }, [pictures]);
 
   return (
-    <div className={cx('App', { 'App--dark': isDarkTheme === 'dark' })}>
+    <div className={cx('app', { 'app--dark': isDarkTheme === 'dark' })}>
       <Header />
       <Main />
     </div>

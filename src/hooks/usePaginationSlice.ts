@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 const usePaginationSlice = ({
   current,
-  amount,
+  amount
 }: {
   current: number;
   amount: number;

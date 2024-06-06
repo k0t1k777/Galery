@@ -16,7 +16,7 @@ export default function Picture({
   namePicture,
   date,
   author,
-  place,
+  place
 }: PictureProps) {
   const {
     picture,
@@ -26,8 +26,9 @@ export default function Picture({
     picture__subtitle,
     picture__span,
     picture__type_top,
-    picture__container_type_height,
+    picture__container_type_height
   } = styles;
+
   const [isContainerOpen, setIsContainerOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -42,7 +43,7 @@ export default function Picture({
     <figure className={picture__figure}>
       <img
         src={`${BASE_URL}/${image}`}
-        alt='Картина галереи'
+        alt="Картина галереи"
         className={picture}
       />
 
@@ -53,13 +54,11 @@ export default function Picture({
             : picture__container
         }
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+        onMouseLeave={handleMouseLeave}>
         {isContainerOpen ? (
           <>
             <figcaption
-              className={`${picture__figcaption} ${picture__type_top}`}
-            >
+              className={`${picture__figcaption} ${picture__type_top}`}>
               {namePicture}
             </figcaption>
             <p className={picture__subtitle}>

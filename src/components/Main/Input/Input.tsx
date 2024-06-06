@@ -22,11 +22,11 @@ export default function Input({ clearPages }: InputProps) {
   return (
     <input
       className={cx('input', {
-        'input--dark': isDarkTheme === 'dark',
+        'input--dark': isDarkTheme === 'dark'
       })}
-      type='text'
-      name='name'
-      placeholder='Name'
+      type="text"
+      name="name"
+      placeholder="Name"
       value={inputValue}
       onChange={handleChange}
     />

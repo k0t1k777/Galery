@@ -7,7 +7,7 @@ import { FILTER_DATA } from './../../utills/constants';
 import {
   setAuthorValue,
   setCurrentPage,
-  setLocationValue,
+  setLocationValue
 } from '../../../store/features/slice/slice';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -21,7 +21,9 @@ export default function Filter() {
   const dispatch = useDispatch();
 
   const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
-  const dataLocations = useQuery('locations', fetchLocations, {initialData: [] })
+  const dataLocations = useQuery('locations', fetchLocations, {
+    initialData: []
+  });
 
   useEffect(() => {
     dispatch(setAuthorValue(authorVal));
@@ -47,7 +49,9 @@ export default function Filter() {
       />
       <Select
         text={FILTER_DATA.location}
-        options={dataLocations.data?.map((location: Locations) => location.location)}
+        options={dataLocations.data?.map(
+          (location: Locations) => location.location
+        )}
         value={locationVal}
         setValue={setLocationVal}
         clearPages={clearPages}

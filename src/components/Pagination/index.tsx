@@ -8,16 +8,14 @@ import DoubleArrowR from '../../assets/doubleArrowR.svg?react';
 import ArrowL from '../../assets/arrowL.svg?react';
 import usePaginationSlice from '../../hooks/usePaginationSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { SliceProps, setCurrentPage } from './../../store/features/slice/slice'
+import { SliceProps, setCurrentPage } from './../../store/features/slice/slice';
 
 export type TPagination = {
   pagesAmount: number;
   className?: string;
 };
 
-const Pagination: FC<TPagination> = ({
-  pagesAmount,
-}) => {
+const Pagination: FC<TPagination> = ({ pagesAmount }) => {
   const { Pagination } = styles;
 
   const dispatch = useDispatch();
@@ -30,17 +28,17 @@ const Pagination: FC<TPagination> = ({
 
   const slicedPagesArray = usePaginationSlice({
     current: currentPage,
-    amount: pagesAmount,
+    amount: pagesAmount
   });
 
   const leftArrowProps = {
     isDarkTheme,
-    disabled: currentPage < 2,
+    disabled: currentPage < 2
   };
 
   const rightArrowProps = {
     isDarkTheme,
-    disabled: currentPage >= pagesAmount,
+    disabled: currentPage >= pagesAmount
   };
 
   return (
@@ -50,31 +48,27 @@ const Pagination: FC<TPagination> = ({
       </PaginationPage>
       <PaginationPage
         {...leftArrowProps}
-        onClick={() => onChange(currentPage - 1)}
-      >
+        onClick={() => onChange(currentPage - 1)}>
         <ArrowL />
       </PaginationPage>
 
-      {slicedPagesArray.map((el) => (
+      {slicedPagesArray.map(el => (
         <PaginationPageWithActive
           isDarkTheme={isDarkTheme}
           onClick={() => onChange(el)}
           isActive={currentPage === el}
-          key={el}
-        >
+          key={el}>
           {el}
         </PaginationPageWithActive>
       ))}
       <PaginationPage
         {...rightArrowProps}
-        onClick={() => onChange(currentPage + 1)}
-      >
+        onClick={() => onChange(currentPage + 1)}>
         <ArrowR />
       </PaginationPage>
       <PaginationPage
         {...rightArrowProps}
-        onClick={() => onChange(pagesAmount)}
-      >
+        onClick={() => onChange(pagesAmount)}>
         <DoubleArrowR />
       </PaginationPage>
     </div>

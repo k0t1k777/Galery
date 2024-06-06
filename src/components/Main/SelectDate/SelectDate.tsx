@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   SliceProps,
   setBeforeDate,
-  setFromDate,
+  setFromDate
 } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
@@ -26,63 +26,61 @@ export default function SelectDate({ text, clearPages }: SelectProps) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
-  function openMenu () {
+  function openMenu() {
     setIsOpen(true);
-  };
+  }
 
-  function hideMenu () {
+  function hideMenu() {
     setIsOpen(false);
-  };
+  }
 
   useOutsideClick(ref, hideMenu);
 
-  function handleFromDateChange (e: React.ChangeEvent<HTMLInputElement>) {
+  function handleFromDateChange(e: React.ChangeEvent<HTMLInputElement>) {
     clearPages();
     dispatch(setFromDate(e.target.value));
-  };
+  }
 
-  function handleToDateChange (e: React.ChangeEvent<HTMLInputElement>) {
+  function handleToDateChange(e: React.ChangeEvent<HTMLInputElement>) {
     clearPages();
     dispatch(setBeforeDate(e.target.value));
-  };
+  }
 
   return (
     <div
       ref={ref}
       className={cx('select', {
         'select--dark': isDarkTheme === 'dark',
-        'select--open': isOpen === true,
+        'select--open': isOpen === true
       })}
-      onClick={isOpen ? hideMenu : openMenu}
-    >
+      onClick={isOpen ? hideMenu : openMenu}>
       <span>{text}</span>
       {isOpen && (
         <div
           className={cx('select__container', {
             'select__container--dark': isDarkTheme === 'dark',
-            'select__container--open': isOpen === true,
-          })}
-        >
+            'select__container--open': isOpen === true
+          })}>
           <input
             className={cx('select__input', {
-              'select__input--dark': isDarkTheme === 'dark',
+              'select__input--dark': isDarkTheme === 'dark'
             })}
-            type='numeric'
-            placeholder='from'
+            type="numeric"
+            placeholder="from"
             value={fromDate}
             onChange={handleFromDateChange}
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           />
           {isDarkTheme === 'dark' ? <Line /> : <LineBlack />}
           <input
             className={cx('select__input', {
-              'select__input--dark': isDarkTheme === 'dark',
+              'select__input--dark': isDarkTheme === 'dark'
             })}
-            type='numeric'
-            placeholder='before'
+            type="numeric"
+            placeholder="before"
             value={beforeDate}
             onChange={handleToDateChange}
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           />
         </div>
       )}

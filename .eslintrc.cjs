@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react-hooks/recommended',
     'airbnb-typescript',
-    'prettier',
+    'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -15,11 +15,11 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true }
     ],
     'prettier/prettier': [
       'error',
-      { singleQuote: true, semi: true, tabWidth: 2 },
-    ],
-  },
+      { singleQuote: true, semi: true, tabWidth: 2 }
+    ]
+  }
 };

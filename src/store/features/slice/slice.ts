@@ -12,6 +12,7 @@ export interface SliceProps {
   inputValue: string;
   amount: number;
   showPictures: Pictures[];
+  loading: boolean;
 }
 
 const initialState: SliceProps = {
@@ -25,6 +26,7 @@ const initialState: SliceProps = {
   inputValue: '',
   amount: 0,
   showPictures: [],
+  loading: false
 };
 
 export const slice = createSlice({
@@ -56,12 +58,15 @@ export const slice = createSlice({
       state.inputValue = action.payload;
     },
     setAmount: (state, action: PayloadAction<number>) => {
-      state.amount = action.payload
+      state.amount = action.payload;
     },
     setShowPictures: (state, action: PayloadAction<Pictures[]>) => {
-      state.showPictures = action.payload
+      state.showPictures = action.payload;
     },
-  },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    }
+  }
 });
 
 export const {
@@ -75,8 +80,9 @@ export const {
   setInputValue,
   setAmount,
   setShowPictures,
+  setLoading
 } = slice.actions;
 
 export const store = configureStore({
-  reducer: slice.reducer,
+  reducer: slice.reducer
 });
