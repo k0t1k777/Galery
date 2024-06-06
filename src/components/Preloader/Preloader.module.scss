@@ -19,6 +19,10 @@
       width: 64px;
       height: 64px;
     }
+
+    &--dark {
+      border-left-color: $white;
+    }
   }
 
   @keyframes spin {

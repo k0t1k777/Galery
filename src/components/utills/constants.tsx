@@ -10,4 +10,8 @@ export const FILTER_DATA = {
   location: 'Location'
 };
 
+export const Gallery_DATA = {
+  nothing: 'По вашему запросу ничего не найдено',
+};
+
 export const pagesAmount = 12;

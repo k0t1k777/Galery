@@ -11,7 +11,6 @@ export default function Main() {
   const { main } = styles;
   const amount = useSelector((state: SliceProps) => state.amount);
   const loading = useSelector((state: SliceProps) => state.loading);
-  console.log('loading: ', loading);
 
   return (
     <div className={main}>
