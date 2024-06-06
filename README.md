@@ -53,3 +53,5 @@
 ![alt text](./src/assets/screenshots/Снимок2.JPG)
 ![alt text](./src/assets/screenshots/Снимок3.JPG)
 ![alt text](./src/assets/screenshots/Снимок4.JPG)
+![alt text](./src/assets/screenshots/Снимок5.JPG)
+![alt text](./src/assets/screenshots/Снимок6.JPG)
