@@ -13,6 +13,7 @@ interface IProps extends PaginationPageProps {
 const PaginationPageWithActive: FC<IProps> = ({
   isDarkTheme,
   isActive,
+  className,
   ...other
 }) => {
   return (
@@ -21,7 +22,7 @@ const PaginationPageWithActive: FC<IProps> = ({
       className={cx(
         { PaginationPageWithActive: isActive },
         {
-          'PaginationPageWithActive--dark': isDarkTheme === 'dark' && isActive
+          'PaginationPageWithActive--dark': isDarkTheme === 'dark' && isActive,
         }
       )}
       {...other}
