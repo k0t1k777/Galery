@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import PaginationPage, { PaginationPageProps } from './PaginationPage';
-import cn from 'classnames/bind';
-import styles from './PaginationPage.module.scss';
-
-const cx = cn.bind(styles);
 
 interface IProps extends PaginationPageProps {
-  isActive: boolean;
+  isActive?: boolean;
   isDarkTheme?: string;
 }
 
@@ -16,15 +12,11 @@ const PaginationPageWithActive: FC<IProps> = ({
   className,
   ...other
 }) => {
+
   return (
     <PaginationPage
       isDarkTheme={isDarkTheme}
-      className={cx(
-        { PaginationPageWithActive: isActive },
-        {
-          'PaginationPageWithActive--dark': isDarkTheme === 'dark' && isActive,
-        }
-      )}
+      isActive={isActive}
       {...other}
     />
   );
