@@ -1,4 +1,4 @@
-import { RefObject, TouchEvent, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
 const useOutsideClick = (ref: RefObject<HTMLElement>, handler: () => void) => {
   useEffect(() => {
@@ -7,12 +7,15 @@ const useOutsideClick = (ref: RefObject<HTMLElement>, handler: () => void) => {
         handler();
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, handler]);
 };
 
 export default useOutsideClick;

@@ -31,10 +31,7 @@ export default function Select({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const ref = useRef(null);
-
-  function toggleOpen() {
-    setIsOpen(!isOpen);
-  }
+  const toggleOpen = () => setIsOpen((prev) => !prev);
 
   useOutsideClick(ref, toggleOpen);
 
