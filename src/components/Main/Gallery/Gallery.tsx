@@ -11,7 +11,7 @@ import cn from 'classnames/bind';
 const cx = cn.bind(styles);
 
 export default function Gallery() {
-  const { gallery } = styles;
+  const { gallery, gallery__container } = styles;
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
@@ -41,12 +41,14 @@ export default function Gallery() {
           );
         })
       ) : (
-        <p
-          className={cx('gallery__nothing', {
-            'gallery__nothing--dark': isDarkTheme === 'dark'
-          })}>
-          {Gallery_DATA.nothing}
-        </p>
+        <div className={gallery__container}>
+          <p
+            className={cx('gallery__nothing', {
+              'gallery__nothing--dark': isDarkTheme === 'dark'
+            })}>
+            {Gallery_DATA.nothing}
+          </p>
+        </div>
       )}
     </div>
   );

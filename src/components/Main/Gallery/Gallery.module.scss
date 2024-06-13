@@ -15,6 +15,12 @@
     justify-content: center;
   }
 
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   &__nothing {
     color: $black;
     @include text-bold;
