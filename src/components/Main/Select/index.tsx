@@ -26,7 +26,7 @@ export default function Select({
   value,
   clearPages
 }: ISelect) {
-  const { Select__reset } = styles;
+  const { select__reset } = styles;
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -43,20 +43,20 @@ export default function Select({
   return (
     <div
       ref={isOpen ? ref : null}
-      className={cx('Select', {
-        'Select--open': isOpen,
-        'Select--dark': isDarkTheme === 'dark'
+      className={cx('select', {
+        'select--open': isOpen,
+        'select--dark': isDarkTheme === 'dark'
       })}
       onClick={toggleOpen}
       aria-hidden="true">
-      {!value && <span className={cx('Select__title')}>{text}</span>}
-      <span className={cx('Select__title')}>{value}</span>
+      {!value && <span className={cx('select__title')}>{text}</span>}
+      <span className={cx('select__title')}>{value}</span>
       <Arrow isOpen={isOpen} />
       {isOpen && options && (
         <ul
-          className={cx('Select__optionContainer', {
-            'Select__optionContainer--open': isOpen,
-            'Select__optionContainer--dark': isDarkTheme === 'dark'
+          className={cx('select__optionContainer', {
+            'select__optionContainer--open': isOpen,
+            'select__optionContainer--dark': isDarkTheme === 'dark'
           })}>
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option, index) => (
@@ -65,19 +65,19 @@ export default function Select({
                   setValue(option);
                   clearPages();
                 }}
-                className={cx('Select__option', {
+                className={cx('select__option', {
                   'Select__option--dark': isDarkTheme === 'dark'
                 })}
                 key={index}
                 aria-hidden="true">
-                <p className={cx('Select__optionName')}>{option}</p>
+                <p className={cx('select__optionName')}>{option}</p>
               </li>
             ))}
           </SimpleBar>
         </ul>
       )}
       {value && (
-        <img src={Reset} className={Select__reset} onClick={handleReset} />
+        <img src={Reset} className={select__reset} onClick={handleReset} />
       )}
     </div>
   );

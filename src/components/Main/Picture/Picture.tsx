@@ -62,7 +62,7 @@ export default function Picture({
               {namePicture}
             </figcaption>
             <p className={picture__subtitle}>
-              <span className={picture__span}>{PICTURE_DATA.author}</span>{' '}
+              <span className={picture__span}>{PICTURE_DATA.author}</span>
               {author}
             </p>
             <p className={picture__subtitle}>
