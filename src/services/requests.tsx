@@ -20,7 +20,7 @@ export const getSearchLocation = (value: string) => {
 export const getPagination = (
   page: number,
   limit: number,
-  name?: string,
+  q?: string,
   authorId?: number,
   locationId?: number,
   fromDate?: string,
@@ -28,13 +28,13 @@ export const getPagination = (
 ) => {
   return axios
     .get(
-      `/paintings/?_page=${page}&_limit=${limit}${name ? '&name=' : ''}${name ? name : ''}${authorId ? '&authorId=' : ''}${authorId ? authorId : ''}${locationId ? '&locationId=' : ''}${locationId ? locationId : ''}${fromDate ? '&created_gte=' : ''}${fromDate ? fromDate : ''}${beforeDate ? '&created_lte=' : ''}${beforeDate ? beforeDate : ''}`
+      `/paintings/?_page=${page}&_limit=${limit}${q ? '&q=' : ''}${q ? q : ''}${authorId ? '&authorId=' : ''}${authorId ? authorId : ''}${locationId ? '&locationId=' : ''}${locationId ? locationId : ''}${fromDate ? '&created_gte=' : ''}${fromDate ? fromDate : ''}${beforeDate ? '&created_lte=' : ''}${beforeDate ? beforeDate : ''}`
     )
     .then(getResponseData);
 };
 
 export const getPaginationAmount = (
-  name?: string,
+  q?: string,
   authorId?: number,
   locationId?: number,
   fromDate?: string,
@@ -42,7 +42,7 @@ export const getPaginationAmount = (
 ) => {
   return axios
     .get(
-      `/paintings/?${name ? 'name=' : ''}${name ? name : ''}&${authorId ? 'authorId=' : ''}${authorId ? authorId : ''}&${locationId ? 'locationId=' : ''}${locationId ? locationId : ''}&${fromDate ? 'created_gte=' : ''}${fromDate ? fromDate : ''}&${beforeDate ? 'created_lte=' : ''}${beforeDate ? beforeDate : ''}`
+      `/paintings/?${q ? 'q=' : ''}${q ? q : ''}&${authorId ? 'authorId=' : ''}${authorId ? authorId : ''}&${locationId ? 'locationId=' : ''}${locationId ? locationId : ''}&${fromDate ? 'created_gte=' : ''}${fromDate ? fromDate : ''}&${beforeDate ? 'created_lte=' : ''}${beforeDate ? beforeDate : ''}`
     )
     .then(getResponseData);
 };
