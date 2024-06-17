@@ -9,7 +9,7 @@ import {
   setCurrentPage,
   setLocationValue
 } from '../../../store/features/slice/slice';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
 import { Authors, Locations } from '../../../types/types';
@@ -25,11 +25,11 @@ export default function Filter() {
     initialData: []
   });
 
-  useEffect(() => {
+  useCallback(() => {
     dispatch(setAuthorValue(authorVal));
   }, [authorVal]);
 
-  useEffect(() => {
+  useCallback(() => {
     dispatch(setLocationValue(locationVal));
   }, [locationVal]);
 
