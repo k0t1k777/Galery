@@ -16,7 +16,7 @@ export type TPagination = {
 };
 
 const Pagination: FC<TPagination> = ({ pagesAmount }) => {
-  const { Pagination } = styles;
+  const { pagination } = styles;
 
   const dispatch = useDispatch();
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
@@ -42,7 +42,7 @@ const Pagination: FC<TPagination> = ({ pagesAmount }) => {
   };
 
   return (
-    <div className={Pagination}>
+    <div className={pagination}>
       <PaginationPage {...leftArrowProps} onClick={() => onChange(1)}>
         <DoubleArrowL />
       </PaginationPage>
