@@ -1,7 +1,6 @@
 import styles from './Picture.module.scss';
 import { PICTURE_DATA } from '../../utills/constants';
 import { useState } from 'react';
-import { BASE_URL } from '../../../services/requests';
 
 interface PictureProps {
   image: string;
@@ -28,7 +27,6 @@ export default function Picture({
     picture__type_top,
     picture__container_type_height
   } = styles;
-
   const [isContainerOpen, setIsContainerOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -42,7 +40,7 @@ export default function Picture({
   return (
     <figure className={picture__figure}>
       <img
-        src={`${BASE_URL}/${image}`}
+        src={`${import.meta.env.VITE_BASE_URL}/${image}`}
         alt="Картина галереи"
         className={picture}
       />

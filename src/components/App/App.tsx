@@ -18,7 +18,6 @@ const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-
   const pictures = useSelector((state: SliceProps) => state.pictures);
   const currentPage = useSelector((state: SliceProps) => state.currentPage);
   const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);

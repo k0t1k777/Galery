@@ -1,6 +1,5 @@
 import axios from 'axios';
-export const BASE_URL = 'https://test-front.framework.team';
-axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 export async function fetchAuthors() {
   const { data } = await axios.get('/authors/');

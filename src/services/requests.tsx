@@ -1,6 +1,4 @@
 import axios, { AxiosResponse } from 'axios';
-export const BASE_URL = 'https://test-front.framework.team';
-axios.defaults.baseURL = BASE_URL;
 
 const getResponseData = (response: AxiosResponse) => {
   if (response.status !== 200) {
