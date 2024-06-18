@@ -9,7 +9,7 @@ import {
   setCurrentPage,
   setLocationValue
 } from '../../../store/features/slice/slice';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
 import { Authors, Locations } from '../../../types/types';
@@ -25,27 +25,21 @@ export default function Filter() {
     initialData: []
   });
 
-  useEffect(() => {
+  const setAuthorValueCallback = useCallback(() => {
     dispatch(setAuthorValue(authorVal));
   }, [authorVal]);
 
   useEffect(() => {
+    setAuthorValueCallback()
+  }, [setAuthorValueCallback])
+
+  const setLocationValueCallback = useCallback(() => {
     dispatch(setLocationValue(locationVal));
   }, [locationVal]);
 
-  // const setAuthorValueCallback = useCallback(() => {
-  //   dispatch(setAuthorValue(authorVal));
-  // }, [dispatch, authorVal]);
-
-  // useEffect(() => {
-  // }, [setAuthorValueCallback])
-
-  // const setLocationValueCallback = useCallback(() => {
-  //   dispatch(setLocationValue(locationVal));
-  // }, [dispatch, locationVal]);
-
-  // useEffect(() => {
-  // }, [setLocationValueCallback])
+  useEffect(() => {
+    setLocationValueCallback()
+  }, [setLocationValueCallback])
 
   function clearPages() {
     dispatch(setCurrentPage(1));
