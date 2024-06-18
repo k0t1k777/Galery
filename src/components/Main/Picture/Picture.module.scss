@@ -71,13 +71,11 @@
     color: $black;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
-    transition: all 0.3s ease;
   }
 
   &__figcaption_type_top {
     top: 135px;
-    transform: translateY(0); 
+    transform: translateY(0);
   }
 
   &__container_type_height {
