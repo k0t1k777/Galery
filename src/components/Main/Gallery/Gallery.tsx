@@ -1,7 +1,6 @@
 import Picture from '../Picture/Picture';
 import styles from './Gallery.module.scss';
-import { useQuery } from 'react-query';
-import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
+import * as ApiQuery from '../../../services/api';
 import { Authors, Locations, Pictures } from '../../../types/types';
 import { useSelector } from 'react-redux';
 import { Gallery_DATA } from '../../utills/constants';
@@ -13,10 +12,10 @@ export default function Gallery() {
   const { gallery, gallery__container } = styles;
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const pictures = useSelector((state: any) => state.counter.pictures);
-  const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
-  const dataLocations = useQuery('locations', fetchLocations, {
-    initialData: []
-  });
+  console.log('pictures: ', pictures);
+
+  const dataAuthors = ApiQuery.useGetAuthorsQuery('');
+  const dataLocations = ApiQuery.useGetLocationsQuery('');
 
   return (
     <div className={gallery}>

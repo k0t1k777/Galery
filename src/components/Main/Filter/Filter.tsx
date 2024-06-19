@@ -3,6 +3,7 @@ import Select from './../Select/index';
 import styles from './Filter.module.scss';
 import SelectDate from '../SelectDate/SelectDate';
 import { useDispatch } from 'react-redux';
+import * as ApiQuery from '../../../services/api';
 import { FILTER_DATA } from './../../utills/constants';
 import {
   setAuthorValue,
@@ -10,8 +11,8 @@ import {
   setLocationValue
 } from '../../../store/features/slice/slice';
 import { useCallback, useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
+// import { useQuery } from 'react-query';
+// import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
 import { Authors, Locations } from '../../../types/types';
 
 export default function Filter() {
@@ -20,10 +21,13 @@ export default function Filter() {
   const [locationVal, setLocationVal] = useState('');
   const dispatch = useDispatch();
 
-  const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
-  const dataLocations = useQuery('locations', fetchLocations, {
-    initialData: []
-  });
+  // const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
+  // const dataLocations = useQuery('locations', fetchLocations, {
+  //   initialData: []
+  // });
+
+  const dataAuthors = ApiQuery.useGetAuthorsQuery('');
+  const dataLocations = ApiQuery.useGetLocationsQuery('');
 
   const setAuthorValueCallback = useCallback(() => {
     dispatch(setAuthorValue(authorVal));

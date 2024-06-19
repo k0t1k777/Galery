@@ -1,14 +1,18 @@
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const BASE_URL = 'https://test-front.framework.team/'
+import axios from 'axios';
 
 export const apiPictures = createApi({
   reducerPath: 'apiPictures',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  endpoints: (builder) => ({
-    getPictures: builder.query({
-      query: () => 'paintings',
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  endpoints: builder => ({
+    getAuthors: builder.query({
+      query: () => 'authors'
     }),
-  }),
+    getLocations: builder.query({
+      query: () => 'locations'
+    })
+  })
 });
 
-export const { useGetPicturesQuery } = apiPictures;
+export const { useGetAuthorsQuery, useGetLocationsQuery } = apiPictures;

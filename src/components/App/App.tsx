@@ -1,10 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
 import * as Api from '../../services/requests';
-import * as ApiQuery from '../../services/api';
+// import * as ApiQuery from '../../services/api';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -27,8 +27,8 @@ export default function App() {
   const beforeDate = useSelector((state: any) => state.counter.beforeDate);
   const inputValue = useSelector((state: any) => state.counter.inputValue);
 
-  const dataPictures = ApiQuery.useGetPicturesQuery('');
-  console.log('dataPictures: ', dataPictures);
+  // const dataPictures = ApiQuery.useGetPicturesQuery('');
+  // console.log('dataPictures: ', dataPictures);
 
   // const setPicturesCallback = useCallback(() => {
   //   if (dataPictures.isSuccess) {
