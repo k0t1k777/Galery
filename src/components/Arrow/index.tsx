@@ -1,7 +1,6 @@
 import cn from 'classnames/bind';
 import styles from './Arrow.module.scss';
 import { useSelector } from 'react-redux';
-import { SliceProps } from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -10,7 +9,7 @@ interface ArrowProps {
 }
 
 export default function Arrow({ isOpen }: ArrowProps) {
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
 
   return (
     <div

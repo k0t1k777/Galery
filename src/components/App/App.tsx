@@ -1,31 +1,46 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
 import * as Api from '../../services/requests';
+import * as ApiQuery from '../../services/api';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  SliceProps,
   setPictures,
   setAmount,
   setShowPictures,
-  setLoading
+  setLoading,
 } from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-  const pictures = useSelector((state: SliceProps) => state.pictures);
-  const currentPage = useSelector((state: SliceProps) => state.currentPage);
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
-  const authorValue = useSelector((state: SliceProps) => state.authorValue);
-  const locationValue = useSelector((state: SliceProps) => state.locationValue);
-  const fromDate = useSelector((state: SliceProps) => state.fromDate);
-  const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
-  const inputValue = useSelector((state: SliceProps) => state.inputValue);
+  const pictures = useSelector((state: any) => state.counter.pictures);
+  const currentPage = useSelector((state: any) => state.counter.currentPage);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  const authorValue = useSelector((state: any) => state.counter.authorValue);
+  const locationValue = useSelector((state: any) => state.counter.locationValue);
+  const fromDate = useSelector((state: any) => state.counter.fromDate);
+  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
+  const inputValue = useSelector((state: any) => state.counter.inputValue);
+
+  const dataPictures = ApiQuery.useGetPicturesQuery('');
+  console.log('dataPictures: ', dataPictures);
+
+  // const setPicturesCallback = useCallback(() => {
+  //   if (dataPictures.isSuccess) {
+  //     dispatch(setWeather(forecastData.data));
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [forecastData]);
+
+  // useEffect(() => {
+  //   setPicturesCallback();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [forecastData]);
 
   useEffect(() => {
     let authorId = 0;

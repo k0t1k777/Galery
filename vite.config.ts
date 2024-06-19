@@ -5,5 +5,11 @@ import envCompatible from 'vite-plugin-env-compatible';
 
 export default defineConfig({
   base: './',
-  plugins: [react(), svgr({ svgrOptions: {} }), envCompatible()]
+  plugins: [react(), svgr({ svgrOptions: {} }), envCompatible()],
+  resolve: {
+    alias: {
+      '@components': '/src/components',
+      '@styles': '/src/styles'
+    }
+  }
 });

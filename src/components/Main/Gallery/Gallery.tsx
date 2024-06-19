@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 import { fetchAuthors, fetchLocations } from '../../../services/apiPainting';
 import { Authors, Locations, Pictures } from '../../../types/types';
 import { useSelector } from 'react-redux';
-import { SliceProps } from '../../../store/features/slice/slice';
 import { Gallery_DATA } from '../../utills/constants';
 import cn from 'classnames/bind';
 
@@ -12,8 +11,8 @@ const cx = cn.bind(styles);
 
 export default function Gallery() {
   const { gallery, gallery__container } = styles;
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
-  const pictures = useSelector((state: SliceProps) => state.pictures);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  const pictures = useSelector((state: any) => state.counter.pictures);
   const dataAuthors = useQuery('authors', fetchAuthors, { initialData: [] });
   const dataLocations = useQuery('locations', fetchLocations, {
     initialData: []

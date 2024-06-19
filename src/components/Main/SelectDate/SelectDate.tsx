@@ -6,7 +6,6 @@ import Line from './../../../assets/Line.svg?react';
 import LineBlack from './../../../assets/Line-black.svg?react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  SliceProps,
   setBeforeDate,
   setFromDate
 } from '../../../store/features/slice/slice';
@@ -20,9 +19,9 @@ interface SelectProps {
 
 export default function SelectDate({ text, clearPages }: SelectProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
-  const fromDate = useSelector((state: SliceProps) => state.fromDate);
-  const beforeDate = useSelector((state: SliceProps) => state.beforeDate);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  const fromDate = useSelector((state: any) => state.counter.fromDate);
+  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
   const dispatch = useDispatch();
   const ref = useRef(null);
 

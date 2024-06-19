@@ -7,7 +7,6 @@ import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';
 import { useSelector } from 'react-redux';
-import { SliceProps } from '../../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -27,7 +26,7 @@ export default function Select({
   clearPages
 }: ISelect) {
   const { select__reset } = styles;
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const ref = useRef(null);

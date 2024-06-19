@@ -2,14 +2,14 @@ import styles from './Header.module.scss';
 import FWT from './../../assets/icons/FWT.svg?react';
 import cn from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { SliceProps, setIsDarkTheme } from '../../store/features/slice/slice';
+import { setIsDarkTheme } from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function Header() {
   const { header } = styles;
   const dispatch = useDispatch();
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
 
   const toggleTheme = () => {
     if (isDarkTheme === 'dark') {

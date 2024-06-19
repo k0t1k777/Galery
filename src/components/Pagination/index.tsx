@@ -8,7 +8,7 @@ import DoubleArrowR from '../../assets/doubleArrowR.svg?react';
 import ArrowL from '../../assets/arrowL.svg?react';
 import usePaginationSlice from '../../hooks/usePaginationSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { SliceProps, setCurrentPage } from './../../store/features/slice/slice';
+import { setCurrentPage } from './../../store/features/slice/slice';
 
 export type TPagination = {
   pagesAmount: number;
@@ -19,8 +19,8 @@ const Pagination: FC<TPagination> = ({ pagesAmount }) => {
   const { pagination } = styles;
 
   const dispatch = useDispatch();
-  const currentPage = useSelector((state: SliceProps) => state.currentPage);
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  const currentPage = useSelector((state: any) => state.counter.currentPage);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
 
   const onChange = (currentPage: number) => {
     dispatch(setCurrentPage(currentPage));

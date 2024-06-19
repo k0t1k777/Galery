@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App.js';
 import './index.css';
-import { store } from './store/features/slice/slice.ts';
+import { store } from './store/store.js';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 

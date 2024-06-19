@@ -1,4 +1,4 @@
-import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Pictures } from '../../../types/types';
 
 export interface SliceProps {
@@ -83,6 +83,4 @@ export const {
   setLoading
 } = slice.actions;
 
-export const store = configureStore({
-  reducer: slice.reducer
-});
+export default slice.reducer;

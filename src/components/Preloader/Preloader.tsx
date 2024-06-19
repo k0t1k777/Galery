@@ -1,13 +1,12 @@
 import { useSelector } from 'react-redux';
 import styles from './Preloader.module.scss';
-import { SliceProps } from '../../store/features/slice/slice';
 import cn from 'classnames/bind';
 
 const cx = cn.bind(styles);
 
 export default function Preloader() {
   const { preloader } = styles;
-  const isDarkTheme = useSelector((state: SliceProps) => state.isDarkTheme);
+  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
 
   return (
     <div className={preloader}>
