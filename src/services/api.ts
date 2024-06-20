@@ -11,8 +11,19 @@ export const apiPictures = createApi({
     }),
     getLocations: builder.query({
       query: () => 'locations'
-    })
+    }),
+    getSearchAuthorId: builder.query({
+      query: value => `/authors/?name=${value}`
+    }),
+    getSearchLocationId: builder.query({
+      query: value => `/locations/?location=${value}`
+    }),
   })
 });
 
-export const { useGetAuthorsQuery, useGetLocationsQuery } = apiPictures;
+export const {
+  useGetAuthorsQuery,
+  useGetLocationsQuery,
+  useGetSearchAuthorIdQuery,
+  useGetSearchLocationIdQuery,
+} = apiPictures;

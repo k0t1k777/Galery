@@ -10,9 +10,9 @@ const cx = cn.bind(styles);
 
 export default function Gallery() {
   const { gallery, gallery__container } = styles;
+
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const pictures = useSelector((state: any) => state.counter.pictures);
-  console.log('pictures: ', pictures);
 
   const dataAuthors = ApiQuery.useGetAuthorsQuery('');
   const dataLocations = ApiQuery.useGetLocationsQuery('');
@@ -32,9 +32,9 @@ export default function Gallery() {
               key={item.id}
               image={item.imageUrl}
               namePicture={item.name}
-              author={author ? author.name : 'Unknown Author'}
+              author={author ? author.name : 'Unknown author'}
               date={item.created}
-              place={place ? place.location : 'Unknown Location'}
+              place={place ? place.location : 'Unknown location'}
             />
           );
         })

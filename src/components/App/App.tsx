@@ -1,51 +1,67 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import cn from 'classnames/bind';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import styles from './App.module.scss';
 import * as Api from '../../services/requests';
-// import * as ApiQuery from '../../services/api';
+import * as ApiQuery from '../../services/api';
 import { pagesAmount } from '../utills/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setPictures,
   setAmount,
-  setShowPictures,
-  setLoading,
+  setLoading
 } from '../../store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
 export default function App() {
   const dispatch = useDispatch();
-  const pictures = useSelector((state: any) => state.counter.pictures);
   const currentPage = useSelector((state: any) => state.counter.currentPage);
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const authorValue = useSelector((state: any) => state.counter.authorValue);
-  const locationValue = useSelector((state: any) => state.counter.locationValue);
   const fromDate = useSelector((state: any) => state.counter.fromDate);
   const beforeDate = useSelector((state: any) => state.counter.beforeDate);
   const inputValue = useSelector((state: any) => state.counter.inputValue);
+  const locationValue = useSelector(
+    (state: any) => state.counter.locationValue
+  );
 
-  // const dataPictures = ApiQuery.useGetPicturesQuery('');
-  // console.log('dataPictures: ', dataPictures);
+  // Логика RTK Query поиска по автору
+  const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
 
-  // const setPicturesCallback = useCallback(() => {
-  //   if (dataPictures.isSuccess) {
-  //     dispatch(setWeather(forecastData.data));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [forecastData]);
+  const dataAuthorIdCallback = useCallback(() => {
+    if (dataAuthorId.isSuccess) {
+      let authorId = dataAuthorId.data[0]?.id;
+      console.log('authorId: ', authorId);
+    }
+  }, [dataAuthorId]);
 
-  // useEffect(() => {
-  //   setPicturesCallback();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [forecastData]);
+  useEffect(() => {
+    dataAuthorIdCallback()
+  }, [dataAuthorId])
+
+    // Логика RTK Query поиска по локации
+
+  const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
+
+  const dataLocationIdCallback = useCallback(() => {
+    if (dataLocationId.isSuccess) {
+      let locationId = dataLocationId.data[0]?.id;
+      console.log('locationId: ', locationId);
+    }
+  }, [dataLocationId]);
+
+  useEffect(() => {
+    dataLocationIdCallback();
+  }, [dataLocationId]);
+
 
   useEffect(() => {
     let authorId = 0;
     let locationId = 0;
     dispatch(setLoading(true));
+
     Promise.all([
       Api.getSearchAuthorId(authorValue),
       Api.getSearchLocation(locationValue)
@@ -54,6 +70,7 @@ export default function App() {
         authorId = author[0] && author[0].id;
         locationId = location[0] && location[0].id;
       })
+
       .then(() => {
         Api.getPagination(
           currentPage,
@@ -70,6 +87,7 @@ export default function App() {
           .catch(error => {
             console.error(error);
           });
+
         Api.getPaginationAmount(
           inputValue,
           authorId,
@@ -87,18 +105,14 @@ export default function App() {
           });
       });
   }, [
-    currentPage,
     pagesAmount,
+    currentPage,
     inputValue,
     authorValue,
     locationValue,
     fromDate,
     beforeDate
   ]);
-
-  useEffect(() => {
-    dispatch(setShowPictures(pictures));
-  }, [pictures]);
 
   return (
     <div className={cx('app', { 'app--dark': isDarkTheme === 'dark' })}>
