@@ -9,21 +9,19 @@ import * as ApiQuery from '../../services/api';
 
 export default function Main() {
   const { main } = styles;
-
+  const [authorId, setAuthorId] = useState(0);
+  const [locationId, setLocationId] = useState(0);
+  const fromDate = useSelector((state: any) => state.counter.fromDate);
+  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
+  const inputValue = useSelector((state: any) => state.counter.inputValue);
   const authorValue = useSelector((state: any) => state.counter.authorValue);
   const locationValue = useSelector(
     (state: any) => state.counter.locationValue
   );
 
-  const fromDate = useSelector((state: any) => state.counter.fromDate);
-  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
-  const inputValue = useSelector((state: any) => state.counter.inputValue);
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
-
-  const [authorId, setAuthorId] = useState(0);
-  const [locationId, setLocationId] = useState(0);
-
+  
   useEffect(() => {
     if (dataAuthorId.isSuccess) {
       setAuthorId(dataAuthorId.data[0]?.id);

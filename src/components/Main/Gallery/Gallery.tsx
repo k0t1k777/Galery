@@ -27,7 +27,6 @@ export default function Gallery() {
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
   const dataAuthors = ApiQuery.useGetAuthorsQuery('');
   const dataLocations = ApiQuery.useGetLocationsQuery('');
-
   const [authorId, setAuthorId] = useState(0);
   const [locationId, setLocationId] = useState(0);
 

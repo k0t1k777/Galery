@@ -5,13 +5,13 @@ import SelectDate from '../SelectDate/SelectDate';
 import { useDispatch } from 'react-redux';
 import * as ApiQuery from '../../../services/api';
 import { FILTER_DATA } from './../../utills/constants';
+import { useCallback, useEffect, useState } from 'react';
+import { Authors, Locations } from '../../../types/types';
 import {
   setAuthorValue,
   setCurrentPage,
   setLocationValue
 } from '../../../store/features/slice/slice';
-import { useCallback, useEffect, useState } from 'react';
-import { Authors, Locations } from '../../../types/types';
 
 export default function Filter() {
   const { filter } = styles;
@@ -26,16 +26,16 @@ export default function Filter() {
   }, [authorVal]);
 
   useEffect(() => {
-    setAuthorValueCallback()
-  }, [setAuthorValueCallback])
+    setAuthorValueCallback();
+  }, [setAuthorValueCallback]);
 
   const setLocationValueCallback = useCallback(() => {
     dispatch(setLocationValue(locationVal));
   }, [locationVal]);
 
   useEffect(() => {
-    setLocationValueCallback()
-  }, [setLocationValueCallback])
+    setLocationValueCallback();
+  }, [setLocationValueCallback]);
 
   function clearPages() {
     dispatch(setCurrentPage(1));
