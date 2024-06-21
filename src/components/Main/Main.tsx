@@ -21,7 +21,7 @@ export default function Main() {
 
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
-  
+
   useEffect(() => {
     if (dataAuthorId.isSuccess) {
       setAuthorId(dataAuthorId.data[0]?.id);

@@ -23,6 +23,7 @@ export default function Gallery() {
   const beforeDate = useSelector((state: any) => state.counter.beforeDate);
   const inputValue = useSelector((state: any) => state.counter.inputValue);
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
   const dataAuthors = ApiQuery.useGetAuthorsQuery('');
