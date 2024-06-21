@@ -7,14 +7,6 @@ const getResponseData = (response: AxiosResponse) => {
   return response.data;
 };
 
-export const getSearchAuthorId = (value: string) => {
-  return axios.get(`/authors/?name=${value}`).then(getResponseData);
-};
-
-export const getSearchLocation = (value: string) => {
-  return axios.get(`/locations/?location=${value}`).then(getResponseData);
-};
-
 export const getPagination = (
   page: number,
   limit: number,
