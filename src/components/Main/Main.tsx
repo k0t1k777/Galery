@@ -11,7 +11,7 @@ import * as ApiQuery from '../../services/api';
 
 export default function Main() {
   const { main } = styles;
-  // const amount = useSelector((state: any) => state.counter.amount);
+
   const loading = useSelector((state: any) => state.counter.loading);
   const authorValue = useSelector((state: any) => state.counter.authorValue);
   const locationValue = useSelector(
@@ -46,10 +46,6 @@ export default function Main() {
     fromDate,
     beforeDate
   });
-
-  useEffect(() => {
-    console.log('amount: ', amount?.data?.length);
-  }, [amount])
 
   return (
     <div className={main}>

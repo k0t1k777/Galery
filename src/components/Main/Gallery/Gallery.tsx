@@ -3,7 +3,9 @@ import styles from './Gallery.module.scss';
 import * as ApiQuery from '../../../services/api';
 import { Authors, Locations, Pictures } from '../../../types/types';
 import { useSelector } from 'react-redux';
-import { Gallery_DATA, pagesAmount } from '../../utills/constants';
+import {
+  //  Gallery_DATA, 
+   pagesAmount } from '../../utills/constants';
 import cn from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +14,6 @@ const cx = cn.bind(styles);
 export default function Gallery() {
   const { gallery, gallery__container } = styles;
   const currentPage = useSelector((state: any) => state.counter.currentPage);
-  console.log('currentPage: ', currentPage);
   const authorValue = useSelector((state: any) => state.counter.authorValue);
   const locationValue = useSelector(
     (state: any) => state.counter.locationValue
@@ -52,12 +53,6 @@ export default function Gallery() {
     beforeDate
   });
 
-  useEffect(() => {
-    console.log('dataPictures: ', dataPictures.data);
-  }, [dataPictures])
-
-
-
   return (
     <div className={gallery}>
       {dataPictures?.isSuccess ? (
@@ -85,10 +80,35 @@ export default function Gallery() {
             className={cx('gallery__nothing', {
               'gallery__nothing--dark': isDarkTheme === 'dark'
             })}>
-            {Gallery_DATA.nothing}
+            {/* {Gallery_DATA.nothing} */}
           </p>
         </div>
       )}
     </div>
   );
 }
+
+
+// return (
+//   <div className={gallery}>
+//     {dataPictures?.data?.map((item: Pictures) => {
+//         const author = dataAuthors.data.find(
+//           (author: Authors) => author.id === item.authorId
+//         );
+//         const place = dataLocations.data.find(
+//           (location: Locations) => location.id === item.locationId
+//         );
+//         return (
+//           <Picture
+//             key={item.id}
+//             image={item.imageUrl}
+//             namePicture={item.name}
+//             author={author ? author.name : 'Unknown author'}
+//             date={item.created}
+//             place={place ? place.location : 'Unknown location'}
+//           />
+//         );
+//       })
+//    }
+//   </div>
+// );
