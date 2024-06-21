@@ -4,8 +4,9 @@ import * as ApiQuery from '../../../services/api';
 import { Authors, Locations, Pictures } from '../../../types/types';
 import { useSelector } from 'react-redux';
 import {
-  //  Gallery_DATA, 
-   pagesAmount } from '../../utills/constants';
+  //  Gallery_DATA,
+  pagesAmount
+} from '../../utills/constants';
 import cn from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
@@ -21,7 +22,6 @@ export default function Gallery() {
   const fromDate = useSelector((state: any) => state.counter.fromDate);
   const beforeDate = useSelector((state: any) => state.counter.beforeDate);
   const inputValue = useSelector((state: any) => state.counter.inputValue);
-
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
@@ -87,7 +87,6 @@ export default function Gallery() {
     </div>
   );
 }
-
 
 // return (
 //   <div className={gallery}>

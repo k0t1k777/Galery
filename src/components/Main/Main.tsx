@@ -4,15 +4,12 @@ import styles from './Main.module.scss';
 import Pagination from '../Pagination/index';
 import { useSelector } from 'react-redux';
 import { pagesAmount } from '../utills/constants';
-import Preloader from '../Preloader/Preloader';
 import { useEffect, useState } from 'react';
 import * as ApiQuery from '../../services/api';
-
 
 export default function Main() {
   const { main } = styles;
 
-  const loading = useSelector((state: any) => state.counter.loading);
   const authorValue = useSelector((state: any) => state.counter.authorValue);
   const locationValue = useSelector(
     (state: any) => state.counter.locationValue
@@ -50,14 +47,8 @@ export default function Main() {
   return (
     <div className={main}>
       <Filter />
-      {loading ? (
-        <Preloader />
-      ) : (
-        <>
-          <Gallery />
-          <Pagination pagesAmount={Math.ceil(amount?.data?.length / pagesAmount)} />
-        </>
-      )}
+      <Gallery />
+      <Pagination pagesAmount={Math.ceil(amount?.data?.length / pagesAmount)} />
     </div>
   );
 }
