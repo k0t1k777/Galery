@@ -24,7 +24,6 @@ export default function Picture({
     picture__figcaption,
     picture__subtitle,
     picture__span,
-    picture__type_top,
     picture__container_type_height
   } = styles;
   const [isContainerOpen, setIsContainerOpen] = useState(false);
@@ -54,13 +53,13 @@ export default function Picture({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
         {isContainerOpen ? (
-          <>
+          <div>
             <figcaption
-              className={`${picture__figcaption} ${picture__type_top}`}>
+              className={picture__figcaption}>
               {namePicture}
             </figcaption>
             <p className={picture__subtitle}>
-              <span className={picture__span}>`{PICTURE_DATA.author}</span>
+              <span className={picture__span}>{PICTURE_DATA.author}</span>
               {author}
             </p>
             <p className={picture__subtitle}>
@@ -71,7 +70,7 @@ export default function Picture({
               <span className={picture__span}>{PICTURE_DATA.location}</span>
               {place}
             </p>
-          </>
+          </div>
         ) : (
           <figcaption className={picture__figcaption}>{namePicture}</figcaption>
         )}

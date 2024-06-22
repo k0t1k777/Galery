@@ -71,11 +71,7 @@
     color: $black;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  &__figcaption_type_top {
-    top: 135px;
-    transform: translateY(0);
+    overflow: hidden;
   }
 
   &__container_type_height {

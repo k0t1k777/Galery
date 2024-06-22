@@ -1,6 +1,7 @@
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
+import buildQueryString from './utils';
 
 export const apiPictures = createApi({
   reducerPath: 'apiPictures',
@@ -19,10 +20,10 @@ export const apiPictures = createApi({
       query: value => `/locations/?location=${value}`
     }),
     getPagination: builder.query({
-      query: arg => `/paintings/?_page=${arg.currentPage}&_limit=${arg.pagesAmount}${arg.inputValue ? '&q=' : ''}${arg.inputValue ? arg.inputValue : ''}${arg.authorId ? '&authorId=' : ''}${arg.authorId ? arg.authorId : ''}${arg.locationId ? '&locationId=' : ''}${arg.locationId ? arg.locationId : ''}${arg.fromDate ? '&created_gte=' : ''}${arg.fromDate ? arg.fromDate : ''}${arg.beforeDate ? '&created_lte=' : ''}${arg.beforeDate ? arg.beforeDate : ''}`
+      query: arg => `/paintings/?${buildQueryString(arg)}`
     }),
     getPaginationAmount: builder.query({
-      query: arg => `/paintings/?${arg.inputValue ? '&q=' : ''}${arg.inputValue ? arg.inputValue : ''}${arg.authorId ? '&authorId=' : ''}${arg.authorId ? arg.authorId : ''}${arg.locationId ? '&locationId=' : ''}${arg.locationId ? arg.locationId : ''}${arg.fromDate ? '&created_gte=' : ''}${arg.fromDate ? arg.fromDate : ''}${arg.beforeDate ? '&created_lte=' : ''}${arg.beforeDate ? arg.beforeDate : ''}`
+      query: arg => `/paintings/?${buildQueryString(arg)}`
     }),
   })
 });
