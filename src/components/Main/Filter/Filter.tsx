@@ -1,7 +1,7 @@
-import Input from '../Input/Input';
-import Select from './../Select/index';
+import Input from '../../ui/Input/Input';
+import Select from '../../ui/Select/index';
 import styles from './Filter.module.scss';
-import SelectDate from '../SelectDate/SelectDate';
+import SelectDate from '../../ui/SelectDate/SelectDate';
 import { useDispatch } from 'react-redux';
 import * as ApiQuery from '../../../services/api';
 import { FILTER_DATA } from './../../utills/constants';

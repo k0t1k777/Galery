@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import SimpleBar from 'simplebar-react';
 import cn from 'classnames/bind';
-import useOutsideClick from './../../../hooks/useOutsideClick';
-import Arrow from '../../ui/Arrow/index';
+import useOutsideClick from '../../../hooks/useOutsideClick';
+import Arrow from '../Arrow/index';
 import './SimpleBar.scss';
 import styles from './Select.module.scss';
 import Reset from './../../../assets/Reset.svg';

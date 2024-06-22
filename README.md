@@ -9,7 +9,7 @@
 - TS [TypeScript](https://www.typescriptlang.org/)
 - ⚛️ [React](https://ru.reactjs.org/)
 - 🔧 [Redux](https://ru.reduxjs.org/)
-- ⚙️ [TanStack React Query](https://ru.tanstackjs.org/)
+- ⚙️ [RTK Query](https://ru.tanstackjs.org/)
 
 ## Библиотеки,которые использовались
 
@@ -53,5 +53,4 @@
 ![alt text](./src/assets/screenshots/Снимок2.JPG)
 ![alt text](./src/assets/screenshots/Снимок3.JPG)
 ![alt text](./src/assets/screenshots/Снимок4.JPG)
-![alt text](./src/assets/screenshots/Снимок5.JPG)
 ![alt text](./src/assets/screenshots/Снимок6.JPG)
