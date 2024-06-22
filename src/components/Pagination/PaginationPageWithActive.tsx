@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import PaginationPage, { PaginationPageProps } from './PaginationPage';
 
 interface IProps extends PaginationPageProps {
@@ -6,20 +5,13 @@ interface IProps extends PaginationPageProps {
   isDarkTheme?: string;
 }
 
-const PaginationPageWithActive: FC<IProps> = ({
+export default function PaginationPageWithActive({
   isDarkTheme,
   isActive,
   className,
   ...other
-}) => {
-
+}: IProps) {
   return (
-    <PaginationPage
-      isDarkTheme={isDarkTheme}
-      isActive={isActive}
-      {...other}
-    />
+    <PaginationPage isDarkTheme={isDarkTheme} isActive={isActive} {...other} />
   );
-};
-
-export default PaginationPageWithActive;
+}

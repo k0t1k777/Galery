@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styles from './Pagination.module.scss';
 import PaginationPageWithActive from './PaginationPageWithActive';
 import PaginationPage from './PaginationPage';
@@ -15,7 +14,7 @@ export type TPagination = {
   className?: string;
 };
 
-const Pagination: FC<TPagination> = ({ pagesAmount }) => {
+export default function Pagination({ pagesAmount }: TPagination) {
   const { pagination } = styles;
 
   const dispatch = useDispatch();
@@ -74,5 +73,3 @@ const Pagination: FC<TPagination> = ({ pagesAmount }) => {
     </div>
   );
 };
-
-export default Pagination;

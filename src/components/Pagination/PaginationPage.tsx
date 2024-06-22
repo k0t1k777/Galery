@@ -1,4 +1,4 @@
-import { FC, ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames/bind';
 import styles from './PaginationPage.module.scss';
 
@@ -10,21 +10,21 @@ export interface PaginationPageProps
   isActive?: boolean;
 }
 
-const PaginationPage: FC<PaginationPageProps> = ({
+export default function PaginationPage({
   isDarkTheme,
   className,
   isActive,
   ...other
-}) => (
-  <button
-    type="button"
-    className={cx('pagination-page', {
-      'pagination-page--dark': isDarkTheme === 'dark',
-      'pagination-page-with-active': isActive,
-      'pagination-page-with-active--dark': isDarkTheme === 'dark' && isActive,
-    })}
-    {...other}
-  />
-);
-
-export default PaginationPage;
+}: PaginationPageProps) {
+  return (
+    <button
+      type="button"
+      className={cx('pagination-page', {
+        'pagination-page--dark': isDarkTheme === 'dark',
+        'pagination-page-with-active': isActive,
+        'pagination-page-with-active--dark': isDarkTheme === 'dark' && isActive
+      })}
+      {...other}
+    />
+  );
+}
