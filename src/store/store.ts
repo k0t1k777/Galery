@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiPictures } from '../services/api';
-import slice from './features/slice/slice';
+import { apiPictures } from 'src/services/api';
+import slice from 'src/store/features/slice/slice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({

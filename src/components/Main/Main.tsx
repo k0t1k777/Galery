@@ -1,11 +1,11 @@
-import Filter from './Filter/Filter';
-import Gallery from './Gallery/Gallery';
-import styles from './Main.module.scss';
-import Pagination from '../Pagination/index';
+import Filter from 'src/components/Main/Filter/Filter';
+import Gallery from 'src/components/Main/Gallery/Gallery';
+import styles from 'src/components/Main/Main.module.scss';
+import Pagination from 'src/components/Pagination/index';
 import { useSelector } from 'react-redux';
-import { pagesAmount } from '../utills/constants';
+import { pagesAmount } from 'src/components/utills/constants';
 import { useEffect, useState } from 'react';
-import * as ApiQuery from '../../services/api';
+import * as ApiQuery from 'src/services/api';
 
 export default function Main() {
   const { main } = styles;

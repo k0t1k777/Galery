@@ -1,6 +1,6 @@
 import cn from 'classnames/bind';
 import Main from 'src/components/Main/Main';
-import styles from './App.module.scss';
+import styles from 'src/components/App/App.module.scss';
 import { useSelector } from 'react-redux';
 import Header from 'src/components/Header/Header';
 

@@ -1,4 +1,4 @@
-import styles from './Header.module.scss';
+import styles from 'src/components/Header/Header.module.scss';
 import FWT from 'src/assets/icons/FWT.svg?react';
 import cn from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';

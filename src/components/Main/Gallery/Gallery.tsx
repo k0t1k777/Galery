@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import Picture from '../Picture/Picture';
-import styles from './Gallery.module.scss';
-import * as ApiQuery from '../../../services/api';
-import { Authors, Locations, Pictures } from '../../../types/types';
+import Picture from 'src/components/Main/Picture/Picture';
+import styles from 'src/components/Main/Gallery/Gallery.module.scss';
+import * as ApiQuery from 'src/services/api';
+import { Authors, Locations, Pictures } from 'src/types/types';
 import { useSelector } from 'react-redux';
-import { pagesAmount } from '../../utills/constants';
+import { pagesAmount } from 'src/components/utills/constants';
 
 export default function Gallery() {
   const { gallery } = styles;

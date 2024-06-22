@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import SimpleBar from 'simplebar-react';
 import cn from 'classnames/bind';
-import useOutsideClick from '../../../hooks/useOutsideClick';
-import Arrow from '../Arrow/index';
-import './SimpleBar.scss';
-import styles from './Select.module.scss';
-import Reset from './../../../assets/Reset.svg';
+import useOutsideClick from 'src/hooks/useOutsideClick';
+import Arrow from 'src/components/ui/Arrow/index';
+import 'src/components/ui/Select/SimpleBar.scss';
+import styles from 'src/components/ui/Select/Select.module.scss';
+import Reset from 'src/assets/Reset.svg';
 import { useSelector } from 'react-redux';
 
 const cx = cn.bind(styles);

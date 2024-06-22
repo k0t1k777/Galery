@@ -1,5 +1,5 @@
 import cn from 'classnames/bind';
-import styles from './Arrow.module.scss';
+import styles from 'src/components/ui/Arrow/Arrow.module.scss';
 import { useSelector } from 'react-redux';
 
 const cx = cn.bind(styles);

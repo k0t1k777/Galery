@@ -1,17 +1,17 @@
-import Input from '../../ui/Input/Input';
-import Select from '../../ui/Select/index';
-import styles from './Filter.module.scss';
-import SelectDate from '../../ui/SelectDate/SelectDate';
+import Input from 'src/components/ui/Input/Input';
+import Select from 'src/components/ui/Select/index';
+import styles from 'src/components/Main/Filter/Filter.module.scss';
+import SelectDate from 'src/components/ui/SelectDate/SelectDate';
 import { useDispatch } from 'react-redux';
-import * as ApiQuery from '../../../services/api';
-import { FILTER_DATA } from './../../utills/constants';
+import * as ApiQuery from 'src/services/api';
+import { FILTER_DATA } from 'src/components/utills/constants';
 import { useCallback, useEffect, useState } from 'react';
-import { Authors, Locations } from '../../../types/types';
+import { Authors, Locations } from 'src/types/types';
 import {
   setAuthorValue,
   setCurrentPage,
   setLocationValue
-} from '../../../store/features/slice/slice';
+} from 'src/store/features/slice/slice';
 
 export default function Filter() {
   const { filter } = styles;

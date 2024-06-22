@@ -1,5 +1,5 @@
-@import './../../../styles/colors.scss';
-@import './../../../mixins/mixins.scss';
+@import 'src/styles/colors.scss';
+@import 'src/mixins/mixins.scss';
 
 .select {
   @include text-normal;
@@ -15,7 +15,7 @@
   cursor: pointer;
   appearance: none;
   background-color: $bg-white;
-  background-image: url('./../../../assets/Down-black.svg');
+  background-image: url('src/assets/Down-black.svg');
   background-repeat: no-repeat;
   background-position: right 18px top 19px;
   position: relative;
@@ -28,7 +28,7 @@
     background-color: $bg-black;
     border: 1px solid $border-white;
     color: $white;
-    background-image: url('./../../../assets/Down.svg');
+    background-image: url('src/assets/Down.svg');
   }
 
   &--open {

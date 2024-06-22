@@ -1,13 +1,13 @@
-import styles from './Pagination.module.scss';
-import PaginationPageWithActive from './PaginationPageWithActive';
-import PaginationPage from './PaginationPage';
-import DoubleArrowL from '../../assets/doubleArrowL.svg?react';
-import ArrowR from '../../assets/arrowR.svg?react';
-import DoubleArrowR from '../../assets/doubleArrowR.svg?react';
-import ArrowL from '../../assets/arrowL.svg?react';
-import usePaginationSlice from '../../hooks/usePaginationSlice';
+import styles from 'src/components/Pagination/Pagination.module.scss';
+import PaginationPageWithActive from 'src/components/Pagination/PaginationPageWithActive';
+import PaginationPage from 'src/components/Pagination/PaginationPage';
+import DoubleArrowL from 'src/assets/doubleArrowL.svg?react';
+import ArrowR from 'src/assets/arrowR.svg?react';
+import DoubleArrowR from 'src/assets/doubleArrowR.svg?react';
+import ArrowL from 'src/assets/arrowL.svg?react';
+import usePaginationSlice from 'src/hooks/usePaginationSlice';
+import { setCurrentPage } from 'src/store/features/slice/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPage } from './../../store/features/slice/slice';
 
 export type TPagination = {
   pagesAmount: number;

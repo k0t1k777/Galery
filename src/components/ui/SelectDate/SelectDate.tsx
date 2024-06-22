@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react';
-import styles from './SelectDate.module.scss';
+import styles from 'src/components/ui/SelectDate/SelectDate.module.scss';
 import cn from 'classnames/bind';
-import useOutsideClick from '../../../hooks/useOutsideClick';
-import Line from './../../../assets/Line.svg?react';
-import LineBlack from './../../../assets/Line-black.svg?react';
+import useOutsideClick from 'src/hooks/useOutsideClick';
+import Line from 'src/assets/Line.svg?react';
+import LineBlack from 'src/assets/Line-black.svg?react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setBeforeDate,
   setFromDate
-} from '../../../store/features/slice/slice';
+} from 'src/store/features/slice/slice';
 
 const cx = cn.bind(styles);
 

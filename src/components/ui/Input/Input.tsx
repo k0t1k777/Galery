@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setInputValue } from '../../../store/features/slice/slice';
-import styles from './Input.module.scss';
+import { setInputValue } from 'src/store/features/slice/slice';
+import styles from 'src/components/ui/Input/Input.module.scss';
 import cn from 'classnames/bind';
 
 const cx = cn.bind(styles);

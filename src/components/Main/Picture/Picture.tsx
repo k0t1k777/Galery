@@ -1,5 +1,6 @@
-import styles from './Picture.module.scss';
-import { PICTURE_DATA } from '../../utills/constants';
+import styles from 'src/components/Main/Picture/Picture.module.scss';
+import { PICTURE_DATA } from 'src/components/utills/constants';
+import { BASE_URL } from 'src/components/utills/constants'
 import { useState } from 'react';
 
 interface PictureProps {
@@ -39,11 +40,10 @@ export default function Picture({
   return (
     <figure className={picture__figure}>
       <img
-        src={`${import.meta.env.VITE_BASE_URL}/${image}`}
+        src={`${BASE_URL}/${image}`}
         alt="Картина галереи"
         className={picture}
       />
-
       <div
         className={
           isContainerOpen

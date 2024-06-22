@@ -11,3 +11,5 @@ export const FILTER_DATA = {
 };
 
 export const pagesAmount = 12;
+
+export const BASE_URL = import.meta.env.VITE_BASE_URL;

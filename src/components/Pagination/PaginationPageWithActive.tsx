@@ -1,4 +1,6 @@
-import PaginationPage, { PaginationPageProps } from './PaginationPage';
+import PaginationPage, {
+  PaginationPageProps
+} from 'src/components/Pagination/PaginationPage';
 
 interface IProps extends PaginationPageProps {
   isActive?: boolean;

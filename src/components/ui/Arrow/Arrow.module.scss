@@ -5,7 +5,7 @@
     right: 20px;
     float: right;
     fill: #b3b3b3;
-    background-image: url('./../../../assets/Down-black.svg');
+    background-image: url('src/assets/Down-black.svg');
     background-repeat: no-repeat;
     width: 10px;
     height: 6px;
@@ -16,6 +16,6 @@
   }
 
   &__dark {
-    background-image: url('./../../../assets/Down.svg');
+    background-image: url('src/assets/Down.svg');
   }
 }

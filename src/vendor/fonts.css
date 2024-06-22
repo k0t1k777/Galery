@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('./fonts/Roboto-Light.ttf') format('ttf');
+  src: url('src/vendor/fonts/Roboto-Light.ttf') format('ttf');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./fonts/Roboto-Regular.ttf') format('ttf');
+  src: url('src/vendor/fonts/Roboto-Regular.ttf') format('ttf');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./fonts/Roboto-Medium.ttf') format('ttf');
+  src: url('src/vendor/fonts/Roboto-Medium.ttf') format('ttf');
 }
 
 @font-face {
@@ -27,5 +27,5 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('./fonts/Roboto-Bold.ttf') format('ttf');
+  src: url('src/vendor/fonts/Roboto-Bold.ttf') format('ttf');
 }
