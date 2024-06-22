@@ -1,8 +1,8 @@
 import styles from './Header.module.scss';
-import FWT from './../../assets/icons/FWT.svg?react';
+import FWT from 'src/assets/icons/FWT.svg?react';
 import cn from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsDarkTheme } from '../../store/features/slice/slice';
+import { setIsDarkTheme } from 'src/store/features/slice/slice';
 
 const cx = cn.bind(styles);
 

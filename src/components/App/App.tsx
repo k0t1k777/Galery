@@ -1,8 +1,8 @@
 import cn from 'classnames/bind';
-import Header from '../Header/Header';
-import Main from '../Main/Main';
+import Main from 'src/components/Main/Main';
 import styles from './App.module.scss';
 import { useSelector } from 'react-redux';
+import Header from 'src/components/Header/Header';
 
 const cx = cn.bind(styles);
 

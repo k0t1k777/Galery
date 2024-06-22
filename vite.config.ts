@@ -8,8 +8,7 @@ export default defineConfig({
   plugins: [react(), svgr({ svgrOptions: {} }), envCompatible()],
   resolve: {
     alias: {
-      '@components': '/src/components',
-      '@styles': '/src/styles'
+      src: '/src/',
     }
   }
 });
