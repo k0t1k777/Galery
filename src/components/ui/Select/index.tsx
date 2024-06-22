@@ -28,10 +28,12 @@ export default function Select({
   const { select__reset } = styles;
   const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const ref = useRef(null);
-  const toggleOpen = () => setIsOpen((prev) => !prev);
 
+  function toggleOpen() {
+    setIsOpen(prev => !prev);
+  }
+  
   useOutsideClick(ref, toggleOpen);
 
   function handleReset(event: React.MouseEvent<HTMLImageElement>) {

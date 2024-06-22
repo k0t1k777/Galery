@@ -5,10 +5,7 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import Line from 'src/assets/Line.svg?react';
 import LineBlack from 'src/assets/Line-black.svg?react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setBeforeDate,
-  setFromDate
-} from 'src/store/features/slice/slice';
+import { setBeforeDate, setFromDate } from 'src/store/features/slice/slice';
 
 const cx = cn.bind(styles);
 
@@ -25,15 +22,15 @@ export default function SelectDate({ text, clearPages }: SelectProps) {
   const dispatch = useDispatch();
   const ref = useRef(null);
 
-  function openMenu() {
-    setIsOpen(true);
+  function toggleOpen() {
+    setIsOpen(prev => !prev);
   }
 
-  function hideMenu() {
-    setIsOpen(false);
-  }
-
-  useOutsideClick(ref, hideMenu);
+  useOutsideClick(ref, () => {
+    if (isOpen) {
+      toggleOpen();
+    }
+  });
 
   function handleFromDateChange(e: React.ChangeEvent<HTMLInputElement>) {
     clearPages();
@@ -52,7 +49,7 @@ export default function SelectDate({ text, clearPages }: SelectProps) {
         'select--dark': isDarkTheme === 'dark',
         'select--open': isOpen === true
       })}
-      onClick={isOpen ? hideMenu : openMenu}>
+      onClick={toggleOpen}>
       <span>{text}</span>
       {isOpen && (
         <div
