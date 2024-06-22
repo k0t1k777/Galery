@@ -14,24 +14,4 @@
   @media screen and (max-width: 647px) {
     justify-content: center;
   }
-
-  &__container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__nothing {
-    color: $black;
-    @include text-bold;
-
-    @media screen and (max-width: 450px) {
-      width: 250px;
-      text-align: center;
-    }
-
-    &--dark {
-      color: $white;
-    }
-  }
 }
