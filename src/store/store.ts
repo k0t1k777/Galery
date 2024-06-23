@@ -5,7 +5,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
   reducer: {
-    counter: slice,
+    picture: slice,
     [apiPictures.reducerPath]: apiPictures.reducer,
   },
   middleware: (getDefaultMiddleware) =>

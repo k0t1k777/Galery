@@ -21,7 +21,7 @@ const initialState: SliceProps = {
 };
 
 export const slice = createSlice({
-  name: 'counter',
+  name: 'picture',
   initialState,
   reducers: {
     setCurrentPage: (state, action: PayloadAction<number>) => {

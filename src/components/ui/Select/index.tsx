@@ -7,6 +7,7 @@ import 'src/components/ui/Select/SimpleBar.scss';
 import styles from 'src/components/ui/Select/Select.module.scss';
 import Reset from 'src/assets/Reset.svg';
 import { useSelector } from 'react-redux';
+import { RootState } from 'src/store/features/slice/rootReducer';
 
 const cx = cn.bind(styles);
 
@@ -26,14 +27,14 @@ export default function Select({
   clearPages
 }: ISelect) {
   const { select__reset } = styles;
-  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  const isDarkTheme = useSelector((state: RootState) => state.picture.isDarkTheme);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
   function toggleOpen() {
     setIsOpen(prev => !prev);
   }
-  
+
   useOutsideClick(ref, toggleOpen);
 
   function handleReset(event: React.MouseEvent<HTMLImageElement>) {

@@ -6,17 +6,18 @@ import { useSelector } from 'react-redux';
 import { pagesAmount } from 'src/components/utills/constants';
 import { useEffect, useState } from 'react';
 import * as ApiQuery from 'src/services/api';
+import { RootState } from 'src/store/features/slice/rootReducer';
 
 export default function Main() {
   const { main } = styles;
   const [authorId, setAuthorId] = useState(0);
   const [locationId, setLocationId] = useState(0);
-  const fromDate = useSelector((state: any) => state.counter.fromDate);
-  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
-  const inputValue = useSelector((state: any) => state.counter.inputValue);
-  const authorValue = useSelector((state: any) => state.counter.authorValue);
+  const fromDate = useSelector((state: RootState) => state.picture.fromDate);
+  const beforeDate = useSelector((state: RootState) => state.picture.beforeDate);
+  const inputValue = useSelector((state: RootState) => state.picture.inputValue);
+  const authorValue = useSelector((state: RootState) => state.picture.authorValue);
   const locationValue = useSelector(
-    (state: any) => state.counter.locationValue
+    (state: RootState) => state.picture.locationValue
   );
 
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);

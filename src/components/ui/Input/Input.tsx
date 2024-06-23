@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setInputValue } from 'src/store/features/slice/slice';
 import styles from 'src/components/ui/Input/Input.module.scss';
 import cn from 'classnames/bind';
+import { RootState } from 'src/store/features/slice/rootReducer';
 
 const cx = cn.bind(styles);
 
@@ -11,8 +12,8 @@ interface InputProps {
 
 export default function Input({ clearPages }: InputProps) {
   const dispatch = useDispatch();
-  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
-  const inputValue = useSelector((state: any) => state.counter.inputValue);
+  const isDarkTheme = useSelector((state: RootState) => state.picture.isDarkTheme);
+  const inputValue = useSelector((state: RootState) => state.picture.inputValue);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearPages();

@@ -8,6 +8,7 @@ import ArrowL from 'src/assets/arrowL.svg?react';
 import usePaginationSlice from 'src/hooks/usePaginationSlice';
 import { setCurrentPage } from 'src/store/features/slice/slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'src/store/features/slice/rootReducer';
 
 export type TPagination = {
   pagesAmount: number;
@@ -18,8 +19,8 @@ export default function Pagination({ pagesAmount }: TPagination) {
   const { pagination } = styles;
 
   const dispatch = useDispatch();
-  const currentPage = useSelector((state: any) => state.counter.currentPage);
-  const isDarkTheme = useSelector((state: any) => state.counter.isDarkTheme);
+  const currentPage = useSelector((state: RootState) => state.picture.currentPage);
+  const isDarkTheme = useSelector((state: RootState) => state.picture.isDarkTheme);
 
   const onChange = (currentPage: number) => {
     dispatch(setCurrentPage(currentPage));

@@ -5,23 +5,34 @@ import * as ApiQuery from 'src/services/api';
 import { Authors, Locations, Pictures } from 'src/types/types';
 import { useSelector } from 'react-redux';
 import { pagesAmount } from 'src/components/utills/constants';
+import { RootState } from 'src/store/features/slice/rootReducer';
 
 export default function Gallery() {
   const { gallery } = styles;
-  const currentPage = useSelector((state: any) => state.counter.currentPage);
-  const authorValue = useSelector((state: any) => state.counter.authorValue);
+  const currentPage = useSelector((state: RootState) => state.picture.currentPage);
+  const authorValue = useSelector((state: RootState) => state.picture.authorValue);
   const locationValue = useSelector(
-    (state: any) => state.counter.locationValue
+    (state: RootState) => state.picture.locationValue
   );
-  const fromDate = useSelector((state: any) => state.counter.fromDate);
-  const beforeDate = useSelector((state: any) => state.counter.beforeDate);
-  const inputValue = useSelector((state: any) => state.counter.inputValue);
+  const fromDate = useSelector((state: RootState) => state.picture.fromDate);
+  const beforeDate = useSelector((state: RootState) => state.picture.beforeDate);
+  const inputValue = useSelector((state: RootState) => state.picture.inputValue);
   const dataAuthorId = ApiQuery.useGetSearchAuthorIdQuery(authorValue);
   const dataLocationId = ApiQuery.useGetSearchLocationIdQuery(locationValue);
   const dataAuthors = ApiQuery.useGetAuthorsQuery('');
   const dataLocations = ApiQuery.useGetLocationsQuery('');
   const [authorId, setAuthorId] = useState(0);
   const [locationId, setLocationId] = useState(0);
+
+  const dataPictures = ApiQuery.useGetPaginationQuery({
+    currentPage,
+    pagesAmount,
+    inputValue,
+    authorId,
+    locationId,
+    fromDate,
+    beforeDate
+  });
 
   useEffect(() => {
     if (dataAuthorId.isSuccess) {
@@ -35,20 +46,10 @@ export default function Gallery() {
     }
   }, [dataLocationId]);
 
-  const dataPictures = ApiQuery.useGetPaginationQuery({
-    currentPage,
-    pagesAmount,
-    inputValue,
-    authorId,
-    locationId,
-    fromDate,
-    beforeDate
-  });
-
   return (
     <div className={gallery}>
       {dataPictures?.isSuccess &&
-        dataPictures?.data.map((item: Pictures) => {
+        dataPictures?.data?.map((item: Pictures) => {
           const author = dataAuthors.data.find(
             (author: Authors) => author.id === item.authorId
           );

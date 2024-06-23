@@ -1,4 +1,14 @@
-export default function buildQueryString(params: any) {
+interface QueryParams {
+  currentPage?: string;
+  pagesAmount?: string;
+  inputValue?: string;
+  authorId?: string;
+  locationId?: string;
+  fromDate?: string;
+  beforeDate?: string;
+}
+
+export default function buildQueryString(params: QueryParams): string  {
   const searchParams = new URLSearchParams();
 
   if (params.currentPage && params.pagesAmount) {
